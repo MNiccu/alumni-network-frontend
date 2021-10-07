@@ -2,7 +2,7 @@ import { Form } from "react-bootstrap"
 import { Redirect } from "react-router-dom"
 
 
-const Login = () => {
+const Login = (props) => {
 
 	//const name & pw
 
