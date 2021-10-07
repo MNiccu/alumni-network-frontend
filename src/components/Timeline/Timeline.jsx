@@ -1,9 +1,7 @@
 
-
 const Timeline = () => {
 
     
-
 	return (
 		<main>
 			<h1>e</h1>

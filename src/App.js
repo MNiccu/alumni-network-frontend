@@ -7,12 +7,14 @@ import CreateEvent from "./components/CreateEvent/CreateEvent"
 import Timeline from "./components/Timeline/Timeline"
 import GroupDetail from "./components/GroupDetail/GroupDetail"
 import GroupList from "./components/GroupList/GroupList"
+import Navigation from "./components/Navigation/Navigation"
 
 const App = () => {
 
 	return (
 		
 		<BrowserRouter>
+			<Navigation />
 			<Switch>
 				<Route exact path="/">
 					<Redirect to="/login" />
@@ -20,8 +22,6 @@ const App = () => {
 
 				<Route path="/login" component={Login} />
 				<Route exact path="/timeline" component={Timeline} />
-				
-
 				
 			</Switch>
 		</BrowserRouter>

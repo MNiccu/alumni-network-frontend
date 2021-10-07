@@ -1,17 +1,37 @@
+import { Form } from "react-bootstrap"
 import { Redirect } from "react-router-dom"
 
 
 const Login = () => {
 
-	const handleLoginClick = () => {
-		
+	//const name & pw
+
+	const onFormSubmit = event => {
+		event.preventDefault()	
+		//keycloak here	
+		props.history.push("/timeline")
 	}
 
 	return (
-		<main>
-			<h1>A</h1>
-			<button onClick={ handleLoginClick }>Login with Keycloak</button>
-		</main>
+		<div className="background">
+			<form className="container" onSubmit={ onFormSubmit }>
+				<h2>Login</h2>
+			
+				<div className="form-group">
+					<label>Username</label>
+					<input id="username" type="text" placeholder="Enter username"></input>		
+				</div>	
+
+				<div className="form-group">
+					<label>Password</label>
+					<input id="password" type="password" placeholder="Enter password"></input>
+				</div>
+			
+				<button type="submit" className="btn btn-primary btn-lg" >Login with Keycloak</button>
+				
+			</form>
+			
+		</div>
 	)
 }
 export default Login
