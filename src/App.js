@@ -17,15 +17,10 @@ const App = () => {
 				<Route exact path="/">
 					<Redirect to="/login" />
 				</Route>
-				<Route path="/login" component={Login} />
 
-				<Route path="/" component={Calendar} />
-				<Route path="/" component={CreateEditPost} />
-				<Route path="/" component={CreateEvent} />
-				<Route path="/" component={GroupDetail} />
-				<Route path="/" component={GroupList} />
-				
+				<Route path="/login" component={Login} />
 				<Route exact path="/timeline" component={Timeline} />
+				
 
 				
 			</Switch>
