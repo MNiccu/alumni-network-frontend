@@ -1,10 +1,6 @@
 import Keycloak from "keycloak-js";
 
-
-//TEST VERSION!!! t: Mikko
-
-const _keycloak = new Keycloak("keycloak.json");
-
+const _keycloak = new Keycloak('keycloak.json');
 /*
  * Initialise Keycloak
  * @param {function} onAuthenticated 

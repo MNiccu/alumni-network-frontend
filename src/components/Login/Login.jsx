@@ -4,7 +4,7 @@ import KeycloakService from "../../services/KeycloakService"
 const Login = () => {
 
 	if (KeycloakService.isLoggedIn()) {
-		return <Redirect to="/login" />
+		return <Redirect to="/timeline" />
 	}
 
 	const handleLoginClick = () => {
