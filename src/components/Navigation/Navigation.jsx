@@ -11,9 +11,9 @@ const Navigation = () => {
     <Container>
     <Navbar.Brand href="/">Navbar</Navbar.Brand>
     <Nav className="me-auto">
-      <Nav.Link href="/">AAAA</Nav.Link>
-      <Nav.Link href="/">BBBB</Nav.Link>
-      <Nav.Link href="/">New post</Nav.Link>
+      <Nav.Link href="/calendar">calendar</Nav.Link>
+      <Nav.Link href="/groups">groups</Nav.Link>
+      <Nav.Link href="/topics">topics</Nav.Link>
     </Nav>
     <Nav>
     <NavDropdown title="User">

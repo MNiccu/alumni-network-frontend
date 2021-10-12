@@ -6,6 +6,7 @@ import CreateEvent from "./components/CreateEvent/CreateEvent"
 import Timeline from "./components/Timeline/Timeline"
 import GroupDetail from "./components/GroupDetail/GroupDetail"
 import GroupList from "./components/GroupList/GroupList"
+import TopicList from "./components/TopicList/TopicList"
 import Navigation from "./components/Navigation/Navigation"
 import CalendarComponent from "./components/Calendar/CalendarComponent";
 
@@ -23,6 +24,9 @@ const App = () => {
 				<Route path="/login" component={Login} />
 				<Route exact path="/timeline" component={Timeline} />
 				<Route exact path="/calendar" component={CalendarComponent} />
+				<Route exact path="/groups" component={ GroupList } />
+				<Route exact path="/topics" component={ TopicList } />
+				<Route exact path="/group1" component={GroupDetail /* how to "sub-url?" */} />
 				
 			</Switch>
 		</BrowserRouter>
