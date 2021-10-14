@@ -11,6 +11,17 @@ export const TimelineAPI = {
                 return response.json()
             })
     },
+    getTopicPosts() {
+        return fetch(apiURL + "?targetTopic=8")
+            .then(async (response) => {
+                if (!response.ok) {
+                    const { error= "Error occured while fetching posts"} = await response.json()
+                    throw Error(error)
+                }
+                return response.json()
+            })
+    },
+
     getComments(id) {
         return fetch(`${apiURL}?postId=${id}`)
         .then(async (response) => {

@@ -1,4 +1,4 @@
-export const TopicListAPI = {
+export const TopicListApi = {
     
     getTopics() {
   

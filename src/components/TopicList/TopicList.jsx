@@ -1,46 +1,52 @@
-import { TopicListAPI } from "./TopicListApi"
+import { TopicListApi } from "./TopicListApi"
 import { useState, useEffect } from "react"
 import React from "react"
 
+import { Container } from "react-bootstrap"
+import TopicItem from "../TopicDetail/TopicItem"
+
 const TopicList = () => {
 
-    let topicListArray = []
+  
     
+    let topicListArray = []
+ 
 
     const [topics, setTopics] = useState([])
 
+    
     useEffect(() => {
         
         listTopics()
        
-        console.log(topics)
         
     }, [])
 
     const listTopics = event => {
-        TopicListAPI.getTopics().then(
+        TopicListApi.getTopics().then(
             result => {
-                
+                console.log("AAAA", result)
                 topicListArray = result
                 setTopics(topicListArray)
+                console.log(topicListArray)
                 
             })
     }
 
     
-    
+    //TODO dealing with private topics...
 	return (
-		<main>
-			<h1>Topic List</h1>
-			
-
-            <div>
-               {topics.map(a => <p>Name: {a.name}</p>)}
-
-               
-            </div>
-
-		</main>
+		
+            <Container>
+                 
+        {topics && topics.map(topic => {
+          return (
+            <TopicItem key={topic.topicId} topic={topic}/> 
+          )
+        })}
+      
+            </Container>
+            
 	)
 }
 export default TopicList
