@@ -11,8 +11,8 @@ export const TimelineAPI = {
                 return response.json()
             })
     },
-    getTopicPosts() {
-        return fetch(apiURL + "?targetTopic=8")
+    getTopicPosts(id) {
+        return fetch(apiURL + "?targetTopic=" + id)
             .then(async (response) => {
                 if (!response.ok) {
                     const { error= "Error occured while fetching posts"} = await response.json()

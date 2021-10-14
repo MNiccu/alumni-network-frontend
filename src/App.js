@@ -28,6 +28,7 @@ const App = () => {
 				<Route exact path="/groups" component={ GroupList } />
 				<Route exact path="/topics" component={ TopicList } />
 				<Route exact path="/topicdetail" component={TopicDetail} />
+				<Route exact path="/topic/:id" component={TopicDetail} />
 				
 				
 			</Switch>

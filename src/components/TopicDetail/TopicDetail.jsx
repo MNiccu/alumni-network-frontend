@@ -2,9 +2,12 @@ import { useEffect, useState } from "react"
 import { TimelineAPI } from "../Timeline/TimelineAPI"
 import { Container } from "react-bootstrap"
 import TimelinePosts from "../Timeline/TimelinePosts"
+import { useParams } from "react-router"
 
 
 const TopicDetail = () => {
+
+    const {id} = useParams()
 
 	const [posts, setPosts] = useState({
 		posts: [],
@@ -12,7 +15,7 @@ const TopicDetail = () => {
 	})
 
 	useEffect(() => {
-		TimelineAPI.getTopicPosts()
+		TimelineAPI.getTopicPosts(id)
 			.then(allPost => {
 				if (allPost.length) {
 					setPosts({
@@ -25,7 +28,7 @@ const TopicDetail = () => {
     
 	return (
 		<Container>
-			<h1>Welcome to timeline</h1>
+			<h1>Welcome to timeline of Topic {id}</h1>
 			<TimelinePosts posts={posts.posts}/>
 		</Container>
 	)
