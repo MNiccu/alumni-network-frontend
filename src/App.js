@@ -4,7 +4,7 @@ import Login from "./components/Login/Login";
 import CreateEditPost from "./components/CreateEditPost/CreateEditPost"
 import CreateEvent from "./components/CreateEvent/CreateEvent"
 import Timeline from "./components/Timeline/Timeline"
-
+import GroupDetail from "./components/GroupDetail/GroupDetail";
 import GroupList from "./components/GroupList/GroupList"
 import TopicList from "./components/TopicList/TopicList"
 import Navigation from "./components/Navigation/Navigation"
@@ -27,7 +27,7 @@ const App = () => {
 				<Route exact path="/calendar" component={CalendarComponent} />
 				<Route exact path="/groups" component={ GroupList } />
 				<Route exact path="/topics" component={ TopicList } />
-				<Route exact path="/topicdetail" component={TopicDetail} />
+				<Route exact path="/group/:id" component={GroupDetail} />
 				<Route exact path="/topic/:id" component={TopicDetail} />
 				
 				

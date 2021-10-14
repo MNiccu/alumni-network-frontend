@@ -21,6 +21,16 @@ export const TimelineAPI = {
                 return response.json()
             })
     },
+    getGroupPosts(id) {
+        return fetch(apiURL + "?targetgroup=" + id)
+            .then(async (response) => {
+                if (!response.ok) {
+                    const { error= "Error occured while fetching posts"} = await response.json()
+                    throw Error(error)
+                }
+                return response.json()
+            })
+    },
 
     getComments(id) {
         return fetch(`${apiURL}?postId=${id}`)

@@ -1,12 +1,14 @@
 import { Modal, Row, Col, Stack, Container } from "react-bootstrap"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
+import { useHistory } from "react-router-dom"
 
 
 
 const TopicItem = ({topic}) => {
     
     const [modalShow, setModalShow] = useState(false)
-
+    const history = useHistory()
+    const redirectFunction = useCallback(() => history.push('topic/'+topic.topicId), [history])
     
     useEffect(() => {
        
@@ -43,6 +45,7 @@ const TopicItem = ({topic}) => {
                                                     <li key={member}> {member} </li>
                                                  ))}
                                             </ul>
+                                            <button type="button" className="btn btn-outline-secondary" onClick={ redirectFunction } >To detail</button>
                                         </div>
                                     </form>
                                 </div>
