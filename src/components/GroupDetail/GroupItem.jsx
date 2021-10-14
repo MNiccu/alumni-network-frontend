@@ -1,12 +1,13 @@
 import { Modal, Row, Col, Stack, Container } from "react-bootstrap"
-import { useState, useEffect } from "react"
-
+import { useState, useEffect, useCallback } from "react"
+import { useHistory } from "react-router-dom"
 
 
 const GroupItem = ({group}) => {
     
     const [modalShow, setModalShow] = useState(false)
-
+    const history = useHistory()
+    const redirectFunction = useCallback(() => history.push('group/'+group.groupId), [history])
     
     useEffect(() => {
        
@@ -46,6 +47,7 @@ const GroupItem = ({group}) => {
                                         </div>
                                         <div>
                                         <button type="button" className="btn btn-outline-secondary">Join</button>
+                                        <button type="button" className="btn btn-outline-secondary" onClick={ redirectFunction } >To detail</button>
                                         </div>
                                     </form>
                                 </div>
