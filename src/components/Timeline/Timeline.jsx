@@ -6,10 +6,17 @@ import TimelinePosts from "./TimelinePosts"
 
 const Timeline = () => {
 
+
 	const [posts, setPosts] = useState({
 		posts: [],
 		fetching: true
 	})
+
+	// const username = KeycloakService.getUsername()
+	// const handleLoginClick = () => {
+	// 	KeycloakService.doLogout()
+	// }
+
 
 	useEffect(() => {
 		TimelineAPI.getPost()
@@ -24,10 +31,18 @@ const Timeline = () => {
 	}, [])
     
 	return (
+
 		<Container>
 			<h1>Welcome to timeline</h1>
 			<TimelinePosts posts={posts.posts}/>
 		</Container>
+
+		// <main>
+		// 	<h1> { username }</h1>
+		// 	<p>Timeline page</p>
+		// 	<button onClick={ handleLoginClick }>Logout with Keycloak</button>
+		// </main>
+
 	)
 }
 export default Timeline

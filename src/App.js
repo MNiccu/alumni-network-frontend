@@ -14,6 +14,7 @@ import SingleEvent from "./components/Events/SingleEvent";
 import TopicDetail from "./components/TopicDetail/TopicDetail";
 
 
+
 const App = () => {
 
 	return (
@@ -35,6 +36,7 @@ const App = () => {
 				<Route exact path="/topics" component={ TopicList } />
 				<Route exact path="/group/:id" component={GroupDetail} />
 				<Route exact path="/topic/:id" component={TopicDetail} />
+
 
 			</Switch>
 		</BrowserRouter>

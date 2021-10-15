@@ -2,9 +2,15 @@ import { Form } from "react-bootstrap"
 import { Redirect } from "react-router-dom"
 
 
+
 const Login = (props) => {
 
 	//const name & pw
+
+	// if (KeycloakService.isLoggedIn()) {
+	// 	return <Redirect to="/timeline" />
+	// }
+
 
 	const onFormSubmit = event => {
 		event.preventDefault()	
