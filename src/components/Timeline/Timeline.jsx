@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+ import { useEffect, useState } from "react"
 import { TimelineAPI } from "./TimelineAPI"
 import { Container } from "react-bootstrap"
 import TimelinePosts from "./TimelinePosts"
