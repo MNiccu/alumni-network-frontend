@@ -11,6 +11,8 @@ const Navigation = () => {
     <Container>
     <Navbar.Brand href="/">Navbar</Navbar.Brand>
     <Nav className="me-auto">
+      <Nav.Link href="/groups">Groups</Nav.Link>
+      <Nav.Link href="/topics">Topics</Nav.Link>
       <Nav.Link href="/timeline">Timeline</Nav.Link>
       <Nav.Link href="/calendar">Calendar</Nav.Link>
       <Nav.Link href="/events">Events</Nav.Link>
