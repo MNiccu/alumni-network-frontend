@@ -13,7 +13,7 @@ const Navigation = () => {
     <Nav className="me-auto">
       <Nav.Link href="/timeline">Timeline</Nav.Link>
       <Nav.Link href="/calendar">Calendar</Nav.Link>
-      <Nav.Link href="/">New post</Nav.Link>
+      <Nav.Link href="/events">Events</Nav.Link>
     </Nav>
     <Nav>
     <NavDropdown title="User">
