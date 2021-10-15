@@ -3,6 +3,7 @@ import KeycloakService from "../../services/KeycloakService"
 
 const Login = () => {
 
+		//if getbio false, redirect to moreInfo page
 	if (KeycloakService.isLoggedIn()) {
 		return <Redirect to="/timeline" />
 	}
