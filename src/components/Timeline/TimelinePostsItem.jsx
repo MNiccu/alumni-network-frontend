@@ -32,10 +32,9 @@ const TimelinePostsItem = ({post}) => {
             <Container>
 
                 <Modal show={modalShow} onHide={() => setModalShow(false)} centered>
-                        {console.log("hello")}
                         <Modal.Title  className="mb-4">
                             <Row className="mt-2">
-                                <Col xs={2} md={2} lg={2} className="ml-3">
+                                <Col xs={2} md={2} lg={2} className="mx-1">
                                     <img src={`https://avatars.dicebear.com/api/avataaars/userid${post.senderId}.svg`} alt="Users profile" className="card-img img-thumbnail img-sm" />
                                 </Col>
                                 <Col xs={4} sm={6} md={10} lg={8}>
@@ -52,12 +51,12 @@ const TimelinePostsItem = ({post}) => {
                         </Modal.Header>
                         <Modal.Body> 
                             <div className="row">
-                                <div className="col-sm-10">
+                                <div className="col">
                                     <form>
                                         <div className="form-group">
                                             <textarea className="form-control" rows="2" name="text" placeholder="Leave a comment"></textarea>
                                         </div>
-                                        <div className="form-group float-right">
+                                        <div className="form-group float-end mt-1">
                                             <button className="btn btn-primary btn-sm">Comment</button>
                                         </div>
                                     </form>
