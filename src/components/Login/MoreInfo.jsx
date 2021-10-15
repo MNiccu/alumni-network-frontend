@@ -1,14 +1,14 @@
 import { Form } from "react-bootstrap"
 import { Redirect } from "react-router-dom"
+import withKeycloak from "../../hoc/WithKeycloak"
 
-
-const Login = (props) => {
+const MoreInfo = (props) => {
 
 	
 
 	const onFormSubmit = event => {
 		event.preventDefault()	
-		
+		//post to user
 		props.history.push("/timeline")
 	}
 
@@ -19,24 +19,24 @@ const Login = (props) => {
 			
 				<div className="form-group">
 					<label>Bio</label>
-					<input id="username" type="text" placeholder="Enter username"></input>		
+					<input id="bio" type="text" placeholder="your bio"></input>		
 				</div>	
 
 				<div className="form-group">
 					<label>Status</label>
-					<input id="password" type="text" placeholder="Enter password"></input>
+					<input id="status" type="text" placeholder="your status"></input>
 				</div>
 
                 <div className="form-group">
 					<label>Fun Fact</label>
-					<input id="password" type="text" placeholder="Enter password"></input>
+					<input id="funfact" type="text" placeholder="tell us a fun fact about you"></input>
 				</div>
 			
 				<button type="submit" className="btn btn-primary btn-lg" >Send</button>
-				
+                				
 			</form>
 			
 		</div>
 	)
 }
-export default Login
+export default withKeycloak(MoreInfo)

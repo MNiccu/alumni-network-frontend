@@ -3,7 +3,7 @@ import { TimelineAPI } from "../Timeline/TimelineAPI"
 import { Container } from "react-bootstrap"
 import TimelinePosts from "../Timeline/TimelinePosts"
 import { useParams } from "react-router"
-
+import withKeycloak from "../../hoc/WithKeycloak"
 
 const TopicDetail = () => {
 
@@ -33,4 +33,4 @@ const TopicDetail = () => {
 		</Container>
 	)
 }
-export default TopicDetail
+export default withKeycloak(TopicDetail)

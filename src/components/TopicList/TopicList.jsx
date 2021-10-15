@@ -1,9 +1,9 @@
 import { TopicListApi } from "./TopicListApi"
 import { useState, useEffect } from "react"
 import React from "react"
-
 import { Container } from "react-bootstrap"
 import TopicItem from "../TopicDetail/TopicItem"
+import withKeycloak from "../../hoc/WithKeycloak"
 
 const TopicList = () => {
 
@@ -49,4 +49,4 @@ const TopicList = () => {
             
 	)
 }
-export default TopicList
+export default withKeycloak(TopicList)
