@@ -1,0 +1,13 @@
+.event {
+    width: 60%;
+}
+
+.event-image {
+    width: 100% ;
+    height: 150px;
+    object-fit: cover;
+}
+
+.txt {
+    font-size: 15px;
+}
