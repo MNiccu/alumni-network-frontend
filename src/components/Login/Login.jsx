@@ -11,26 +11,29 @@ const Login = (props) => {
 		
 		//check if user exists
 
-		//let username = KeycloakService.getUsername();
-		//let user = LoginApi.getUser(username)
+		let username = KeycloakService.getUsername();
+		//this should probably return just a true or false, or something
+		let user = LoginApi.getUser(username)
+		.then ((result) => {
+			if(result.length > 0) {
+				props.history.push("/timeline")
+				
+			} else {
+				let token = KeycloakService.getToken()
+				LoginApi.postUser(username, token)
+				props.history.push("/moreinfo")
+			}
+					console.log(result)
+        })
 
-		//post user
-		//checking user for bio
-		
-		
-		//if (user.bio == null){
-			return <Redirect to="/moreinfo" />
-		//} else {
-	//	return <Redirect to="/timeline" />
-	//	}
+		//THERE SHOULD BE A "GET NAME" TOO
+							
 	}
-
-	
 
 	const onFormSubmit = event => {
 		event.preventDefault()	
 		KeycloakService.doLogin()
-		//props.history.push("/timeline")
+		
 	}
 
 	return (

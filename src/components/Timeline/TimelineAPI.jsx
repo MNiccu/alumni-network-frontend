@@ -41,5 +41,16 @@ export const TimelineAPI = {
             }
             return await response.json()
         })
+    },
+
+    getTopicEvents(id) {
+        return fetch("https://alumni-dummy-data-api.herokuapp.com/event" + "?topic=" + id)
+            .then(async (response) => {
+                if (!response.ok) {
+                    const { error= "Error occured while fetching posts"} = await response.json()
+                    throw Error(error)
+                }
+                return response.json()
+            })
     }
 }

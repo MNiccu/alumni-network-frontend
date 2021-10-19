@@ -14,7 +14,7 @@ const localizer = dateFnsLocalizer({
 })
 
 //dummy data
-const events = [
+/* const events = [
 {
     title: "Test event",
     start: new Date('October 10, 2021'),
@@ -25,13 +25,29 @@ const events = [
     start: new Date('October 24, 2021'),
     end: new Date('October 25, 2021')
 }
-]
+] */
 
-const CalendarComponent = () => {
+const CalendarComponent = ({events}) => {
   
+    console.log(events)
+    let fixevents = []
+    let event = {
+        title: "",
+        start: "",
+        end: ""
+    }
+
+    for(let i=0; i < events.length; i++) {
+        event.title = events[i].name
+        event.start = events[i].startTime
+        event.end = events[i].endTime
+        fixevents.push(event)
+    }
+
+
 	return (
 		<div>
-            <Calendar localizer={localizer} events={events}
+            <Calendar localizer={localizer} events={fixevents}
              startAccessor="start" endAccessor="end" 
              style={{height:"500px", margin:"10px"}} />
         </div>
