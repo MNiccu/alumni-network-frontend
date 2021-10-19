@@ -1,5 +1,6 @@
 .event {
-    width: 60%;
+    width: 250px;
+    height: 150px;
 }
 
 .event-image {
@@ -10,4 +11,28 @@
 
 .txt {
     font-size: 15px;
+}
+
+.attending {
+    background: none!important;
+    border: none;
+    padding: 0!important;
+
+    color: #069;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+#post-prof-img {
+    width: 50px;
+    padding-right: 0;
+}
+
+.prof-pic {
+    margin: auto;
+}
+
+.fill {
+    max-width: 240px;
+    max-height: 200px;
 }
