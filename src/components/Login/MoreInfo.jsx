@@ -31,6 +31,10 @@ const MoreInfo = (props) => {
 		props.history.push("/timeline")
 	}
 
+	const handleSkip = () => {
+		// PITÄÄ TÄYDENTÄÄ TÄTÄ MYÖHEMMIN
+		props.history.push("/timeline")
+	}
 
 	const handleInputChange = event => {
 		setFields ({
@@ -43,30 +47,38 @@ const MoreInfo = (props) => {
 
 
 	return (
-		<div className="background">
-			<form className="container" onSubmit={ onFormSubmit }>
-				<h2>More info required </h2>
-			
-				<div className="form-group">
-					<label>Bio</label>
-					<input id="bio" onChange={handleInputChange} value={fields.bio} type="text" placeholder="your bio"></input>		
-				</div>	
 
-				<div className="form-group">
-					<label>Status</label>
-					<input id="statustext" onChange={handleInputChange} value={fields.statustext} type="text" placeholder="your status"></input>
+		<div className="container">
+			<div className="card mt-5 w-50 mx-auto">
+				<div className="card-body">
+					<h3>Complete your profile</h3>
+					<form className="my-4" onSubmit={ onFormSubmit }>
+						<div className="mb-4">
+							{/*EI TOIMI VIELÄ*/}
+							<label htmlFor="inputProfilePic" className="form-label">Choose a profile picture for yourself</label>
+							<input type="file" id="inputProfilePic" className="form-control"></input>
+						</div>
+						<div className="mb-4">
+							<label htmlFor="inputStatus" className="form-label">Where you are working/studying currently?</label>
+							<input type="text" onChange={handleInputChange} value={fields.statustext} className="form-control" id="inputStatus" placeholder="Your current status"></input>
+						</div>
+						<div className="mb-4">
+							<label htmlFor="inputBio" className="form-label">Tell us more about you and write your bio</label>
+							<textarea onChange={handleInputChange} value={fields.bio} className="form-control" id="inputBio" rows="2" placeholder="Your bio"></textarea>
+						</div>
+						<div className="mb-4">
+							<label htmlFor="inputFunFact" className="form-label">Add one fun fact about you to your friends and followers</label>
+							<input onChange={handleInputChange} value={fields.funfact} type="text" className="form-control" id="inputFunFact" placeholder="Some fun fact about you"></input>
+						</div>
+						<div className="float-end">
+							<span type="button" onClick={ handleSkip } className="me-2">skip</span>
+							<button type="submit" className="btn btn-primary">Complete your profile</button>
+						</div>
+					</form>
 				</div>
-
-                <div className="form-group">
-					<label>Fun Fact</label>
-					<input id="funfact" onChange={handleInputChange} value={fields.funfact} type="text" placeholder="tell us a fun fact about you"></input>
-				</div>
-			
-				<button type="submit" className="btn btn-primary btn-lg" >Send</button>
-                				
-			</form>
-			
+			</div>
 		</div>
+
 	)
 }
 export default withKeycloak(MoreInfo)
