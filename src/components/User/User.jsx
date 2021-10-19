@@ -3,7 +3,7 @@ import { Container, Card, Row, Col, Image, Button, Offcanvas, Form } from "react
 import { UserAPI } from "./UserAPI"
 import UserPosts from "./UserPosts"
 import "./user.css"
-
+import withKeycloak from "../../hoc/WithKeycloak"
 
 const User = () => {
 
@@ -121,4 +121,4 @@ const User = () => {
     )
 }
 
-export default User
+export default withKeycloak(User)

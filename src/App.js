@@ -12,6 +12,7 @@ import CalendarComponent from "./components/Calendar/CalendarComponent";
 import User from "./components/User/User"
 import SingleEvent from "./components/Events/SingleEvent";
 import TopicDetail from "./components/TopicDetail/TopicDetail";
+import MoreInfo from "./components/Login/MoreInfo";
 
 
 
@@ -27,6 +28,7 @@ const App = () => {
 				</Route>
 
 				<Route path="/login" component={Login} />
+				<Route exact path="/moreinfo" component={MoreInfo} />
 				<Route exact path="/timeline" component={Timeline} />
 				<Route exact path="/calendar" component={CalendarComponent} />
 				<Route exact path="/user" component={User} />
@@ -36,7 +38,7 @@ const App = () => {
 				<Route exact path="/topics" component={ TopicList } />
 				<Route exact path="/group/:id" component={GroupDetail} />
 				<Route exact path="/topic/:id" component={TopicDetail} />
-
+				
 
 			</Switch>
 		</BrowserRouter>

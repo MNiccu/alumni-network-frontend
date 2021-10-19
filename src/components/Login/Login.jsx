@@ -1,21 +1,39 @@
 import { Form } from "react-bootstrap"
 import { Redirect } from "react-router-dom"
-
-
+import KeycloakService from "../../services/KeycloakService"
+import {LoginApi} from "./LoginApi"
+	
 
 const Login = (props) => {
 
-	//const name & pw
+	
+	if (KeycloakService.isLoggedIn()) {
+		
+		//check if user exists
 
-	// if (KeycloakService.isLoggedIn()) {
-	// 	return <Redirect to="/timeline" />
-	// }
+		let username = KeycloakService.getUsername();
+		//this should probably return just a true or false, or something
+		let user = LoginApi.getUser(username)
+		.then ((result) => {
+			if(result.length > 0) {
+				props.history.push("/timeline")
+				
+			} else {
+				let token = KeycloakService.getToken()
+				LoginApi.postUser(username, token)
+				props.history.push("/moreinfo")
+			}
+					console.log(result)
+        })
 
+		//THERE SHOULD BE A "GET NAME" TOO
+							
+	}
 
 	const onFormSubmit = event => {
 		event.preventDefault()	
-		//keycloak here	
-		props.history.push("/timeline")
+		KeycloakService.doLogin()
+		
 	}
 
 	return (

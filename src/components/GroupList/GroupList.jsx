@@ -1,8 +1,8 @@
 import { GroupListAPI } from "./GroupListApi"
 import { useState, useEffect } from "react"
-
 import { Container } from "react-bootstrap"
 import GroupItem from "../GroupDetail/GroupItem"
+import withKeycloak from "../../hoc/WithKeycloak"
 
 const GroupList = () => {
 
@@ -48,4 +48,4 @@ const GroupList = () => {
             
 	)
 }
-export default GroupList
+export default withKeycloak(GroupList)

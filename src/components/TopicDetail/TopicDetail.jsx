@@ -3,7 +3,8 @@ import { TimelineAPI } from "../Timeline/TimelineAPI"
 import { Container } from "react-bootstrap"
 import TimelinePosts from "../Timeline/TimelinePosts"
 import { useParams } from "react-router"
-
+import withKeycloak from "../../hoc/WithKeycloak"
+import CalendarComponent from "../Calendar/CalendarComponent"
 
 const TopicDetail = () => {
 
@@ -13,7 +14,7 @@ const TopicDetail = () => {
 		posts: [],
 		fetching: true
 	})
-
+	const [isBasicView, setIsBasicView] = useState(true)
 	useEffect(() => {
 		TimelineAPI.getTopicPosts(id)
 			.then(allPost => {
@@ -29,8 +30,11 @@ const TopicDetail = () => {
 	return (
 		<Container>
 			<h1>Welcome to timeline of Topic {id}</h1>
-			<TimelinePosts posts={posts.posts}/>
+			<button onClick={() => setIsBasicView(!isBasicView)}>Change view</button>
+			{isBasicView ? 
+			(<TimelinePosts posts={posts.posts}/>) :
+			<CalendarComponent />}
 		</Container>
 	)
 }
-export default TopicDetail
+export default withKeycloak(TopicDetail)

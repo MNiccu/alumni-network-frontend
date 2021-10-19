@@ -2,7 +2,8 @@
 import { TimelineAPI } from "./TimelineAPI"
 import { Container } from "react-bootstrap"
 import TimelinePosts from "./TimelinePosts"
-
+import KeycloakService from "../../services/KeycloakService"
+import withKeycloak from "../../hoc/WithKeycloak"
 
 const Timeline = () => {
 
@@ -12,10 +13,10 @@ const Timeline = () => {
 		fetching: true
 	})
 
-	// const username = KeycloakService.getUsername()
-	// const handleLoginClick = () => {
-	// 	KeycloakService.doLogout()
-	// }
+	 const username = KeycloakService.getUsername()
+	 const handleLoginClick = () => {
+	 	KeycloakService.doLogout()
+	 }
 
 
 	useEffect(() => {
@@ -34,15 +35,20 @@ const Timeline = () => {
 
 		<Container>
 			<h1>Welcome to timeline</h1>
+
+			<main>
+		 	<h1> { username }</h1>
+			<p>Timeline page</p>
+			<button onClick={ handleLoginClick }>Logout with Keycloak</button>
+			</main>
+
 			<TimelinePosts posts={posts.posts}/>
+
+			
 		</Container>
 
-		// <main>
-		// 	<h1> { username }</h1>
-		// 	<p>Timeline page</p>
-		// 	<button onClick={ handleLoginClick }>Logout with Keycloak</button>
-		// </main>
+		 
 
 	)
 }
-export default Timeline
+export default withKeycloak(Timeline)
