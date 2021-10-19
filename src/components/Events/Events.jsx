@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Container, CardGroup, Row, Col } from "react-bootstrap"
+import { Container, Row } from "react-bootstrap"
 import Event from "./Event"
 import { EventsAPI } from "./EventsAPI"
 import "./events.css"
@@ -21,7 +21,9 @@ const Events = () => {
                     })
                 }
             })
-    })
+
+        return () => {}
+    }, [])
 
     return (
         <Container>
