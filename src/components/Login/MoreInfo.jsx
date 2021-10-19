@@ -25,9 +25,9 @@ const MoreInfo = (props) => {
 		statustext: "",
 		funfact: "",
 		fetching: false})
-
-		LoginApi.patchUser(username, fields.bio, fields.statustext, fields.funfact)		
-		
+		LoginApi.getUser(username)
+		.then( response => { LoginApi.patchUser(response.id, fields.bio, fields.statustext, fields.funfact)		
+		})
 		props.history.push("/timeline")
 	}
 

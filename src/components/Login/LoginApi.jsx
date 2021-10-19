@@ -6,8 +6,8 @@ export const LoginApi = {
     
         
       return fetch(`${apiURL}?username=${username}`)
-        .then(response => response.json())
-      //what if nothing comes out?
+        .then(async response => { return await response.json()} )
+      
 
     },
     postUser(username, token) {
@@ -40,17 +40,14 @@ export const LoginApi = {
             })
 
     },
-    patchUser(username, bio, funFact, status) {
+    patchUser(id, bio, funFact, status) {
 
       const apiURL = "https://alumni-dummy-data-api.herokuapp.com/user";
       const apiKey = "tFGpEKnUC9LrynUbesK4wcTmkScm0b93J33t6ouhSZCGo4V8YbfF8BovJruIZzut";
       
-
-      const user = this.getUser(username)
-      .then(
-      
+        
       //patch translations
-      fetch(`${apiURL}/${user.id}`, {
+      fetch(`${apiURL}/${id}`, {
           method: 'PATCH',
           headers: {
               'X-API-Key': apiKey,
@@ -74,7 +71,7 @@ export const LoginApi = {
           })
           .catch(error => {
           })
-          )
+          
     }
       
 
