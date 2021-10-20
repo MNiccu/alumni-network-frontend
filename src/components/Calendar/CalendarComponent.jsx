@@ -31,6 +31,7 @@ const CalendarComponent = ({events}) => {
   
     console.log(events)
   
+
      const fixevents = events.map(event => {
         let robj = {
             title: "",

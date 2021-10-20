@@ -2,8 +2,15 @@ import { Container, NavDropdown } from 'react-bootstrap'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import 'bootstrap/dist/css/bootstrap.css'
+import KeycloakService from '../../services/KeycloakService'
 
 const Navigation = () => {
+
+  const handleLogoutClick = () => {
+    KeycloakService.doLogout()
+  }
+
+  // <button onClick={ handleLoginClick }>Logout with Keycloak</button>>
 
     return (
 
@@ -18,12 +25,17 @@ const Navigation = () => {
       <Nav.Link href="/events">Events</Nav.Link>
     </Nav>
     <Nav>
-    <NavDropdown title="User">
-        <NavDropdown.Item  href="/user">Profile</NavDropdown.Item>
-        <NavDropdown.Item>User settings</NavDropdown.Item>
-        <NavDropdown.Item>Dashboard</NavDropdown.Item>
+    <NavDropdown title={
+        <div >
+          {KeycloakService.getUsername()}
+          <img src={`https://avatars.dicebear.com/api/avataaars/userid${KeycloakService.getUsername()}.svg`} alt="profilepic" height="40" className="align-middle rounded-circle" />
+        </div>}>
 
+        <NavDropdown.Item  href="/user">Profile</NavDropdown.Item>
+        <NavDropdown.Divider></NavDropdown.Divider>
+        <NavDropdown.Item onClick={ handleLogoutClick }>Logout</NavDropdown.Item>
     </NavDropdown>
+    
     </Nav>
     </Container>
   </Navbar>

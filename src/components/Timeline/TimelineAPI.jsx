@@ -52,5 +52,16 @@ export const TimelineAPI = {
                 }
                 return response.json()
             })
+    },
+    //this should be all user related events...
+    getAllEvents(id) {
+        return fetch("https://alumni-dummy-data-api.herokuapp.com/event")
+            .then(async (response) => {
+                if (!response.ok) {
+                    const { error= "Error occured while fetching posts"} = await response.json()
+                    throw Error(error)
+                }
+                return response.json()
+            })
     }
 }

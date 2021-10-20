@@ -14,9 +14,7 @@ const Timeline = () => {
 	})
 
 	 const username = KeycloakService.getUsername()
-	 const handleLoginClick = () => {
-	 	KeycloakService.doLogout()
-	 }
+	
 
 
 	useEffect(() => {
@@ -39,7 +37,7 @@ const Timeline = () => {
 			<main>
 		 	<h1> { username }</h1>
 			<p>Timeline page</p>
-			<button onClick={ handleLoginClick }>Logout with Keycloak</button>
+			
 			</main>
 
 			<TimelinePosts posts={posts.posts}/>
