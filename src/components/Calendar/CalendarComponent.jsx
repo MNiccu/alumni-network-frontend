@@ -30,19 +30,18 @@ const localizer = dateFnsLocalizer({
 const CalendarComponent = ({events}) => {
   
     console.log(events)
-    let fixevents = []
-    let event = {
-        title: "",
-        start: "",
-        end: ""
-    }
-
-    for(let i=0; i < events.length; i++) {
-        event.title = events[i].name
-        event.start = events[i].startTime
-        event.end = events[i].endTime
-        fixevents.push(event)
-    }
+  
+     const fixevents = events.map(event => {
+        let robj = {
+            title: "",
+            start: "",
+            end: ""
+        }
+        robj.title = event.name
+        robj.start = event.startTime
+        robj.end = event.endTime
+        return robj
+    })
 
 
 	return (

@@ -5,14 +5,11 @@ import TimelinePosts from "../Timeline/TimelinePosts"
 import { useParams } from "react-router"
 import withKeycloak from "../../hoc/WithKeycloak"
 import CalendarComponent from "../Calendar/CalendarComponent"
-import GroupListApi from "../GroupList/GroupListApi"
 
 const GroupDetail = () => {
 	
-
     const {id} = useParams()
 	
-
 	const [posts, setPosts] = useState({
 		posts: [],
 		fetching: true
@@ -24,7 +21,6 @@ const GroupDetail = () => {
 
 	const [isBasicView, setIsBasicView] = useState(true)
 	
-
 	useEffect(() => {
 		TimelineAPI.getGroupPosts(id)
 			.then(allPost => {
@@ -35,6 +31,8 @@ const GroupDetail = () => {
 					})
 				}
 			})
+
+			//should get GroupEvents! FIX THIS
 			TimelineAPI.getTopicEvents(id)
 			.then(allEvent => {
 				if (allEvent.length) {
@@ -42,12 +40,12 @@ const GroupDetail = () => {
 						events: allEvent,
 						fetching: false
 					})
+
+			
 				}
 			})
 	}, [])
 
-
-	
 	return (
 		<Container>
 				<h1>Welcome to timeline of Group {id}</h1>

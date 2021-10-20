@@ -14,7 +14,13 @@ const TopicDetail = () => {
 		posts: [],
 		fetching: true
 	})
+	const [events, setEvents] = useState({
+		events: [],
+		fetching: true
+	})
+
 	const [isBasicView, setIsBasicView] = useState(true)
+
 	useEffect(() => {
 		TimelineAPI.getTopicPosts(id)
 			.then(allPost => {
@@ -25,6 +31,19 @@ const TopicDetail = () => {
 					})
 				}
 			})
+			
+			
+			TimelineAPI.getTopicEvents(id)
+			.then(allEvent => {
+				if (allEvent.length) {
+					setEvents({
+						events: allEvent,
+						fetching: false
+					})
+
+			
+				}
+			})
 	}, [])
     
 	return (
@@ -33,7 +52,7 @@ const TopicDetail = () => {
 			<button onClick={() => setIsBasicView(!isBasicView)}>Change view</button>
 			{isBasicView ? 
 			(<TimelinePosts posts={posts.posts}/>) :
-			<CalendarComponent />}
+			<CalendarComponent events={events.events} />}
 		</Container>
 	)
 }
