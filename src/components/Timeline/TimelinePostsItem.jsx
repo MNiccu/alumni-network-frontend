@@ -2,6 +2,7 @@ import { Modal, Row, Col, Stack, Container } from "react-bootstrap"
 import { useState, useEffect } from "react"
 import { TimelineAPI } from "./TimelineAPI"
 import Replies from "./Replies"
+import "./timeline.css"
 
 const TimelinePostsItem = ({post}) => {
     
@@ -71,33 +72,39 @@ const TimelinePostsItem = ({post}) => {
     const CommentsCount = ({postTarget}) => {
         if(postTarget.length === 1){
             return (
-                <button className="btn btn-outline-secondary">Thread have 1 reply</button>
+                <>
+                    <span className="material-icons align-middle">comment</span>
+                    <button className="btn btn-outline-secondary comments">Thread have 1 reply</button>
+                </>
             )
         }
         else if(postTarget.length > 1){
             return (
-                <button type="button" className="btn btn-outline-secondary" onClick={ () => setModalShow(true)} >Thread has {postTarget.length} replies</button>
+                <>
+                    {/* <span className="material-icons align-middle">comment</span> */}
+                    <button className="comments my-0" onClick={ () => setModalShow(true)} >Thread has {postTarget.length} replies</button>
+                </>
             )
         }
         return ''
     }
     
     return (
-    <div className="card my-5">
+    <div className="card my-3">
         <div className="card-header">
             <div className="row">
-                <div className="col-sm-2">
-                    <img src={`https://avatars.dicebear.com/api/avataaars/userid${post.senderId}.svg`} alt="Users profile" className="card-img img-thumbnail img-sm" />
+                <div className="col-1 pe-0" id="post-img">
+                    <img src={`https://avatars.dicebear.com/api/avataaars/userid${post.senderId}.svg`} alt="Users profile" className="card-img align-middle rounded-circle" />
                 </div>
-                <div className="col-sm-10">
-                    <h5 className="card-title">Post by user with id {post.senderId}</h5>
-                    <p className="card-text">{post.message}</p>
+                <div className="col-10">
+                    <p className="card-title">Post by user with id {post.senderId}</p>
+                    <h6 className="card-text">{post.message}</h6>
+                </div>
+                <div className="ms-5 mt-1">
+                    <CommentsCount postTarget={post.postTarget} className="mx-5"/>
+                    <ShowPost />
                 </div>
             </div>
-        </div>
-        <div className="card-body">
-            <CommentsCount postTarget={post.postTarget} />
-            <ShowPost />
         </div>
     </div>
     )

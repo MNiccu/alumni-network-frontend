@@ -1,0 +1,12 @@
+.comments {
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    color: #069;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+#post-img {
+    width: 50px;
+}
