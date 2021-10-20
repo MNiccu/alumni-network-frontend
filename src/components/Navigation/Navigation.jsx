@@ -4,6 +4,7 @@ import Nav from 'react-bootstrap/Nav'
 import 'bootstrap/dist/css/bootstrap.css'
 import KeycloakService from '../../services/KeycloakService'
 
+
 const Navigation = () => {
 
   const handleLogoutClick = () => {
@@ -16,7 +17,8 @@ const Navigation = () => {
 
   <Navbar bg="dark" variant="dark">
     <Container>
-    <Navbar.Brand href="/">Navbar</Navbar.Brand>
+    <Navbar.Brand href="/timeline"> <img src="/alumninetworklogo.png" height="60"></img> </Navbar.Brand>
+    
     <Nav className="me-auto">
       <Nav.Link href="/groups">Groups</Nav.Link>
       <Nav.Link href="/topics">Topics</Nav.Link>
