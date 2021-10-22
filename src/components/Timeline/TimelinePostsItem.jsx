@@ -3,6 +3,7 @@ import { useState, useEffect } from "react"
 import { TimelineAPI } from "./TimelineAPI"
 import Replies from "./Replies"
 import "./timeline.css"
+import PostEditor from "./PostEditor"
 
 const TimelinePostsItem = ({post}) => {
     
@@ -89,6 +90,8 @@ const TimelinePostsItem = ({post}) => {
         return ''
     }
     
+   
+
     return (
     <div className="card my-3">
         <div className="card-header">
@@ -98,10 +101,11 @@ const TimelinePostsItem = ({post}) => {
                 </div>
                 <div className="col-10">
                     <p className="card-title">Post by user with id {post.senderId}</p>
-                    <h6 className="card-text">{post.message}</h6>
+                    <PostEditor post={post}/>
                 </div>
                 <div className="ms-5 mt-1">
                     <CommentsCount postTarget={post.postTarget} className="mx-5"/>
+
                     <ShowPost />
                 </div>
             </div>

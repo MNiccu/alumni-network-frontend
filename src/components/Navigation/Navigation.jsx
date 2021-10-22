@@ -28,7 +28,7 @@ const Navigation = () => {
     </Nav>
     <Nav>
     <NavDropdown title={
-        <div >
+        <div>
           {KeycloakService.getUsername()}
           <img src={`https://avatars.dicebear.com/api/avataaars/userid${KeycloakService.getUsername()}.svg`} alt="profilepic" height="40" className="align-middle rounded-circle" />
         </div>}>

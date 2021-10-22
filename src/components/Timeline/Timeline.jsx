@@ -4,6 +4,8 @@ import { Container } from "react-bootstrap"
 import TimelinePosts from "./TimelinePosts"
 import KeycloakService from "../../services/KeycloakService"
 import withKeycloak from "../../hoc/WithKeycloak"
+import PostPopup from "../CreateEditPost/PostPopup"
+import CreateEditPost from "../CreateEditPost/CreateEditPost"
 
 const Timeline = () => {
 
@@ -32,14 +34,13 @@ const Timeline = () => {
 	return (
 
 		<Container>
-			<h1>Welcome to timeline</h1>
-
-			<main>
-		 	<h1> { username }</h1>
-			<p>Timeline page</p>
 			
+			<main>
+		 	<h1> { username }'s Timeline</h1>	
 			</main>
 
+			<PostPopup/>
+						
 			<TimelinePosts posts={posts.posts}/>
 
 			
