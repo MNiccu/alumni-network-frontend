@@ -91,7 +91,6 @@ const TimelinePostsItem = ({post}) => {
     }
     
    
-
     return (
     <div className="card my-3">
         <div className="card-header">

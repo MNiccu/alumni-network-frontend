@@ -2,35 +2,38 @@ import { Container } from "react-bootstrap"
 import TimelinePostsItem from "../Timeline/TimelinePostsItem"
 import { useState } from "react"
 
+
+//needs to get context as prop so it can be used to post in the right group/topic/timeline
 const CreateEditPost = () => {
 
-    const post = {
-        postTarget: {},
-        message: "test content. lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum ",
-        senderId: 1
-    }
-
-    const [fields, setFields] = useState({
-		postInput: "",
-		fetching: true
-	})
-
-    const handleInputChange = event => {
-		setFields ({
-			...fields,
-			[event.target.id]: event.target.value
-
-		})
-	}
-    const onFormSubmit = event => {
+	const onFormSubmit = event => {
 		event.preventDefault()	
-        //could be post or edit...
+        //post to right place...
 		}
 
-        const showPreview = () => {
-            //save data to "post", show a TimelinePostItem with that info.
-            
-        }  
+    
+	const [post, setPost] = useState( {
+        postTarget: [],
+        message: " ",
+        senderId: 1
+    })
+
+    const handleInputChange = event => {
+		setPost (
+			{
+			...post,
+			message: event.target.value
+			}
+		)
+		//setShowingPreview(false)
+	}
+    
+	const [showingPreview, setShowingPreview] = useState(false);
+	
+	const showPreview = () => {
+		setShowingPreview(!showingPreview);
+	}  
+
 
     return (
         <Container>
@@ -43,7 +46,7 @@ const CreateEditPost = () => {
 						
 						<div className="mb-4">
 							<label htmlFor="postInput" className="form-label">Content:</label>
-							<textarea onChange={handleInputChange} value={fields.bio} className="form-control" id="postInput" rows="4" placeholder="Your post"></textarea>
+							<textarea onChange={handleInputChange} value={post.message} className="form-control" id="postInput" rows="4" placeholder="Your post"></textarea>
 						</div>
 						
 						<div className="float-end">
@@ -54,8 +57,12 @@ const CreateEditPost = () => {
 				</div>
 			</div>
 		</div>
-        <p>preview test. This should not be visible at all times</p>
-        <TimelinePostsItem post={post}></TimelinePostsItem>
+        
+		<div>
+        {showingPreview ? ( <TimelinePostsItem post={post}></TimelinePostsItem>) 
+        : ( <h6 className="card-text">placeholder</h6>)}      
+    </div>
+
         
         </Container>
     )

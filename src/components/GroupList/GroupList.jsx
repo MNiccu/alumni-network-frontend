@@ -9,7 +9,6 @@ const GroupList = () => {
     
     let groupListArray = []
  
-
     const [groups, setGroups] = useState([])
 
     

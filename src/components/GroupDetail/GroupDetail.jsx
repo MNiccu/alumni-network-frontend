@@ -5,6 +5,7 @@ import TimelinePosts from "../Timeline/TimelinePosts"
 import { useParams } from "react-router"
 import withKeycloak from "../../hoc/WithKeycloak"
 import CalendarComponent from "../Calendar/CalendarComponent"
+import PostPopup from "../CreateEditPost/PostPopup"
 
 const GroupDetail = () => {
 	
@@ -47,6 +48,7 @@ const GroupDetail = () => {
 	return (
 		<Container>
 				<h1>Welcome to timeline of Group {id}</h1>
+				<PostPopup/>
 				<button onClick={() => setIsBasicView(!isBasicView)}>Change view</button>
 				{isBasicView ? 
 				(<TimelinePosts posts={posts.posts}/>) :
