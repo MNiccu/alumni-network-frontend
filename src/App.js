@@ -8,7 +8,7 @@ import GroupDetail from "./components/GroupDetail/GroupDetail";
 import GroupList from "./components/GroupList/GroupList"
 import TopicList from "./components/TopicList/TopicList"
 import Navigation from "./components/Navigation/Navigation"
-import CalendarComponent from "./components/Calendar/CalendarComponent";
+import Calendar from "./components/Calendar/Calendar";
 import User from "./components/User/User"
 import SingleEvent from "./components/Events/SingleEvent";
 import TopicDetail from "./components/TopicDetail/TopicDetail";
@@ -30,7 +30,7 @@ const App = () => {
 				<Route path="/login" component={Login} />
 				<Route exact path="/moreinfo" component={MoreInfo} />
 				<Route exact path="/timeline" component={Timeline} />
-				<Route exact path="/calendar" component={CalendarComponent} />
+				<Route exact path="/calendar" component={Calendar} />
 				<Route exact path="/user" component={User} />
 				<Route exact path="/events" component={Events} />
 				<Route exact path="/events/:id" component={SingleEvent} />

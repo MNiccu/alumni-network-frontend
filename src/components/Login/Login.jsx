@@ -2,7 +2,7 @@ import { Form } from "react-bootstrap"
 import { Redirect } from "react-router-dom"
 import KeycloakService from "../../services/KeycloakService"
 import {LoginApi} from "./LoginApi"
-	
+import { useEffect} from "react"
 
 const Login = (props) => {
 
@@ -30,27 +30,33 @@ const Login = (props) => {
 							
 	}
 
+	//can be removed
 	const onFormSubmit = event => {
 		event.preventDefault()	
 		KeycloakService.doLogin()
 		
 	}
 
+
+
+
+	useEffect(() => {
+
+		if(!KeycloakService.isLoggedIn()){
+			KeycloakService.doLogin()
+		}
+		
+	}, [])
+
+
+
+
+
 	return (
 		<div className="background">
 			<form className="container" onSubmit={ onFormSubmit }>
 				<h2>Login</h2>
-			
-				<div className="form-group">
-					<label>Username</label>
-					<input id="username" type="text" placeholder="Enter username"></input>		
-				</div>	
 
-				<div className="form-group">
-					<label>Password</label>
-					<input id="password" type="password" placeholder="Enter password"></input>
-				</div>
-			
 				<button type="submit" className="btn btn-primary btn-lg" >Login with Keycloak</button>
 				
 			</form>
