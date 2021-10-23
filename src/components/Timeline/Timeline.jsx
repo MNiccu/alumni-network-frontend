@@ -23,6 +23,7 @@ const Timeline = () => {
 		TimelineAPI.getPost()
 			.then(allPost => {
 				if (allPost.length) {
+					navigator.clipboard.writeText(KeycloakService.getToken());
 					setPosts({
 						posts: allPost,
 						fetching: false
