@@ -1,12 +1,27 @@
 import TimelinePostsItem from "./TimelinePostsItem"
 
-const TimeLinePosts = ({posts}) => {
+const TimeLinePosts = ({posts, searchTerm}) => {
+
+
+    
+
     return (
         <div>
-            {posts.map(post => {
+            
+            {posts.filter((post) => {
+                   
+                if (searchTerm == "") {
+                    return post 
+                }
+                else if (post.message.toString().toLowerCase().includes(searchTerm.toString().toLowerCase())) {
+                    return post
+                }
+            }).map((post) => {
                 return (
+                    <div>
                     <TimelinePostsItem key={post.postId} post={post}/>
-                )
+                    </div>
+                );
             })}
         </div>
     )

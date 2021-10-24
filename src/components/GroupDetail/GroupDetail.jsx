@@ -10,6 +10,7 @@ import PostPopup from "../CreateEditPost/PostPopup"
 const GroupDetail = () => {
 	
     const {id} = useParams()
+	const postContext = {context:"group", id: 1}
 	
 	const [posts, setPosts] = useState({
 		posts: [],
@@ -19,6 +20,17 @@ const GroupDetail = () => {
 		events: [],
 		fetching: true
 	})
+
+
+	const [searchTerm, setSearchTerm] = useState("")
+	
+	const changeSearchTerm = ( event ) => {
+		setSearchTerm(
+			event.target.value
+		)
+
+	}
+
 
 	const [isBasicView, setIsBasicView] = useState(true)
 	
@@ -48,10 +60,11 @@ const GroupDetail = () => {
 	return (
 		<Container>
 				<h1>Welcome to timeline of Group {id}</h1>
-				<PostPopup/>
+				<input type="text" placeholder="search..." onChange={changeSearchTerm} ></input>
+				<PostPopup postContext={postContext}/>
 				<button onClick={() => setIsBasicView(!isBasicView)}>Change view</button>
 				{isBasicView ? 
-				(<TimelinePosts posts={posts.posts}/>) :
+				(<TimelinePosts posts={posts.posts} searchTerm={searchTerm}/>) :
 				<CalendarComponent events={events.events} />}
 		</Container>
 

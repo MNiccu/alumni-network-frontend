@@ -11,6 +11,8 @@ const TopicDetail = () => {
 
     const {id} = useParams()
 
+	const postContext = {context:"topic", id: 1}
+
 	const [posts, setPosts] = useState({
 		posts: [],
 		fetching: true
@@ -19,6 +21,17 @@ const TopicDetail = () => {
 		events: [],
 		fetching: true
 	})
+
+
+	const [searchTerm, setSearchTerm] = useState("")
+	
+	const changeSearchTerm = ( event ) => {
+		setSearchTerm(
+			event.target.value
+		)
+
+	}
+
 
 	const [isBasicView, setIsBasicView] = useState(true)
 
@@ -49,10 +62,11 @@ const TopicDetail = () => {
 	return (
 		<Container>
 			<h1>Welcome to timeline of Topic {id}</h1>
-			<PostPopup id={id}/>
+			<input type="text" placeholder="search..." onChange={changeSearchTerm} ></input>
+			<PostPopup postContext={postContext}/>
 			<button onClick={() => setIsBasicView(!isBasicView)}>Change view</button>
 			{isBasicView ? 
-			(<TimelinePosts posts={posts.posts}/>) :
+			(<TimelinePosts posts={posts.posts} searchTerm={searchTerm}/>) :
 			<CalendarComponent events={events.events} />}
 		</Container>
 	)

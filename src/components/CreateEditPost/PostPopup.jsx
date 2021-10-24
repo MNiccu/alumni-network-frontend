@@ -3,7 +3,7 @@ import { Modal, Row, Col, Stack, Container } from "react-bootstrap"
 import { useState, useEffect, useCallback } from "react"
 import { useHistory } from "react-router-dom"
 
-const PostPopup = () => {
+const PostPopup = ( {postContext} ) => {
     
     const [modalShow, setModalShow] = useState(false)
     const history = useHistory()
@@ -22,7 +22,7 @@ const PostPopup = () => {
                         {console.log("hello")}
 
                         <Modal.Body> 
-                          <CreateEditPost/>
+                          <CreateEditPost postContext={postContext} />
                         </Modal.Body>
                 </Modal>
             </Container>
@@ -36,7 +36,7 @@ const PostPopup = () => {
             <button type="button" className="btn btn-outline-secondary"
              onClick={ () => setModalShow(true)} >New post</button>
  
-               <ShowPopup />
+               <ShowPopup  />
             </div>
         </div>
         )

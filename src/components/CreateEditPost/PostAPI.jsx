@@ -5,14 +5,17 @@ postPost(userId, message, postContext) {
       
     const apiURL = "https://alumni-dummy-data-api.herokuapp.com/post";
     const apiKey = "tFGpEKnUC9LrynUbesK4wcTmkScm0b93J33t6ouhSZCGo4V8YbfF8BovJruIZzut";
-    
-    if(postContext == "topic") {
-        const group = ""
-        const topic = topicId
-    } else if (postContext == "group") {
-        const group = groupId
-        const topic = ""
-    }
+
+    let group = ""
+    let topic = ""
+
+    if(postContext.context === "topic") {
+        group = ""
+        topic = 1
+    } else if (postContext.context === "group") {
+        group = 1
+        topic = ""
+    } 
 
   
         fetch(`${apiURL}`, {
@@ -30,8 +33,8 @@ postPost(userId, message, postContext) {
             reply_parent_id: "",
             message: message,
             targetUser: "" ,
-            targetgroup: groupId,
-            targetTopic: topicId,
+            targetgroup: group,
+            targetTopic: topic,
             targetEvent: ""
 
           })
