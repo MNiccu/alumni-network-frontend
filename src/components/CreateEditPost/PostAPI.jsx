@@ -11,9 +11,9 @@ postPost(userId, message, postContext) {
 
     if(postContext.context === "topic") {
         group = ""
-        topic = 1
+        topic = postContext.id
     } else if (postContext.context === "group") {
-        group = 1
+        group = postContext.id
         topic = ""
     } 
 
@@ -25,7 +25,8 @@ postPost(userId, message, postContext) {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            
+
+            //TODO date time is not right. need to fetch current. other possibly wrong too
             lastUpdated: "2021-10-01T14:48:00.000Z",
             postTarget: [],
             senderId: userId,

@@ -1,6 +1,8 @@
 import { Modal, Row, Col, Stack, Container } from "react-bootstrap"
 import { useState, useEffect, useCallback } from "react"
 import { useHistory } from "react-router-dom"
+import KeycloakService from "../../services/KeycloakService"
+import { TopicListApi } from "../TopicList/TopicListApi"
 
 
 
@@ -13,6 +15,13 @@ const TopicItem = ({topic}) => {
     useEffect(() => {
        
     },[])
+
+
+    const joinGroup = () => {
+        //Token needs to be passed too
+        TopicListApi.getTopicToPatch(topic.topicId, KeycloakService.getUsername())
+
+    }
     
     const ShowTopic = () => {
         
@@ -45,6 +54,7 @@ const TopicItem = ({topic}) => {
                                                     <li key={member}> {member} </li>
                                                  ))}
                                             </ul>
+                                            <button type="button" className="btn btn-outline-secondary" onClick={ joinGroup }>Join</button>
                                             <button type="button" className="btn btn-outline-secondary" onClick={ redirectFunction } >To detail</button>
                                         </div>
                                     </form>
@@ -68,6 +78,7 @@ const TopicItem = ({topic}) => {
                 </div>
             </div>
             <div className="card-body">
+            <button type="button" className="btn btn-outline-secondary" onClick={ joinGroup }>Join</button>
             <button type="button" className="btn btn-outline-secondary" onClick={ () => setModalShow(true)} >Slap this button on the title or something</button>
  
                 <ShowTopic />

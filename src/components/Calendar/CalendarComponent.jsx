@@ -6,6 +6,7 @@ import getDay from "date-fns/getDay"
 import "react-big-calendar/lib/css/react-big-calendar.css"
 import withKeycloak from "../../hoc/WithKeycloak"
 
+//change to fi?
 const locales = {
     "en-US": require("date-fns/locale/en-US")
 }
@@ -13,7 +14,9 @@ const localizer = dateFnsLocalizer({
     format, parse, startOfWeek, getDay, locales
 })
 
+
 //dummy data
+
 /* const events = [
 {
     title: "Test event",
@@ -27,21 +30,22 @@ const localizer = dateFnsLocalizer({
 }
 ] */
 
+
 const CalendarComponent = ({events}) => {
   
     console.log(events)
-  
-
-     const fixevents = events.map(event => {
-        let robj = {
+    
+    //maps data from events to be suitable for calendar view
+    const fixevents = events.map(event => {
+        let eventObject = {
             title: "",
             start: "",
             end: ""
         }
-        robj.title = event.name
-        robj.start = event.startTime
-        robj.end = event.endTime
-        return robj
+        eventObject.title = event.name
+        eventObject.start = event.startTime
+        eventObject.end = event.endTime
+        return eventObject
     })
 
 
