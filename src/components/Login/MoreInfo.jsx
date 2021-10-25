@@ -1,9 +1,9 @@
 import { Form } from "react-bootstrap"
 import { Redirect } from "react-router-dom"
 import withKeycloak from "../../hoc/WithKeycloak"
-import { LoginApi } from "./LoginApi"
 import KeycloakService from "../../services/KeycloakService"
 import { useEffect, useState} from "react"
+import { LoginAPI} from "./LoginAPI"
 
 const MoreInfo = (props) => {
 
@@ -25,9 +25,9 @@ const MoreInfo = (props) => {
 		statustext: "",
 		funfact: "",
 		fetching: false})
-		LoginApi.getUser(username)
-		.then( response => { LoginApi.patchUser(response.id, fields.bio, fields.statustext, fields.funfact)		
-		})
+		// LoginApi.getUser(username)
+		// .then( response => { LoginApi.patchUser(response.id, fields.bio, fields.statustext, fields.funfact)		
+		// })
 		props.history.push("/timeline")
 	}
 

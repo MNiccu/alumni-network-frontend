@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { Container} from "react-bootstrap"
-import { useParams } from "react-router"
+import { useParams } from "react-router-dom"
 import { EventsAPI } from "./EventsAPI"
 import "./events.css"
 import SingleEventCardTopInfo from "./SingleEventCardTopInfo"

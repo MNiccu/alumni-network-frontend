@@ -25,6 +25,7 @@ const Navigation = () => {
       <Nav.Link href="/timeline">Timeline</Nav.Link>
       <Nav.Link href="/calendar">Calendar</Nav.Link>
       <Nav.Link href="/events">Events</Nav.Link>
+
     </Nav>
     <Nav>
     <NavDropdown title={
@@ -34,7 +35,8 @@ const Navigation = () => {
         </div>}>
 
         <NavDropdown.Item  href="/user">Profile</NavDropdown.Item>
-        <NavDropdown.Divider></NavDropdown.Divider>
+        <NavDropdown.Item href="/directmessages">Direct messages</NavDropdown.Item>
+        <NavDropdown.Divider />
         <NavDropdown.Item onClick={ handleLogoutClick }>Logout</NavDropdown.Item>
     </NavDropdown>
     

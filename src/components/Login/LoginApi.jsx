@@ -1,78 +1,44 @@
-export const LoginApi = {
-    
-    getUser(username) {
-  
-      const apiURL = "https://alumni-dummy-data-api.herokuapp.com/user";
-    
-        
-      return fetch(`${apiURL}?username=${username}`)
-        .then(async response => { return await response.json()} )
-      
+import KeycloakService from "../../services/KeycloakService"
 
-    },
-    postUser(username, token) {
-      
-      const apiURL = "https://alumni-dummy-data-api.herokuapp.com/user";
-      const apiKey = "tFGpEKnUC9LrynUbesK4wcTmkScm0b93J33t6ouhSZCGo4V8YbfF8BovJruIZzut";
+const url = "https://localhost:44344/api/User/"
+let bearer = 'Bearer ' + KeycloakService.getToken()
 
-    
-          fetch(`${apiURL}`, {
-            method: 'POST',
-            headers: {
-              'X-API-Key': apiKey,
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              username: username,
-              token: token
-            })
-          })
-            .then(response => {
-              if (!response.ok) {
-                throw new Error('Could not create new user')
-              }
-              return response.json()
-            })
-            .then(newUser => {
-              
-            })
-            .catch(error => {
-            })
+export const LoginAPI = {
 
-    },
-    patchUser(id, bio, funFact, status) {
+  // async getUser(id) {
+  //   return fetch(`${url}${id}`, {
+  //     method: "GET",
+  //     headers: {
+  //       'Authorization': bearer,
+  //       "Access-Control-Allow-Origin" : "*", 
+  //       "Access-Control-Allow-Credentials" : true,
+  //       'Content-Type': 'application/json',
+  //     }
+  //   })
+  //     .then(async response => {
+  //       if(!response.ok) {
+  //         const { error = "Error occured while fetching user in log in"} = await response.json()
+  //         throw Error(error)
+  //       }
+  //       return await response
+  //     })
+      
+      
+  // }
 
-      const apiURL = "https://alumni-dummy-data-api.herokuapp.com/user";
-      const apiKey = "tFGpEKnUC9LrynUbesK4wcTmkScm0b93J33t6ouhSZCGo4V8YbfF8BovJruIZzut";
-      
-        
-      //patch translations
-      fetch(`${apiURL}/${id}`, {
-          method: 'PATCH',
-          headers: {
-              'X-API-Key': apiKey,
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-              
-              bio: bio,
-              funFact: funFact,
-              status: status
-          })
-      })
-          .then(response => {
-              if (!response.ok) {
-                  throw new Error('Could not update translations history')
-              }
-              return response.json()
-          })
-          .then(updatedUser => {
-              // updatedUser is the user with the Patched data
-          })
-          .catch(error => {
-          })
-          
-    }
-      
+  getUser(id) {
+
+    const axios = require('axios');
+    const instance = axios.create({
+      timeout: 1000,
+      headers: {'Authorization': bearer}
+    });
+    instance.get(`${url}${id}`)
+      .then(response => {
+      return response.data;
+        })
+  }
+
+
 
 }
