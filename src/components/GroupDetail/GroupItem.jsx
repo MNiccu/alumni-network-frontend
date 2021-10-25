@@ -1,6 +1,8 @@
 import { Modal, Row, Col, Stack, Container } from "react-bootstrap"
 import { useState, useEffect, useCallback } from "react"
 import { useHistory } from "react-router-dom"
+import { GroupListAPI } from "../GroupList/GroupListApi"
+import KeycloakService from "../../services/KeycloakService"
 
 
 const GroupItem = ({group}) => {
@@ -8,6 +10,12 @@ const GroupItem = ({group}) => {
     const [modalShow, setModalShow] = useState(false)
     const history = useHistory()
     const redirectFunction = useCallback(() => history.push('group/'+group.groupId), [history])
+
+    const joinGroup = () => {
+        //Token needs to be passed too
+        GroupListAPI.getGroupToPatch(group.groupId, KeycloakService.getUsername())
+
+    }
     
     useEffect(() => {
        
@@ -46,7 +54,7 @@ const GroupItem = ({group}) => {
                                             </ul>
                                         </div>
                                         <div>
-                                        <button type="button" className="btn btn-outline-secondary">Join</button>
+                                        <button type="button" className="btn btn-outline-secondary" onClick={ joinGroup }>Join</button>
                                         <button type="button" className="btn btn-outline-secondary" onClick={ redirectFunction } >To detail</button>
                                         </div>
                                     </form>
@@ -71,7 +79,7 @@ const GroupItem = ({group}) => {
             </div>
             <div className="card-body">
             <button type="button" className="btn btn-outline-secondary" onClick={ () => setModalShow(true)} >Show</button>
-            <button type="button" className="btn btn-outline-secondary">Join</button>
+            <button type="button" className="btn btn-outline-secondary" onClick={ joinGroup }>Join</button>
  
                 <ShowGroup />
             </div>

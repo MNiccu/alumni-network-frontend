@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-
+import { TimelineAPI } from "./TimelineAPI";
 
 const PostEditor = ({post}) => {
     
@@ -10,6 +10,7 @@ const PostEditor = ({post}) => {
 
         if(isEditing) {
             //Save
+            TimelineAPI.patchEdit(post.postId, postContent)
         }
 
         setIsEditing(!isEditing);

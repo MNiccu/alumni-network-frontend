@@ -63,5 +63,37 @@ export const TimelineAPI = {
                 }
                 return response.json()
             })
+    },
+
+    
+    patchEdit(id, content) {
+
+        console.log(content, id)
+        const apiURL = "https://alumni-dummy-data-api.herokuapp.com/post";
+        const apiKey = "tFGpEKnUC9LrynUbesK4wcTmkScm0b93J33t6ouhSZCGo4V8YbfF8BovJruIZzut";
+
+        //
+        fetch(`${apiURL}/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'X-API-Key': apiKey,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                
+                message: content
+            })
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Could not update translations history')
+                }
+                return response.json()
+            })
+            .then(updatedUser => {
+                
+            })
+            .catch(error => {
+            })
     }
 }

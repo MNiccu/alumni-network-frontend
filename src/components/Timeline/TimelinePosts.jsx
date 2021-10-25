@@ -3,8 +3,6 @@ import TimelinePostsItem from "./TimelinePostsItem"
 const TimeLinePosts = ({posts, searchTerm}) => {
 
 
-    
-
     return (
         <div>
             
