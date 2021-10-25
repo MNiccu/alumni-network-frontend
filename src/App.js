@@ -13,6 +13,8 @@ import User from "./components/User/User"
 import SingleEvent from "./components/Events/SingleEvent";
 import TopicDetail from "./components/TopicDetail/TopicDetail";
 import MoreInfo from "./components/Login/MoreInfo";
+import DirectMessages from "./components/DirectMessages/DirectMessages";
+import Conversation from "./components/DirectMessages/Conversation";
 
 
 
@@ -38,8 +40,8 @@ const App = () => {
 				<Route exact path="/topics" component={ TopicList } />
 				<Route exact path="/group/:id" component={GroupDetail} />
 				<Route exact path="/topic/:id" component={TopicDetail} />
-				
-
+				<Route exact path="/directmessages" component={DirectMessages} />
+				<Route exact path="/directmessages/:id" component={Conversation} />
 			</Switch>
 		</BrowserRouter>
 		
