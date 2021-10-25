@@ -2,55 +2,28 @@ import { Form } from "react-bootstrap"
 import { Redirect } from "react-router-dom"
 import KeycloakService from "../../services/KeycloakService"
 import { useEffect} from "react"
-import { LoginAPI } from "./LoginAPI"
+import { LoginAPI } from "./LoginApi"
+import axios from "axios"
 
 const Login = (props) => {
+	const getUserInfo = async () => {
+		try {
+			const token =  await KeycloakService.getToken()
+			LoginAPI.userApiFetch(token,KeycloakService.getUserId());
 
-	
-	// if (KeycloakService.isLoggedIn()) {
-		
-	// 	//check if user exists
-
-	// 	let username = KeycloakService.getUsername();
-	// 	//this should probably return just a true or false, or something
-	// 	let user = LoginApi.getUser(username)
-	// 	.then ((result) => {
-	// 		if(result.length > 0) {
-	// 			props.history.push("/timeline")
-				
-	// 		} else {
-	// 			let token = KeycloakService.getToken()
-	// 			LoginApi.postUser(username, token)
-	// 			props.history.push("/moreinfo")
-	// 		}
-	// 				console.log(result)
-    //     })
-
-		
-							
-	// }
-
-	const getUserInfo = () => {
-		console.log('Bearer ' + KeycloakService.getToken())
-		console.log(LoginAPI.getUser(KeycloakService.getUserId()))
+		}catch(e) {
+			console.log(e);
+		}
 	}
 
 	useEffect(() => {
-
 		if(!KeycloakService.isLoggedIn()){
 			KeycloakService.doLogin()
-			
 		}
 		else {
 			getUserInfo()
-			// console.log(KeycloakService.getToken())
-			// console.log(KeycloakService.getUserId())
 		}
-		
 	}, [])
-
-
-
 
 
 	return (

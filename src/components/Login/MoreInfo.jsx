@@ -3,7 +3,7 @@ import { Redirect } from "react-router-dom"
 import withKeycloak from "../../hoc/WithKeycloak"
 import KeycloakService from "../../services/KeycloakService"
 import { useEffect, useState} from "react"
-import { LoginAPI} from "./LoginAPI"
+//import { LoginAPI} from "./LoginAPI"
 
 const MoreInfo = (props) => {
 
