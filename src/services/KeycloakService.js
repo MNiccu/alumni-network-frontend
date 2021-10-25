@@ -1,4 +1,6 @@
 import Keycloak from "keycloak-js";
+import jwt_decode from "jwt-decode";
+
 
 const _keycloak = new Keycloak('keycloak.json');
 /*
@@ -57,6 +59,8 @@ const updateToken = (successCallback) =>
  */
 const getUsername = () => _keycloak.tokenParsed?.preferred_username;
 
+const getUserId = () => jwt_decode(_keycloak.token).sub;
+
 /*
  * Check if user has any of the given roles
  * @param {Array<string>} roles 
@@ -73,6 +77,7 @@ const KeycloakService = {
 	updateToken,
 	getUsername,
 	hasRole,
+	getUserId
 };
 
 export default KeycloakService

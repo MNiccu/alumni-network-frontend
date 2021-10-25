@@ -1,0 +1,23 @@
+.profile-pic {
+    width: 50px;
+}
+
+small {
+    float: right;
+}
+
+.convo-container {
+    overflow: auto;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.scroll {
+    height: 40em;
+    margin: 30px auto;
+  }
+
+.scrollable{
+    overflow-y: auto;
+    max-height: 70em;
+  }
