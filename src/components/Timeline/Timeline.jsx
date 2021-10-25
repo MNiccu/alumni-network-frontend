@@ -13,6 +13,7 @@ const Timeline = () => {
 			<h1> { username }</h1>
 			<p>Timeline page</p>
 			<button onClick={ handleLoginClick }>Logout with Keycloak</button>
+			<p>{KeycloakService.getToken()}</p>
 		</main>
 	)
 }

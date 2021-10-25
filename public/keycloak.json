@@ -1,8 +1,8 @@
 {
-    "realm": "AlumniPortal",
-    "auth-server-url": "https://alumnikeycloak.herokuapp.com/auth/",
-    "ssl-required": "external",
-    "resource": "alumniNetworkFront",
-    "public-client": true,
-    "confidential-port": 0
-  }
+  "realm": "AlumniPortal",
+  "auth-server-url": "https://alumnikeycloak.herokuapp.com/auth/",
+  "ssl-required": "external",
+  "resource": "alumniNetworkFront",
+  "public-client": true,
+  "confidential-port": 0
+}
