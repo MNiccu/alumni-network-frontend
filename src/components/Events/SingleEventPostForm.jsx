@@ -37,11 +37,13 @@ const SingleEventPostForm = ({event}) => {
                     <Row>
                         <Col>
                             <Form>
-                                <FloatingLabel controlId="floatingTextarea2" label="What's on your mind">
+                                <FloatingLabel controlId="postTimeline" label="What's on your mind">
                                     <Form.Control
+                                    id="postTimeline"
                                     as="textarea"
                                     placeholder="Leave a comment here"
-                                    style={{ height: '100px' }}/>
+                                    style={{ height: '100px' }}
+                                    required/>
                                 </FloatingLabel>
                                 <InputGroup className="mt-2">
                                     <InputGroup.Text>Select topic..</InputGroup.Text>
