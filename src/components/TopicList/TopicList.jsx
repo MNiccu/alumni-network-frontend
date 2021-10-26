@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import { TopicListApi } from "./TopicListApi"
 import { useState, useEffect } from "react"
 import React from "react"
@@ -7,7 +8,7 @@ import withKeycloak from "../../hoc/WithKeycloak"
 
 const TopicList = () => {
 
-  
+    const { token } = useSelector(state => state.userReducer)
     
     let topicListArray = []
  
@@ -23,7 +24,7 @@ const TopicList = () => {
     }, [])
 
     const listTopics = event => {
-        TopicListApi.getTopics().then(
+        TopicListApi.getTopics(token).then(
             result => {
                 console.log("AAAA", result)
                 topicListArray = result

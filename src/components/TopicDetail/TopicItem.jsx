@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import { Modal, Row, Col, Stack, Container } from "react-bootstrap"
 import { useState, useEffect, useCallback } from "react"
 import { useHistory } from "react-router-dom"
@@ -11,6 +12,7 @@ const TopicItem = ({topic}) => {
     const [modalShow, setModalShow] = useState(false)
     const history = useHistory()
     const redirectFunction = useCallback(() => history.push('topic/'+topic.topicId), [history])
+    const { token } = useSelector(state => state.userReducer)
     
     useEffect(() => {
        
@@ -19,7 +21,8 @@ const TopicItem = ({topic}) => {
 
     const joinGroup = () => {
         //Token needs to be passed too
-        TopicListApi.getTopicToPatch(topic.topicId, KeycloakService.getUsername())
+        console.log(token);
+        TopicListApi.getTopicToPatch(topic.topicId, KeycloakService.getUsername(),token)
 
     }
     
@@ -54,8 +57,9 @@ const TopicItem = ({topic}) => {
                                                     <li key={member}> {member} </li>
                                                  ))}
                                             </ul>
-                                            <button type="button" className="btn btn-outline-secondary" onClick={ joinGroup }>Join</button>
-                                            <button type="button" className="btn btn-outline-secondary" onClick={ redirectFunction } >To detail</button>
+                                            <h6>{topic.description}</h6>
+                                            <button class="float-end" type="button" className="btn btn-outline-secondary" variant="danger" onClick={ joinGroup }>Join</button>
+                                            <button class="float-end" type="button" className="btn btn-outline-secondary" variant="danger" onClick={ redirectFunction } >To detail</button>
                                         </div>
                                     </form>
                                 </div>
@@ -78,8 +82,8 @@ const TopicItem = ({topic}) => {
                 </div>
             </div>
             <div className="card-body">
-            <button type="button" className="btn btn-outline-secondary" onClick={ joinGroup }>Join</button>
-            <button type="button" className="btn btn-outline-secondary" onClick={ () => setModalShow(true)} >Slap this button on the title or something</button>
+            <button class="float-end" type="button" className="btn btn-outline-secondary" variant="danger" onClick={ joinGroup }>Join</button>
+            <button class="float-end" type="button" className="btn btn-outline-secondary" variant="danger" onClick={ () => setModalShow(true)} >Slap this button on the title or something</button>
  
                 <ShowTopic />
             </div>
