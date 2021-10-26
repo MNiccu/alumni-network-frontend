@@ -18,7 +18,6 @@ const Login = (props) => {
 			console.log(jwt_decode(token))
 			LoginAPI.getUser(token, KeycloakService.getUserId())
 				.then(response => {
-					
 					if(response === null){
 						const newUser = {
 							id: KeycloakService.getUserId(),
@@ -27,8 +26,12 @@ const Login = (props) => {
 						}
 						LoginAPI.postUser(token, newUser)
 							.then(response => {
-								dispatch(userinfoSetAction(response, token))
-								props.history.push("/moreinfo")
+								if(response !== null){
+									dispatch(userinfoSetAction(response, token))
+									props.history.push("/moreinfo")
+								}
+								else
+									props.history.push("/timeline")
 							})
 					}
 					else {
