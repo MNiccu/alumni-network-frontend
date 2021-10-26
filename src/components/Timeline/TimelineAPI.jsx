@@ -1,4 +1,4 @@
-const apiURL = "https://alumni-dummy-data-api.herokuapp.com/post"
+const apiURL = "https://localhost:44344/api/post"
 
 export const TimelineAPI = {
     getPost() {
@@ -21,26 +21,70 @@ export const TimelineAPI = {
                 return response.json()
             })
     },
-    getGroupPosts(id) {
-        return fetch(apiURL + "?targetgroup=" + id)
-            .then(async (response) => {
-                if (!response.ok) {
-                    const { error= "Error occured while fetching posts"} = await response.json()
+
+    //THIS IS THE ONLY ONE UP TO DATE
+    async getGroupPosts(id, token) {
+        return fetch(`${apiURL}/group/${id}`, {
+            method: "GET",
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                "Access-Control-Allow-Origin" : "*",
+                "Access-Control-Allow-Credentials" : true,
+                'Content-Type': 'application/json',
+            }
+        })
+            .then(async response => {
+                if(!response.ok) {
+                    const { error = "Error fetching group posts"} = await response.json()
                     throw Error(error)
-                }
-                return response.json()
-            })
+                  }
+                  return await response.json()
+            }) .catch(async response => {
+                return null
+              })
     },
 
-    getComments(id) {
-        return fetch(`${apiURL}?postId=${id}`)
-        .then(async (response) => {
-            if (!response.ok) {
-                const { error= `Error occured while fetching comment with id ${id}`} = await response.json()
-                throw Error(error)
+    getComments(id, token) {
+        return fetch(`${apiURL}/reply/${id}`, {
+            method: "GET",
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                "Access-Control-Allow-Origin" : "*",
+                "Access-Control-Allow-Credentials" : true,
+                'Content-Type': 'application/json',
             }
-            return await response.json()
         })
+            .then(async response => {
+                if(!response.ok) {
+                    const { error = "Error fetching group posts"} = await response.json()
+                    throw Error(error)
+                  }
+                  return await response.json()
+            }) .catch(async response => {
+                return null
+              })
+    },
+
+    async getGroupEvents(token){
+        
+        return fetch(`https://localhost:44344/api/event`, {
+            method: "GET",
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                "Access-Control-Allow-Origin" : "*",
+                "Access-Control-Allow-Credentials" : true,
+                'Content-Type': 'application/json',
+            }
+        })
+            .then(async response => {
+                if(!response.ok) {
+                    const { error = "Error fetching group posts"} = await response.json()
+                    throw Error(error)
+                  }
+                  return await response.json()
+            }) .catch(async response => {
+                return null
+              })
     },
 
     getTopicEvents(id) {

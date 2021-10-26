@@ -38,7 +38,7 @@ const App = () => {
 				<Route exact path="/events/:id" component={SingleEvent} />
 				<Route exact path="/groups" component={ GroupList } />
 				<Route exact path="/topics" component={ TopicList } />
-				<Route exact path="/group/:id" component={GroupDetail} />
+				<Route exact path="/group/:groupid" component={GroupDetail} />
 				<Route exact path="/topic/:id" component={TopicDetail} />
 				<Route exact path="/directmessages" component={DirectMessages} />
 				<Route exact path="/directmessages/:id" component={Conversation} />
