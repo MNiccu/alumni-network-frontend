@@ -1,16 +1,21 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useCallback } from "react"
+import {useHistory} from 'react-router-dom'
 import { Container, Card, Row, Col, Image, Button, Offcanvas, Form } from "react-bootstrap"
 import { UserAPI } from "./UserAPI"
 import UserPosts from "./UserPosts"
+import { useSelector } from "react-redux";
 import "./user.css"
 import withKeycloak from "../../hoc/WithKeycloak"
 
 const User = () => {
 
+    const history = useHistory();
+
     const [posts, setPosts] = useState({
         posts: [],
         loading: true
     })
+    const { token, name, username, status, bio, funFact } = useSelector(state => state.userReducer)
 
     const [show, setShow] = useState(false)
 
@@ -30,30 +35,27 @@ const User = () => {
     const handleClose = () => setShow(false)
 
     const dummyUser = {
-        id: 3,
-        username: "batman",
-        name: "Bruce Wayne",
-        picture: "",
-        status: "Fighting criminals by night, lurking by day",
-        bio: "I AM THE NIGHT",
-        funFact: "Is the night",
-        token: "batman1234"
+        id: 3
         }
+
+    const redirectToTopics = useCallback(() => history.push('/topics'), [history])
+    const redirectToGroups = useCallback(() => history.push('/groups'), [history])
+    const redirectToEvents = useCallback(() => history.push('/events'), [history])
 
     return (
         <Container>
             <Card.Header className="my-5">
                 <Row>
                     <Col xs={2} sm={2} md={3} lg={2}>
-                        <Image src={`https://avatars.dicebear.com/api/avataaars/userid${dummyUser.id}.svg`} alt="user profile" className="img-sm" />
+                        <Image src={`https://avatars.dicebear.com/api/avataaars/userid${username}.svg`} alt="user profile" className="img-sm" />
                     </Col>
                     <Col>
-                        <Card.Title className="mt-2">{dummyUser.name}</Card.Title>
-                        <Card.Subtitle>@{dummyUser.username}</Card.Subtitle>
-                        <Card.Text className="mt-3">{dummyUser.status}</Card.Text>
-                        <Button variant="outline-danger" size="sm">My follows</Button>&nbsp;
-                        <Button variant="outline-danger" size="sm" >My groups</Button>&nbsp;
-                        <Button variant="outline-danger" size="sm" >My events</Button>&nbsp;
+                        <Card.Title className="mt-2">{name}</Card.Title>
+                        <Card.Subtitle>@{username}</Card.Subtitle>
+                        <Card.Text className="mt-3">{status}</Card.Text>
+                        <Button onClick={redirectToTopics} variant="outline-danger" size="sm">My follows</Button>&nbsp;
+                        <Button onClick={redirectToGroups} variant="outline-danger" size="sm" >My groups</Button>&nbsp;
+                        <Button onClick={redirectToEvents} variant="outline-danger" size="sm" >My events</Button>&nbsp;
                     </Col>
                     <Col lg={1} className="text-center">
                         <span className="material-icons" onClick={ handleShow} type="button">mode_edit</span>
@@ -66,7 +68,7 @@ const User = () => {
                     <Row>
                         <Col lg={11}>
                             <Card.Title>Fun fact</Card.Title>
-                            <Card.Subtitle>{dummyUser.funFact}</Card.Subtitle>
+                            <Card.Subtitle>{funFact}</Card.Subtitle>
                         </Col>
                         <Col lg={1} className="text-center">
                         <span className="material-icons" onClick={ handleShow} type="button">mode_edit</span>
@@ -75,7 +77,7 @@ const User = () => {
                 </Card.Header>
                 <Card.Body>
                     <Card.Title>My bio</Card.Title>
-                    <Card.Subtitle>{dummyUser.bio}</Card.Subtitle>
+                    <Card.Subtitle>{bio}</Card.Subtitle>
                 </Card.Body>
             </Card>
 
