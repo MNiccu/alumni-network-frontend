@@ -1,4 +1,3 @@
-import { Redirect } from "react-router-dom"
 import { useDispatch } from "react-redux";
 import KeycloakService from "../../services/KeycloakService"
 import { useEffect} from "react"
@@ -14,19 +13,35 @@ const Login = (props) => {
 	const getUserInfo = async () => {
 		try {
 			const token =  await KeycloakService.getToken()
-			// console.log(token)
-			// console.log(KeycloakService.getUserId())
-			// console.log(jwt_decode(token))
+			console.log(token)
+			console.log(KeycloakService.getUserId())
+			console.log(jwt_decode(token))
 			LoginAPI.getUser(token, KeycloakService.getUserId())
 				.then(response => {
-					dispatch(userinfoSetAction(response, token))
-					// console.log(response)
-					if(response.bio === null){
-						// LoginAPI()
-						props.history.push("/moreinfo")
+					if(response === null){
+						const newUser = {
+							id: KeycloakService.getUserId(),
+							name: `${jwt_decode(token).given_name} ${jwt_decode(token).family_name}`,
+							username: jwt_decode(token).preferred_username
+						}
+						LoginAPI.postUser(token, newUser)
+							.then(response => {
+								if(response !== null){
+									dispatch(userinfoSetAction(response, token))
+									props.history.push("/moreinfo")
+								}
+								else
+									props.history.push("/timeline")
+							})
 					}
-					else
-						props.history.push("/timeline")					
+					else {
+						dispatch(userinfoSetAction(response, token))
+						if(response.bio === null){
+							props.history.push("/moreinfo")
+						}
+						else
+							props.history.push("/timeline")
+					}
 				})
 		}catch(e) {
 			console.log(e);
