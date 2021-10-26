@@ -27,7 +27,7 @@ const Navigation = () => {
 
   <Navbar bg="dark" variant="dark">
     <Container>
-    <Navbar.Brand href="/timeline"> <img src="/alumninetworklogo.png" height="60"></img> </Navbar.Brand>
+    <Navbar.Brand onClick = {redirectToTimeline}> <img src="/alumninetworklogo.png" height="60"></img> </Navbar.Brand>
     
     <Nav className="me-auto">
       <Nav.Link onClick =  { redirectToGroups }>Groups</Nav.Link>

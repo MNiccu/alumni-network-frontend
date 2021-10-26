@@ -3,30 +3,28 @@ import { useState, useEffect } from "react"
 import { Container } from "react-bootstrap"
 import GroupItem from "../GroupDetail/GroupItem"
 import withKeycloak from "../../hoc/WithKeycloak"
+import { useSelector } from "react-redux";
 
 const GroupList = () => {
 
-    
+    const { token } = useSelector(state => state.userReducer)
     let groupListArray = []
  
     const [groups, setGroups] = useState([])
-
     
     useEffect(() => {
         
         listGroups()
-       
         
     }, [])
 
     const listGroups = event => {
-        GroupListAPI.getPublicGroups().then(
+        console.log(token)
+        GroupListAPI.getPublicGroups(token).then(
             result => {
-                console.log("AAAA", result)
                 groupListArray = result
                 setGroups(groupListArray)
                 console.log(groupListArray)
-                
             })
     }
 
