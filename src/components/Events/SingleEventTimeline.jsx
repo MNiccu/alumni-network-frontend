@@ -26,7 +26,7 @@ const SingleEventTimeline = ({event}) => {
     return (
         <Card className="mt-4"  >
             <Card.Body>
-                <TimeLinePosts posts={posts.posts} />
+                <TimeLinePosts posts={posts.posts} searchTerm={""} />
             </Card.Body>
         </Card>
     )

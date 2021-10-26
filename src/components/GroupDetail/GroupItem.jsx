@@ -3,17 +3,21 @@ import { useState, useEffect, useCallback } from "react"
 import { useHistory } from "react-router-dom"
 import { GroupListAPI } from "../GroupList/GroupListApi"
 import KeycloakService from "../../services/KeycloakService"
+import { useSelector } from "react-redux";
 
 
 const GroupItem = ({group}) => {
-    
+
+    const { token } = useSelector(state => state.userReducer)
+
     const [modalShow, setModalShow] = useState(false)
     const history = useHistory()
-    const redirectFunction = useCallback(() => history.push('group/'+group.groupId), [history])
+
+    const redirectFunction = useCallback(() => history.push('group/'+group.id), [history])
 
     const joinGroup = () => {
         //Token needs to be passed too
-        GroupListAPI.getGroupToPatch(group.groupId, KeycloakService.getUsername())
+        GroupListAPI.patchGroupMember(group.id, token)
 
     }
     
@@ -48,8 +52,8 @@ const GroupItem = ({group}) => {
     //                                     </div>
     //                                     <div className="form-group float-right">
     //                                         <ul>
-    //                                             {group.groupMembers.map(member => (
-    //                                                 <li key={member}> {member} </li>
+    //                                             {group.map(member => (
+    //                                                 <li key={member.id}> {member} </li>
     //                                              ))}
     //                                         </ul>
     //                                     </div>

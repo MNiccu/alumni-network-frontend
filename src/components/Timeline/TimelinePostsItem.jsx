@@ -103,7 +103,7 @@ const TimelinePostsItem = ({post}) => {
                     <PostEditor post={post}/>
                 </div>
                 <div className="ms-5 mt-1">
-                    {/*<CommentsCount postTarget={post.postTarget} className="mx-5"/>*/}
+                   {/* <CommentsCount postTarget={post.postTarget} className="mx-5"/> */}
 
                     <ShowPost />
                 </div>

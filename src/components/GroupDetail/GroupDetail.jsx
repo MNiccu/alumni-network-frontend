@@ -6,10 +6,12 @@ import { useParams } from "react-router-dom"
 import withKeycloak from "../../hoc/WithKeycloak"
 import CalendarComponent from "../Calendar/CalendarComponent"
 import PostPopup from "../CreateEditPost/PostPopup"
+import { useSelector } from "react-redux";
 
 const GroupDetail = () => {
-	
-    const {id} = useParams()
+
+	const { token, id } = useSelector(state => state.userReducer)
+    const {groupid} = useParams()
 	const postContext = {context:"group", id: 1}
 	
 	const [posts, setPosts] = useState({
@@ -35,9 +37,10 @@ const GroupDetail = () => {
 	const [isBasicView, setIsBasicView] = useState(true)
 	
 	useEffect(() => {
-		TimelineAPI.getGroupPosts(id)
+		TimelineAPI.getGroupPosts(groupid, token)
 			.then(allPost => {
-				if (allPost.length) {
+				console.log("ALL POSTS?", allPost)
+				if (allPost != null) {
 					setPosts({
 						posts: allPost,
 						fetching: false
@@ -46,7 +49,7 @@ const GroupDetail = () => {
 			})
 
 			//should get GroupEvents! FIX THIS
-			TimelineAPI.getTopicEvents(id)
+			TimelineAPI.getGroupEvents(token)
 			.then(allEvent => {
 				if (allEvent.length) {
 					setEvents({
@@ -59,7 +62,7 @@ const GroupDetail = () => {
 
 	return (
 		<Container>
-				<h1>Welcome to timeline of Group {id}</h1>
+				<h1>Group Timeline</h1>
 				<input type="text" placeholder="search..." onChange={changeSearchTerm} ></input>
 				<PostPopup postContext={postContext}/>
 				<button className="btn btn-outline-danger"onClick={() => setIsBasicView(!isBasicView)}>Change view</button>

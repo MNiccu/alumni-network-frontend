@@ -32,7 +32,7 @@ const Conversation = () => {
         <div className="container" >
             <div className="card scroll convo-container">
                 <div className="card-body scrollable convo-container">
-                    <TimeLinePosts posts={posts.posts} />
+                    <TimeLinePosts posts={posts.posts} searchTerm={""}/>
                 </div>
             </div>
             <div className="card my-4">
