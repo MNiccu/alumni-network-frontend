@@ -62,7 +62,7 @@ const GroupDetail = () => {
 				<h1>Welcome to timeline of Group {id}</h1>
 				<input type="text" placeholder="search..." onChange={changeSearchTerm} ></input>
 				<PostPopup postContext={postContext}/>
-				<button onClick={() => setIsBasicView(!isBasicView)}>Change view</button>
+				<button className="btn btn-outline-danger"onClick={() => setIsBasicView(!isBasicView)}>Change view</button>
 				{isBasicView ? 
 				(<TimelinePosts posts={posts.posts} searchTerm={searchTerm}/>) :
 				<CalendarComponent events={events.events} />}

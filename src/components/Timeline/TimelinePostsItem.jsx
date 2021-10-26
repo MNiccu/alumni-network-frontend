@@ -14,19 +14,19 @@ const TimelinePostsItem = ({post}) => {
         loading: true
     })
 
-    useEffect(() => {
-        if(post.postTarget.length > 0) {
-            TimelineAPI.getComments(post.postTarget[0])
-                .then(response => {
-                    if(response.length){
-                        setReplies({
-                            comments: response,
-                            loading: false
-                        })
-                    }
-                })
-            }
-    },[])
+    // useEffect(() => {
+    //     if(post.postTarget.length > 0) {
+    //         TimelineAPI.getComments(post.postTarget[0])
+    //             .then(response => {
+    //                 if(response.length){
+    //                     setReplies({
+    //                         comments: response,
+    //                         loading: false
+    //                     })
+    //                 }
+    //             })
+    //         }
+    // },[])
     
     const ShowPost = () => {
         
@@ -41,8 +41,8 @@ const TimelinePostsItem = ({post}) => {
                                 </Col>
                                 <Col xs={4} sm={6} md={10} lg={8}>
                                     <Stack gap={1}>
-                                        <h5 className="">Post by user with id {post.senderId}</h5>
-                                        <p className="h6">{post.message}</p>
+                                        <h5 className="">Post by user with id {post.id}</h5>
+                                        <p className="h6">{post.text}</p>
                                     </Stack>
                                 </Col>
                             </Row>
@@ -70,25 +70,25 @@ const TimelinePostsItem = ({post}) => {
         )
     }
 
-    const CommentsCount = ({postTarget}) => {
-        if(postTarget.length === 1){
-            return (
-                <>
-                    <span className="material-icons align-middle">comment</span>
-                    <button className="btn btn-outline-secondary comments">Thread have 1 reply</button>
-                </>
-            )
-        }
-        else if(postTarget.length > 1){
-            return (
-                <>
-                    {/* <span className="material-icons align-middle">comment</span> */}
-                    <button className="comments my-0" onClick={ () => setModalShow(true)} >Thread has {postTarget.length} replies</button>
-                </>
-            )
-        }
-        return ''
-    }
+    // const CommentsCount = ({postTarget}) => {
+    //     if(postTarget.length === 1){
+    //         return (
+    //             <>
+    //                 <span className="material-icons align-middle">comment</span>
+    //                 <button className="btn btn-outline-secondary comments">Thread have 1 reply</button>
+    //             </>
+    //         )
+    //     }
+    //     else if(postTarget.length > 1){
+    //         return (
+    //             <>
+    //                 {/* <span className="material-icons align-middle">comment</span> */}
+    //                 <button className="comments my-0" onClick={ () => setModalShow(true)} >Thread has {postTarget.length} replies</button>
+    //             </>
+    //         )
+    //     }
+    //     return ''
+    // }
     
    
     return (
@@ -103,7 +103,7 @@ const TimelinePostsItem = ({post}) => {
                     <PostEditor post={post}/>
                 </div>
                 <div className="ms-5 mt-1">
-                    <CommentsCount postTarget={post.postTarget} className="mx-5"/>
+                    {/*<CommentsCount postTarget={post.postTarget} className="mx-5"/>*/}
 
                     <ShowPost />
                 </div>

@@ -11,14 +11,25 @@ export const TimelineAPI = {
                 return response.json()
             })
     },
-    getTopicPosts(id) {
-        return fetch(apiURL + "?targetTopic=" + id)
-            .then(async (response) => {
-                if (!response.ok) {
-                    const { error= "Error occured while fetching posts"} = await response.json()
-                    throw Error(error)
-                }
-                return response.json()
+    async getTopicPosts(id, token) {
+        return fetch(`https://localhost:44344/api/post/topic/${id}`, {
+            method: "GET",
+            headers: {
+              'Authorization': 'Bearer ' + token,
+              "Access-Control-Allow-Origin" : "*", 
+              "Access-Control-Allow-Credentials" : true,
+              'Content-Type': 'application/json',
+            }
+          })
+            .then(async response => {
+              if(!response.ok) {
+                const { error = "Error occured while fetching topic posts"} = await response.json()
+                throw Error(error)
+              }
+              return await response.json()
+            })
+            .catch(async response => {
+              return null
             })
     },
     getGroupPosts(id) {
