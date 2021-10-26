@@ -15,13 +15,13 @@ const Navigation = () => {
   const history = useHistory();
 
   // <button onClick={ handleLoginClick }>Logout with Keycloak</button>>
-   const redirectToTopics = useCallback(() => history.push('topics'), [history])
-   const redirectToGroups = useCallback(() => history.push('groups'), [history])
-   const redirectToEvents = useCallback(() => history.push('events'), [history])
-   const redirectToTimeline = useCallback(() => history.push('timeline'), [history])
-   const redirectToCalendar = useCallback(() => history.push('calendar'), [history])
-   const redirectToUser = useCallback(() => history.push('user'), [history])
-   const redirectToDirectMessages = useCallback(() => history.push('directmessages'), [history])
+   const redirectToTopics = useCallback(() => history.push('/topics'), [history])
+   const redirectToGroups = useCallback(() => history.push('/groups'), [history])
+   const redirectToEvents = useCallback(() => history.push('/events'), [history])
+   const redirectToTimeline = useCallback(() => history.push('/timeline'), [history])
+   const redirectToCalendar = useCallback(() => history.push('/calendar'), [history])
+   const redirectToUser = useCallback(() => history.push('/user'), [history])
+   const redirectToDirectMessages = useCallback(() => history.push('/directmessages'), [history])
 
     return (
 
