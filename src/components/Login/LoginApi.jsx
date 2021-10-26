@@ -27,11 +27,9 @@ export const LoginAPI = {
 
   async postUser(token, user) {
     return fetch(`${url}`, {
-      //mode: 'no-cors',
       method: "POST",
       headers: {
         'Authorization': 'Bearer ' + token,
-        "Access-Control-Allow-Origin" : "*", 
         "Access-Control-Allow-Credentials" : true,
         'Content-Type': 'application/json',
       },
