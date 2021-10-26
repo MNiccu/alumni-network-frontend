@@ -18,27 +18,27 @@ const Login = (props) => {
 			console.log(jwt_decode(token))
 			LoginAPI.getUser(token, KeycloakService.getUserId())
 				.then(response => {
-					console.log(response)
-					// if(response === null){
-					// 	const newUser = {
-					// 		id: KeycloakService.getUserId(),
-					// 		name: `${jwt_decode(token).given_name} ${jwt_decode(token).family_name}`,
-					// 		username: jwt_decode(token).preferred_username
-					// 	}
-					// 	LoginAPI.postUser(token, newUser)
-					// 		.then(response => {
-					// 			dispatch(userinfoSetAction(response, token))
-					// 			props.history.push("/moreinfo")
-					// 		})
-					// }
-					// else {
-					// 	dispatch(userinfoSetAction(response, token))
-					// 	if(response.bio === null){
-					// 		props.history.push("/moreinfo")
-					// 	}
-					// 	else
-					// 		props.history.push("/timeline")
-					// }
+					
+					if(response === null){
+						const newUser = {
+							id: KeycloakService.getUserId(),
+							name: `${jwt_decode(token).given_name} ${jwt_decode(token).family_name}`,
+							username: jwt_decode(token).preferred_username
+						}
+						LoginAPI.postUser(token, newUser)
+							.then(response => {
+								dispatch(userinfoSetAction(response, token))
+								props.history.push("/moreinfo")
+							})
+					}
+					else {
+						dispatch(userinfoSetAction(response, token))
+						if(response.bio === null){
+							props.history.push("/moreinfo")
+						}
+						else
+							props.history.push("/timeline")
+					}
 				})
 		}catch(e) {
 			console.log(e);

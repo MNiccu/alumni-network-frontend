@@ -1,23 +1,36 @@
+import { InvalidTokenError } from "jwt-decode"
+
+const url = "https://localhost:44344/api"
+
 export const GroupListAPI = {
     
-    getPublicGroups() {
-  
-      const apiURL = "https://alumni-dummy-data-api.herokuapp.com";
-    
-        //filter by user == groupMembers
-            //?topicMembers
-      return fetch(`${apiURL}/group?isPrivate=false`)
-        .then(response => response.json())
+    async getPublicGroups(token) {
         
+        return fetch(`${url}/group`, {
+            method: "GET",
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                "Access-Control-Allow-Origin" : "*",
+                "Access-Control-Allow-Credentials" : true,
+                'Content-Type': 'application/json',
+            }
+        })
+            .then(async response => {
+                if(!response.ok) {
+                    const { error = "Error fetching groups"} = await response.json()
+                    throw Error(error)
+                  }
+                  return await response.json()
+            })
 },
 
     getGroupToPatch(groupId, username) {
       
       console.log("getgroup id:", groupId)
-      const apiURL = "https://alumni-dummy-data-api.herokuapp.com/group";
+      
             
 
-       fetch(`${apiURL}?groupId=${groupId}`)
+       fetch(`${url}/group?id=${groupId}`)
           .then(response => response.json())
           .then(result => {
               console.log(result)
@@ -33,7 +46,7 @@ export const GroupListAPI = {
     //take token too
     patchGroupMember(result, groupId, username) {
       console.log(username, groupId)
-      const apiURL = "https://alumni-dummy-data-api.herokuapp.com/group";
+      
       const apiKey = "tFGpEKnUC9LrynUbesK4wcTmkScm0b93J33t6ouhSZCGo4V8YbfF8BovJruIZzut";
       const memberArray = []
       
@@ -46,7 +59,7 @@ export const GroupListAPI = {
       memberArray.push(username)
 
       //patch 
-      fetch(`${apiURL}/${groupId}`, {
+      fetch(`${url}/${groupId}`, {
           method: 'PATCH',
           headers: {
               'X-API-Key': apiKey,
