@@ -59,7 +59,7 @@ const GroupDetail = () => {
 
 	return (
 		<Container>
-				<h1>Welcome to timeline of Group {id}</h1>
+				<h1>Group Timeline</h1>
 				<input type="text" placeholder="search..." onChange={changeSearchTerm} ></input>
 				<PostPopup postContext={postContext}/>
 				<button onClick={() => setIsBasicView(!isBasicView)}>Change view</button>

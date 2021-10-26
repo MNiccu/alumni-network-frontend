@@ -3,17 +3,21 @@ import { useState, useEffect, useCallback } from "react"
 import { useHistory } from "react-router-dom"
 import { GroupListAPI } from "../GroupList/GroupListApi"
 import KeycloakService from "../../services/KeycloakService"
+import { useSelector } from "react-redux";
 
 
 const GroupItem = ({group}) => {
-    
+
+    const { token } = useSelector(state => state.userReducer)
+
     const [modalShow, setModalShow] = useState(false)
     const history = useHistory()
-    const redirectFunction = useCallback(() => history.push('group/'+group.groupId), [history])
+
+    const redirectFunction = useCallback(() => history.push('group/'+group.id), [history])
 
     const joinGroup = () => {
         //Token needs to be passed too
-        GroupListAPI.getGroupToPatch(group.groupId, KeycloakService.getUsername())
+        GroupListAPI.patchGroupMember(group.id, token)
 
     }
     
@@ -21,50 +25,50 @@ const GroupItem = ({group}) => {
        
     },[])
     
-    const ShowGroup = () => {
+    // const ShowGroup = () => {
         
-        return (
-            <Container>
+    //     return (
+    //         <Container>
 
-                <Modal show={modalShow} onHide={() => setModalShow(false)} centered>
-                        {console.log("hello")}
-                        <Modal.Title  className="mb-4">
-                            <Row className="mt-2">
+    //             <Modal show={modalShow} onHide={() => setModalShow(false)} centered>
+    //                     {console.log("hello")}
+    //                     <Modal.Title  className="mb-4">
+    //                         <Row className="mt-2">
                                 
-                                <Col xs={4} sm={6} md={10} lg={8}>
-                                    <Stack gap={1}>
-                                        <h5 className=""> {group.name} </h5>
-                                    </Stack>
-                                </Col>
-                            </Row>
-                        </Modal.Title>
+    //                             <Col xs={4} sm={6} md={10} lg={8}>
+    //                                 <Stack gap={1}>
+    //                                     <h5 className=""> {group.name} </h5>
+    //                                 </Stack>
+    //                             </Col>
+    //                         </Row>
+    //                     </Modal.Title>
                         
-                        <Modal.Body> 
-                            <div className="row">
-                                <div className="col-sm-10">
-                                    <form>
-                                        <div className="form-group">
-                                        <p className="card-text">{group.descripton}</p>
-                                        </div>
-                                        <div className="form-group float-right">
-                                            <ul>
-                                                {group.groupMembers.map(member => (
-                                                    <li key={member}> {member} </li>
-                                                 ))}
-                                            </ul>
-                                        </div>
-                                        <div>
-                                        <button type="button" className="btn btn-outline-secondary" onClick={ joinGroup }>Join</button>
-                                        <button type="button" className="btn btn-outline-secondary" onClick={ redirectFunction } >To detail</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </Modal.Body>
-                </Modal>
-            </Container>
-        )
-    }
+    //                     <Modal.Body> 
+    //                         <div className="row">
+    //                             <div className="col-sm-10">
+    //                                 <form>
+    //                                     <div className="form-group">
+    //                                     <p className="card-text">{group.descripton}</p>
+    //                                     </div>
+    //                                     <div className="form-group float-right">
+    //                                         <ul>
+    //                                             {group.map(member => (
+    //                                                 <li key={member.id}> {member} </li>
+    //                                              ))}
+    //                                         </ul>
+    //                                     </div>
+    //                                     <div>
+    //                                     <button type="button" className="btn btn-outline-secondary" onClick={ joinGroup }>Join</button>
+    //                                     <button type="button" className="btn btn-outline-secondary" onClick={ redirectFunction } >To detail</button>
+    //                                     </div>
+    //                                 </form>
+    //                             </div>
+    //                         </div>
+    //                     </Modal.Body>
+    //             </Modal>
+    //         </Container>
+    //     )
+    // }
 
     return (
         <div className="card my-5">
@@ -78,10 +82,12 @@ const GroupItem = ({group}) => {
                 </div>
             </div>
             <div className="card-body">
+            
             <button type="button" className="btn btn-outline-secondary" onClick={ () => setModalShow(true)} >Show</button>
+            <button type="button" className="btn btn-outline-secondary" onClick={ redirectFunction } >To detail</button>
             <button type="button" className="btn btn-outline-secondary" onClick={ joinGroup }>Join</button>
  
-                <ShowGroup />
+                {/*<ShowGroup /> */}
             </div>
         </div>
         )
