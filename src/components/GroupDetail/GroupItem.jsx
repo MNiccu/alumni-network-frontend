@@ -1,4 +1,4 @@
-import { Modal, Row, Col, Stack, Container } from "react-bootstrap"
+import { Modal, Row, Col, Stack, Container , Button} from "react-bootstrap"
 import { useState, useEffect, useCallback } from "react"
 import { useHistory } from "react-router-dom"
 import { GroupListAPI } from "../GroupList/GroupListApi"
@@ -82,12 +82,12 @@ const GroupItem = ({group}) => {
                 </div>
             </div>
             <div className="card-body">
-            
-            <button type="button" className="btn btn-outline-secondary" onClick={ () => setModalShow(true)} >Show</button>
-            <button type="button" className="btn btn-outline-secondary" onClick={ redirectFunction } >To detail</button>
-            <button type="button" className="btn btn-outline-secondary" onClick={ joinGroup }>Join</button>
- 
-                {/*<ShowGroup /> */}
+            <Stack direction="horizontal" gap={3}>
+            <h6 className="m-1">{group.description}</h6>   
+            <Button className="m-1 ms-auto" variant="outline-danger" onClick={ joinGroup}>Join</Button>
+            <Button className="m-1" variant="outline-danger" onClick={ redirectFunction }>Details</Button>
+            </Stack>
+                {/* <ShowGroup /> */}
             </div>
         </div>
         )

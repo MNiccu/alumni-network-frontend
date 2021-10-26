@@ -41,8 +41,8 @@ const TimelinePostsItem = ({post}) => {
                                 </Col>
                                 <Col xs={4} sm={6} md={10} lg={8}>
                                     <Stack gap={1}>
-                                        <h5 className="">Post by user with id {post.senderId}</h5>
-                                        <p className="h6">{post.message}</p>
+                                        <h5 className="">Post by user with id {post.id}</h5>
+                                        <p className="h6">{post.text}</p>
                                     </Stack>
                                 </Col>
                             </Row>

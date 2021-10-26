@@ -1,13 +1,27 @@
+const url = "https://localhost:44344/api/topic/"
+
 export const TopicListApi = {
     
-    getTopics() {
-  
-      const apiURL = "https://alumni-dummy-data-api.herokuapp.com";
-    
-        //filter by user == topicmembers
-      return fetch(`${apiURL}/topic`)
-        .then(response => response.json())
-    
+  async getTopics(token) {
+    return fetch(`${url}`, {
+      method: "GET",
+      headers: {
+        'Authorization': 'Bearer ' + token,
+        "Access-Control-Allow-Origin" : "*", 
+        "Access-Control-Allow-Credentials" : true,
+        'Content-Type': 'application/json',
+      }
+    })
+      .then(async response => {
+        if(!response.ok) {
+          const { error = "Error occured while fetching topics"} = await response.json()
+          throw Error(error)
+        }
+        return await response.json()
+      })
+      .catch(async response => {
+        return null
+      })
 
     },
 

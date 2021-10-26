@@ -1,6 +1,6 @@
+import { Modal, Row, Col, Stack, Container , Button} from "react-bootstrap"
 import { useEffect, useState} from "react"
 import { TimelineAPI } from "../Timeline/TimelineAPI"
-import { Container } from "react-bootstrap"
 import TimelinePosts from "../Timeline/TimelinePosts"
 import { useParams } from "react-router-dom"
 import withKeycloak from "../../hoc/WithKeycloak"
@@ -62,10 +62,12 @@ const GroupDetail = () => {
 
 	return (
 		<Container>
-				<h1>Group Timeline</h1>
-				<input type="text" placeholder="search..." onChange={changeSearchTerm} ></input>
+			<Stack direction="horizontal" gap={3}> 
+				<h1 className="m-2">Group Timeline</h1>
+				<input className="border-danger rounded mt-2 ms-auto" type="text" placeholder="search..." onChange={changeSearchTerm} ></input>
+			</Stack>
 				<PostPopup postContext={postContext}/>
-				<button onClick={() => setIsBasicView(!isBasicView)}>Change view</button>
+				<button className="btn btn-outline-danger"onClick={() => setIsBasicView(!isBasicView)}>Change view</button>
 				{isBasicView ? 
 				(<TimelinePosts posts={posts.posts} searchTerm={searchTerm}/>) :
 				<CalendarComponent events={events.events} />}
