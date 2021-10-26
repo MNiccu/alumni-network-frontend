@@ -20,10 +20,14 @@ export const LoginAPI = {
         }
         return await response.json()
       })
+      .catch(async response => {
+        return null
+      })
   },
-  
+
   async postUser(token, user) {
     return fetch(`${url}`, {
+      //mode: 'no-cors',
       method: "POST",
       headers: {
         'Authorization': 'Bearer ' + token,
