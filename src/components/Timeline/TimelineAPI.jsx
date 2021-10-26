@@ -1,8 +1,8 @@
-const apiURL = "https://localhost:44344/api/post"
+const apiURL = "https://alumni-dummy-data-api.herokuapp.com/"
 
 export const TimelineAPI = {
     getPost() {
-        return fetch(apiURL + "?limit=20")
+        return fetch("https://alumni-dummy-data-api.herokuapp.com/post/")
             .then(async (response) => {
                 if (!response.ok) {
                     const { error= "Error occured while fetching posts"} = await response.json()
@@ -50,7 +50,7 @@ export const TimelineAPI = {
                     throw Error(error)
                   }
                   return await response.json()
-            }) .catch(async response => {
+            }).catch(async response => {
                 return null
               })
     },
@@ -71,7 +71,7 @@ export const TimelineAPI = {
                     throw Error(error)
                   }
                   return await response.json()
-            }) .catch(async response => {
+            }).catch(async response => {
                 return null
               })
     },
@@ -93,7 +93,7 @@ export const TimelineAPI = {
                     throw Error(error)
                   }
                   return await response.json()
-            }) .catch(async response => {
+            }).catch(async response => {
                 return null
               })
     },

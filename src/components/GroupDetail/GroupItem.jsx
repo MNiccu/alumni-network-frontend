@@ -83,7 +83,7 @@ const GroupItem = ({group}) => {
             </div>
             <div className="card-body">
             <Stack direction="horizontal" gap={3}>
-            <h6 className="m-1">{group.descripton}</h6>   
+            <h6 className="m-1">{group.description}</h6>   
             <Button className="m-1 ms-auto" variant="outline-danger" onClick={ joinGroup}>Join</Button>
             <Button className="m-1" variant="outline-danger" onClick={ redirectFunction }>Details</Button>
             </Stack>

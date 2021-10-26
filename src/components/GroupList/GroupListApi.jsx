@@ -2,6 +2,7 @@ import { InvalidTokenError } from "jwt-decode"
 
 const url = "https://localhost:44344/api"
 
+
 export const GroupListAPI = {
     
     async getPublicGroups(token) {
@@ -21,7 +22,20 @@ export const GroupListAPI = {
                     throw Error(error)
                   }
                   return await response.json()
-            })
+                })
+                
+              },
+
+    getPublicGroupsPost() {
+      return fetch("https://alumni-dummy-data-api.herokuapp.com/post")
+          .then(async (response) => {
+              if (!response.ok) {
+                  const { error= "Error occured while fetching posts"} = await response.json()
+                  throw Error(error)
+              }
+              return response.json()
+          })
+  
 },
 
     
