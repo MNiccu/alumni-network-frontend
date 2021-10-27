@@ -4,9 +4,11 @@ import { Container } from "react-bootstrap"
 import { useParams } from "react-router"
 import withKeycloak from "../../hoc/WithKeycloak"
 import CalendarComponent from "../Calendar/CalendarComponent"
+import { useSelector } from "react-redux";
 
 const Calendar = () => {
 	
+	const { token } = useSelector(state => state.userReducer)
     const {id} = useParams()
 	
 	const [events, setEvents] = useState({
@@ -17,7 +19,7 @@ const Calendar = () => {
 	
 	useEffect(() => {
 			//should get GroupEvents! FIX THIS
-			TimelineAPI.getAllEvents(id)
+			TimelineAPI.getAllEvents(token)
 			.then(allEvent => {
 				if (allEvent.length) {
 					setEvents({

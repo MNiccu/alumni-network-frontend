@@ -1,14 +1,25 @@
 const apiURL = "https://alumni-dummy-data-api.herokuapp.com/"
 
 export const TimelineAPI = {
-    getPost() {
-        return fetch("https://alumni-dummy-data-api.herokuapp.com/post/")
-            .then(async (response) => {
-                if (!response.ok) {
-                    const { error= "Error occured while fetching posts"} = await response.json()
-                    throw Error(error)
-                }
-                return response.json()
+    async getPost(token) {
+        return fetch(`https://localhost:44344/api/post`, {
+            method: "GET",
+            headers: {
+              'Authorization': 'Bearer ' + token,
+              "Access-Control-Allow-Origin" : "*", 
+              "Access-Control-Allow-Credentials" : true,
+              'Content-Type': 'application/json',
+            }
+          })
+            .then(async response => {
+              if(!response.ok) {
+                const { error = "Error occured while fetching user in log in"} = await response.json()
+                throw Error(error)
+              }
+              return await response.json()
+            })
+            .catch(async response => {
+              return null
             })
     },
     async getTopicPosts(id, token) {
@@ -35,7 +46,7 @@ export const TimelineAPI = {
 
     //THIS IS THE ONLY ONE UP TO DATE
     async getGroupPosts(id, token) {
-        return fetch(`${apiURL}/group/${id}`, {
+        return fetch(`$https://localhost:44344/api/post/group/${id}`, {
             method: "GET",
             headers: {
                 'Authorization': 'Bearer ' + token,
@@ -56,7 +67,7 @@ export const TimelineAPI = {
     },
 
     getComments(id, token) {
-        return fetch(`${apiURL}/reply/${id}`, {
+        return fetch(`$https://localhost:44344/api/post/reply/${id}`, {
             method: "GET",
             headers: {
                 'Authorization': 'Bearer ' + token,
@@ -75,9 +86,48 @@ export const TimelineAPI = {
                 return null
               })
     },
-
-    async getGroupEvents(token){
+    //THIS SHOULD BE GROUP ONLY?
+    async getGroupEvents(token, id){
         
+        return fetch(`https://localhost:44344/api/event`, {
+            method: "GET",
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                "Access-Control-Allow-Origin" : "*",
+                "Access-Control-Allow-Credentials" : true,
+                'Content-Type': 'application/json',
+            }
+        })
+            .then(async response => {
+                if(!response.ok) {
+                    const { error = "Error fetching group posts"} = await response.json()
+                    throw Error(error)
+                  }
+                   return await response.json()
+                  .filter((events) => {
+                   
+                    if (events.targetGroupId == id) {
+                        return events
+                    }
+                    
+                })
+            }).catch(async response => {
+                return null
+              })
+    },
+
+    getTopicEvents(id) {
+        return fetch("https://alumni-dummy-data-api.herokuapp.com/event" + "?topic=" + id)
+            .then(async (response) => {
+                if (!response.ok) {
+                    const { error= "Error occured while fetching posts"} = await response.json()
+                    throw Error(error)
+                }
+                return response.json()
+            })
+    },
+    //this should be all user related events...
+    getAllEvents(token) {
         return fetch(`https://localhost:44344/api/event`, {
             method: "GET",
             headers: {
@@ -96,28 +146,7 @@ export const TimelineAPI = {
             }).catch(async response => {
                 return null
               })
-    },
 
-    getTopicEvents(id) {
-        return fetch("https://alumni-dummy-data-api.herokuapp.com/event" + "?topic=" + id)
-            .then(async (response) => {
-                if (!response.ok) {
-                    const { error= "Error occured while fetching posts"} = await response.json()
-                    throw Error(error)
-                }
-                return response.json()
-            })
-    },
-    //this should be all user related events...
-    getAllEvents(id) {
-        return fetch("https://alumni-dummy-data-api.herokuapp.com/event")
-            .then(async (response) => {
-                if (!response.ok) {
-                    const { error= "Error occured while fetching posts"} = await response.json()
-                    throw Error(error)
-                }
-                return response.json()
-            })
     },
 
     

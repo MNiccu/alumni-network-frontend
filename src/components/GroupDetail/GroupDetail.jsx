@@ -49,7 +49,7 @@ const GroupDetail = () => {
 			})
 
 			//should get GroupEvents! FIX THIS
-			TimelineAPI.getGroupEvents(token)
+			TimelineAPI.getGroupEvents(token, id)
 			.then(allEvent => {
 				if (allEvent.length) {
 					setEvents({
