@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import { useEffect, useState } from "react"
 import { Container, Row } from "react-bootstrap"
 import Event from "./Event"
@@ -11,8 +12,10 @@ const Events = () => {
         loading: true
     })
 
+    const { token } = useSelector(state => state.userReducer)
+
     useEffect(() => {
-        EventsAPI.getEvents()
+        EventsAPI.getEvents(token)
             .then(response => {
                 if(response.length){
                     setEventDetail({
@@ -27,7 +30,7 @@ const Events = () => {
 
     return (
         <Container>
-            <h1>Here you can see all active events</h1>
+            <h2 className="mt-3">Upcoming events</h2>
             <Row xs={1} md={2} lg={3} >
                 <Event events={eventDetail.details} />
             </Row>

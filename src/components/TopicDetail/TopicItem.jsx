@@ -23,7 +23,7 @@ const TopicItem = ({topic}) => {
         //Token needs to be passed too
         //KeycloakService.getUsername()
         console.log(token);
-        TopicListApi.getTopicToPatch(topic.topicId,token)
+        TopicListApi.getTopicToPatch(topic.id,token)
 
     }
     

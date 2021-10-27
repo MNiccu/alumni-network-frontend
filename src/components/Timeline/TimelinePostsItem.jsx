@@ -99,8 +99,9 @@ const TimelinePostsItem = ({post}) => {
                     <img src={`https://avatars.dicebear.com/api/avataaars/userid${post.senderId}.svg`} alt="Users profile" className="card-img align-middle rounded-circle" />
                 </div>
                 <div className="col-10">
-                    <p className="card-title">Post by user with id {post.senderId}</p>
-                    <PostEditor post={post}/>
+                    <p className="card-title">Post by user with id {post.id}</p>
+                    <p className="card-text">{post.text}</p>
+                    <PostEditor post={post.text}/>
                 </div>
                 <div className="ms-5 mt-1">
                    {/* <CommentsCount postTarget={post.postTarget} className="mx-5"/> */}

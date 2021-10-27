@@ -1,14 +1,25 @@
-const apiURL = "https://alumni-dummy-data-api.herokuapp.com/"
+const apiURL = "https://localhost:44344/api/post/"
 
 export const TimelineAPI = {
-    getPost() {
-        return fetch("https://alumni-dummy-data-api.herokuapp.com/post/")
-            .then(async (response) => {
-                if (!response.ok) {
-                    const { error= "Error occured while fetching posts"} = await response.json()
-                    throw Error(error)
-                }
-                return response.json()
+    async getPost(token) {
+        return fetch(`https://localhost:44344/api/post/`, {
+            method: "GET",
+            headers: {
+              'Authorization': 'Bearer ' + token,
+              "Access-Control-Allow-Origin" : "*", 
+              "Access-Control-Allow-Credentials" : true,
+              'Content-Type': 'application/json',
+            }
+          })
+            .then(async response => {
+              if(!response.ok) {
+                const { error = "Error occured while fetching topic posts"} = await response.json()
+                throw Error(error)
+              }
+              return await response.json()
+            })
+            .catch(async response => {
+              return null
             })
     },
     async getTopicPosts(id, token) {
@@ -35,7 +46,7 @@ export const TimelineAPI = {
 
     //THIS IS THE ONLY ONE UP TO DATE
     async getGroupPosts(id, token) {
-        return fetch(`${apiURL}/group/${id}`, {
+        return fetch(`${apiURL}group/${id}`, {
             method: "GET",
             headers: {
                 'Authorization': 'Bearer ' + token,

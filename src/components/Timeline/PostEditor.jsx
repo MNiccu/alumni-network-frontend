@@ -3,14 +3,14 @@ import { TimelineAPI } from "./TimelineAPI";
 
 const PostEditor = ({post}) => {
     
-    const [postContent, setPostContent] = useState(post.message);
+    const [postContent, setPostContent] = useState(post.text);
     const [isEditing, setIsEditing] = useState(false);
 
     const onEditBtnClick = () => {
 
         if(isEditing) {
             //Save
-            TimelineAPI.patchEdit(post.postId, postContent)
+            TimelineAPI.patchEdit(post.id, postContent)
         }
 
         setIsEditing(!isEditing);

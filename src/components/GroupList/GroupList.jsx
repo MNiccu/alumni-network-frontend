@@ -33,7 +33,7 @@ const GroupList = () => {
 	return (
         
             <Container>
-                <h3>Public Groups</h3>
+                <h2 className="mt-3">Public Groups</h2>
                  
         {groups && groups.map(group => {
           return (

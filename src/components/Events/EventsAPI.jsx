@@ -1,22 +1,46 @@
+const url = "https://localhost:44344/api/event/"
+
 export const EventsAPI = {
-    getEvents() {
-        return fetch("https://alumni-dummy-data-api.herokuapp.com/event")
+    async getEvents(token) {
+        return fetch(`${url}`, {
+            method: "GET",
+            headers: {
+              'Authorization': 'Bearer ' + token,
+              "Access-Control-Allow-Origin" : "*", 
+              "Access-Control-Allow-Credentials" : true,
+              'Content-Type': 'application/json',
+            }
+          })
             .then(async response => {
-                if(!response.ok) {
-                    const { error = "Error occured while fetching events"} = await response.json()
-                    throw Error(error)
-                }
-                return await response.json()
+              if(!response.ok) {
+                const { error = "Error occured while fetching events"} = await response.json()
+                throw Error(error)
+              }
+              return await response.json()
+            })
+            .catch(async response => {
+              return null
             })
     },
-    getEventById(id) {
-        return fetch(`https://alumni-dummy-data-api.herokuapp.com/event?eventId=${id}`)
+    getEventById(id, token) {
+        return fetch(`${url}${id}`, {
+            method: "GET",
+            headers: {
+              'Authorization': 'Bearer ' + token,
+              "Access-Control-Allow-Origin" : "*", 
+              "Access-Control-Allow-Credentials" : true,
+              'Content-Type': 'application/json',
+            }
+          })
             .then(async response => {
-                if(!response.ok) {
-                    const { error = `Error occured while fetching event with id ${id}`} = await response.json()
-                    throw Error(error)
-                }
-            return await response.json()
+              if(!response.ok) {
+                const { error = "Error occured while fetching event by id"} = await response.json()
+                throw Error(error)
+              }
+              return await response.json()
+            })
+            .catch(async response => {
+              return null
             })
     },
     getAllTopics() {
