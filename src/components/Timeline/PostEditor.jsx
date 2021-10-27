@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react"
 import { TimelineAPI } from "./TimelineAPI";
+import { useSelector } from "react-redux";
 
 const PostEditor = ({post}) => {
     
+    const { token } = useSelector(state => state.userReducer)
     const [postContent, setPostContent] = useState(post.message);
     const [isEditing, setIsEditing] = useState(false);
 
@@ -10,7 +12,7 @@ const PostEditor = ({post}) => {
 
         if(isEditing) {
             //Save
-            TimelineAPI.patchEdit(post.postId, postContent)
+            TimelineAPI.patchEdit(post.postId, postContent, post, token)
         }
 
         setIsEditing(!isEditing);

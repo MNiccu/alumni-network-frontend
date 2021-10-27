@@ -11,6 +11,7 @@ import PostPopup from "../CreateEditPost/PostPopup"
 const TopicDetail = () => {
 
     const {id} = useParams()
+	
 
 	const postContext = {context:"topic", id: 1}
 
@@ -48,7 +49,7 @@ const TopicDetail = () => {
 				}
 			})
 			
-			TimelineAPI.getTopicEvents(id)
+			TimelineAPI.getTopicEvents(token, id)
 			.then(allEvent => {
 				if (allEvent.length) {
 					setEvents({

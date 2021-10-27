@@ -51,12 +51,15 @@ const GroupDetail = () => {
 			//should get GroupEvents! FIX THIS
 			TimelineAPI.getGroupEvents(token, id)
 			.then(allEvent => {
+				console.log(allEvent)
+				
 				if (allEvent.length) {
 					setEvents({
 						events: allEvent,
 						fetching: false
 					})
 				}
+			
 			})
 	}, [])
 
