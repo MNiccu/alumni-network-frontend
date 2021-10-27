@@ -12,6 +12,7 @@ import { TopicListApi } from "../TopicList/TopicListApi";
 const TopicDetail = () => {
 
     const {id} = useParams()
+	
 
 	const postContext = {context:"topic", id: 1}
 

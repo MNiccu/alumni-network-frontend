@@ -67,7 +67,7 @@ export const TimelineAPI = {
     },
 
     getComments(id, token) {
-        return fetch(`${apiURL}/reply/${id}`, {
+        return fetch(`$https://localhost:44344/api/post/reply/${id}`, {
             method: "GET",
             headers: {
                 'Authorization': 'Bearer ' + token,
@@ -86,9 +86,66 @@ export const TimelineAPI = {
                 return null
               })
     },
-
-    async getGroupEvents(token){
+    //THIS SHOULD BE GROUP ONLY?
+    async getGroupEvents(token, id){
         
+        return fetch(`https://localhost:44344/api/event`, {
+            method: "GET",
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                "Access-Control-Allow-Origin" : "*",
+                "Access-Control-Allow-Credentials" : true,
+                'Content-Type': 'application/json',
+            }
+        })
+        .then(async response => {
+            if(!response.ok) {
+                const { error = "Error fetching group posts"} = await response.json()
+                throw Error(error)
+              }
+               const json = await response.json();
+              const filtered = json.filter((events) => {
+                if (events.targetGroupId == id) {
+                    return events
+                }
+                
+            })
+            return filtered
+        }).catch(async response => {
+            return null
+          })
+    },
+
+    getTopicEvents(token, id) {
+        
+        return fetch(`https://localhost:44344/api/event`, {
+            method: "GET",
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                "Access-Control-Allow-Origin" : "*",
+                "Access-Control-Allow-Credentials" : true,
+                'Content-Type': 'application/json',
+            }
+        })
+        .then(async response => {
+            if(!response.ok) {
+                const { error = "Error fetching topic posts"} = await response.json()
+                throw Error(error)
+              }
+               const json = await response.json();
+              const filtered = json.filter((events) => {
+                if (events.targetTopicId == id) {
+                    return events
+                }
+                
+            })
+            return filtered
+        }).catch(async response => {
+            return null
+          })
+    },
+    //this should be all user related events...
+    getAllEvents(token) {
         return fetch(`https://localhost:44344/api/event`, {
             method: "GET",
             headers: {
@@ -107,59 +164,34 @@ export const TimelineAPI = {
             }).catch(async response => {
                 return null
               })
-    },
 
-    getTopicEvents(id) {
-        return fetch("https://alumni-dummy-data-api.herokuapp.com/event" + "?topic=" + id)
-            .then(async (response) => {
-                if (!response.ok) {
-                    const { error= "Error occured while fetching posts"} = await response.json()
-                    throw Error(error)
-                }
-                return response.json()
-            })
-    },
-    //this should be all user related events...
-    getAllEvents(id) {
-        return fetch("https://alumni-dummy-data-api.herokuapp.com/event")
-            .then(async (response) => {
-                if (!response.ok) {
-                    const { error= "Error occured while fetching posts"} = await response.json()
-                    throw Error(error)
-                }
-                return response.json()
-            })
     },
 
     
-    patchEdit(id, content) {
+    patchEdit(id, message, post, token) {
 
-        console.log(content, id)
-        const apiURL = "https://alumni-dummy-data-api.herokuapp.com/post";
-        const apiKey = "tFGpEKnUC9LrynUbesK4wcTmkScm0b93J33t6ouhSZCGo4V8YbfF8BovJruIZzut";
+        //post.text = message
 
-        //
-        fetch(`${apiURL}/${id}`, {
-            method: 'PATCH',
+        return fetch(`https://localhost:44344/api/event/${id}`, {
+            method: "PUT",
             headers: {
-                'X-API-Key': apiKey,
-                'Content-Type': 'application/json'
+              'Authorization': 'Bearer ' + token,
+              "Access-Control-Allow-Credentials" : true,
+              'Content-Type': 'application/json',
             },
-            body: JSON.stringify({
-                
-                message: content
-            })
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Could not update translations history')
-                }
-                return response.json()
-            })
-            .then(updatedUser => {
-                
+            body: JSON.stringify(post)
+          })
+            .then(async response => {
+              if(!response.ok) {
+                const { error = "Error occured while posting user to database"} = await response.json()
+                throw Error(error)
+              }
+              return await response.json()
             })
             .catch(error => {
+              console.log(error)
+              return null
             })
+        
     }
 }

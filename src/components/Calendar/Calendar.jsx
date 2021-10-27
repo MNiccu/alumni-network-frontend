@@ -9,6 +9,7 @@ import { EventsAPI } from "../Events/EventsAPI";
 
 const Calendar = () => {
 	
+	const { token } = useSelector(state => state.userReducer)
     const {id} = useParams()
 	
 	const [events, setEvents] = useState({
@@ -16,7 +17,6 @@ const Calendar = () => {
 		fetching: true
 	})
 	
-	const { token } = useSelector(state => state.userReducer)
 	
 	useEffect(() => {
 			//should get GroupEvents! FIX THIS

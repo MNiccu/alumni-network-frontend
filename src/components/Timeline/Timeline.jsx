@@ -8,9 +8,11 @@ import withKeycloak from "../../hoc/WithKeycloak"
 import PostPopup from "../CreateEditPost/PostPopup"
 import CreateEditPost from "../CreateEditPost/CreateEditPost"
 import { set } from "date-fns"
+import { useSelector } from "react-redux";
 
 const Timeline = () => {
 
+	const { token } = useSelector(state => state.userReducer)
 	const postContext = {context:"timeline", id: 1}
 
 	const [posts, setPosts] = useState({

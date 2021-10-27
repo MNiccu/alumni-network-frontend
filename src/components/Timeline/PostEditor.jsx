@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react"
 import { TimelineAPI } from "./TimelineAPI";
+import { useSelector } from "react-redux";
 
 const PostEditor = ({post}) => {
     
-    const [postContent, setPostContent] = useState(post.text);
+    const { token } = useSelector(state => state.userReducer)
+    const [postContent, setPostContent] = useState(post.message);
     const [isEditing, setIsEditing] = useState(false);
 
     const onEditBtnClick = () => {

@@ -35,8 +35,9 @@ const CalendarComponent = ({events}) => {
   
     console.log(events)
     
-    //maps data from events to be suitable for calendar view
-    const fixevents = events.map(event => {
+    //formats event data to be suitable for big-calendar
+    const fixevents = events
+    .map(event => {
         let eventObject = {
             title: "",
             start: "",

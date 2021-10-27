@@ -41,7 +41,7 @@ const Navigation = () => {
     <NavDropdown title={
         <div>
           {KeycloakService.getUsername()}
-          <img src={`https://avatars.dicebear.com/api/avataaars/userid${KeycloakService.getUsername()}.svg`} alt="profilepic" height="40" className="align-middle rounded-circle" />
+          <img src={`https://avatars.dicebear.com/api/avataaars/userid${KeycloakService.getUsername()}.svg`} alt="profilepic" height="40" className="align-middle ms-2 rounded-circle" />
         </div>}>
 
         <NavDropdown.Item  onClick={ redirectToUser }>Profile</NavDropdown.Item>
