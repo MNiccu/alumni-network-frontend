@@ -5,10 +5,15 @@ import 'bootstrap/dist/css/bootstrap.css'
 import KeycloakService from '../../services/KeycloakService'
 import {useCallback} from 'react'
 import {useHistory} from 'react-router-dom'
+import { useDispatch } from "react-redux";
+import { tokenRemoveAction } from '../../store/actions/tokenAction'
 
 const Navigation = () => {
 
+  const dispatch = useDispatch()
+
   const handleLogoutClick = () => {
+    dispatch(tokenRemoveAction())
     KeycloakService.doLogout()
   }
 
