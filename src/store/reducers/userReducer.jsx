@@ -1,28 +1,24 @@
-import { ACTION_USERINFO_SET, ACTION_USERINFO_REMOVE} from "../actions/userAction";
+import { ACTION_USER_SET, ACTION_USER_REMOVE } from "../actions/userAction";
 
 const initialState = {
     id: "",
-    name: "",
     username: "",
-    picture: "",
-    status: "", 
-    bio: "", 
-    funFact: "",
-    token: ""
+    firstname: "", 
+    lastname: "",
+    name: ""
 }
 
 export const userReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ACTION_USERINFO_SET:
+        case ACTION_USER_SET:
             return {
-                ...action.payload,
-                token: action.token
-            };
-        case ACTION_USERINFO_REMOVE:
+                ...action.payload
+            }
+        case ACTION_USER_REMOVE:
             return {
                 ...initialState
             }
         default:
-            return state;
+            return state
     }
 }

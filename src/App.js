@@ -17,10 +17,15 @@ import DirectMessages from "./components/DirectMessages/DirectMessages";
 import Conversation from "./components/DirectMessages/Conversation";
 import Scroll from "./components/Scroll/Scroll";
 import Feed from "./components/Feed/Feed";
+import store from "./store";
+import { tokenInitAction} from "./store/actions/tokenAction"
+
 
 
 
 const App = () => {
+	
+	store.dispatch(tokenInitAction())
 
 	return (
 		

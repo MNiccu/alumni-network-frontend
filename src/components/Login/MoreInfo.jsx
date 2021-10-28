@@ -1,15 +1,13 @@
-import { useDispatch, useSelector } from "react-redux";
 import { useState} from "react"
+import { useSelector } from "react-redux";
 import { LoginAPI } from "./LoginAPI"
-import { userinfoSetAction } from "../../store/actions/userAction";
 import withKeycloak from "../../hoc/WithKeycloak"
 
 const MoreInfo = (props) => {
 
-	const dispatch = useDispatch();
+	const { token } = useSelector(state => state.tokenReducer)
+	const { id } = useSelector(state => state.userReducer)
 	
-	const { token, id } = useSelector(state => state.userReducer)
-
 	const [fields, setFields] = useState({
 		bio: "",
 		status: "",
@@ -27,7 +25,6 @@ const MoreInfo = (props) => {
 		LoginAPI.updateUser(token, id, updateUser)
 			.then(response => {
 				if(response !== null){
-					dispatch(userinfoSetAction(response, token))
 					props.history.push("/timeline")
 				}
 				else

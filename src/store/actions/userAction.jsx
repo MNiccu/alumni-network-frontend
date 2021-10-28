@@ -1,12 +1,11 @@
-export const ACTION_USERINFO_SET = "[userinfo] SET";
-export const ACTION_USERINFO_REMOVE = "[userinfo] REMOVE";
+export const ACTION_USER_SET = "[user] SET";
+export const ACTION_USER_REMOVE = "[user] REMOVE";
 
-export const userinfoSetAction = (user, token)  => ({
-    type: ACTION_USERINFO_SET,
-    payload: user,
-    token: token
+export const userSetAction = (user)  => ({
+    type: ACTION_USER_SET,
+    payload: user
 })
 
-export const userinfoRemoveAction = () => ({
-    type: ACTION_USERINFO_REMOVE
+export const userRemoveAction = () => ({
+    type: ACTION_USER_REMOVE
 })

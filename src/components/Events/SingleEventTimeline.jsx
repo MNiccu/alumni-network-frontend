@@ -3,8 +3,14 @@ import { Card } from "react-bootstrap"
 import { EventsAPI } from "./EventsAPI"
 import "./events.css"
 import TimeLinePosts from "../Timeline/TimelinePosts"
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom"
 
 const SingleEventTimeline = ({event}) => {
+
+    const { name, username, token } = useSelector(state => state.userReducer)
+    const { id } = useParams()
+
 
     const [posts, setPosts] = useState({
         posts: [],
@@ -12,14 +18,16 @@ const SingleEventTimeline = ({event}) => {
     })
 
     useEffect(() => {
-        EventsAPI.getEventPosts()
+        EventsAPI.getEventPosts(token, id)
             .then(response => {
+                if (response != null) {
                 if(response.length){
                     setPosts({
                         posts: response,
                         loading: false
                     })
                 }
+            }
             })
     }, [])
 

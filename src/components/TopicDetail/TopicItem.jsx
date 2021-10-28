@@ -12,7 +12,7 @@ const TopicItem = ({topic}) => {
     const [modalShow, setModalShow] = useState(false)
     const history = useHistory()
     const redirectFunction = useCallback(() => history.push('topic/'+topic.id), [history])
-    const { token } = useSelector(state => state.userReducer)
+    const { token } = useSelector(state => state.tokenReducer)
     
     useEffect(() => {
        

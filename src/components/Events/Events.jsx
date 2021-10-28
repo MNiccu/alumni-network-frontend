@@ -17,6 +17,7 @@ const Events = () => {
     useEffect(() => {
         EventsAPI.getEvents(token)
             .then(response => {
+                
                 if(response.length){
                     setEventDetail({
                         details: response,
