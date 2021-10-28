@@ -61,8 +61,37 @@ export const GroupListAPI = {
           return null
         })
 
+    },
+
+    async postNewGroup(token, groupData) {
+
+        return fetch(`${url}/group`, {
+          method: "POST",
+          headers: {
+            'Authorization': 'Bearer ' + token,
+            "Access-Control-Allow-Credentials" : true,
+            'Content-Type': 'application/json',
+          },
+          body:
+          {
+            'name': groupData.groupName,
+            'description': groupData.groupDescription,
+            'isPrivate' : groupData.groupPrivacy,
+          } 
+        })
+          .then(async response => {
+            if(!response.ok) {
+              const { error = "Error occured while posting user to database"} = await response.json()
+              throw Error(error)
+            }
+            return await response.json()
+          })
+          .catch(error => {
+            console.log(error)
+            return null
+          })
+
+
     }
-
-
 
 }

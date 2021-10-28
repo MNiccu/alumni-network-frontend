@@ -10,12 +10,29 @@ const NewGroup = () => {
 
     const { token } = useSelector(state => state.userReducer)
 
-    
+
+    const [groupData, setGroupData] = useState( {
+        groupName: " ",
+        groupDescription: " ",
+        groupPrivacy: 0
+    })
+
+    const handleInputChange = event => {
+		setGroupData (
+			{
+			...groupData,
+            [event.target.name]: event.target.value
+			
+			}
+		)
+        console.log(groupData)
+	}
+
     const history = useHistory()
     //const redirectFunction = useCallback(() => history.push('group/'+group.id), [history])
 
     const createGroup = () => {
-        GroupListAPI.postNewGroup(token)
+        GroupListAPI.postNewGroup(token, groupData)
     }
     
     useEffect(() => {
@@ -39,31 +56,36 @@ const NewGroup = () => {
             <Form>
                         <Form.Group className="mb-3" controlId="formSettingsName">
                             <Form.Label>Group Name</Form.Label>
-                            <Form.Control type="text" placeholder="John Doe" size="sm" ></Form.Control>
+                            <Form.Control onChange={handleInputChange} name="groupName" 
+                            value={groupData.groupName} type="text" placeholder="Give your group a name"
+                             size="sm" ></Form.Control>
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formSettingsStatus">
                             <Form.Label className="m-2">Group privacy </Form.Label>
-                            <Form.Check
+                            <Form.Check onChange={handleInputChange} 
                                     inline
                                     label="public "
-                                    name="group1"
+                                    name="groupPrivacy"
                                     type="radio"
+                                    value="0"
+                                    checked={groupData.groupPrivacy === "0"}
                                 />
-                                <Form.Check
+                                <Form.Check onChange={handleInputChange}
                                     inline
                                     label="private"
-                                    name="group1"
+                                    name="groupPrivacy"
                                     type="radio"
+                                    value="1"
+                                    checked={groupData.groupPrivacy === "1"}
                                 />
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formSettingsn" >
+                        <Form.Group className="mb-3" controlId="formSettings" >
                             <Form.Label>Description</Form.Label>
-                            <Form.Control as="textarea" rows={2} placeholder="Tell us more about yourself" size="sm"></Form.Control>
+                            <Form.Control onChange={handleInputChange} name="groupDescription" 
+                            value={groupData.groupDescription} as="textarea" rows={2} 
+                            placeholder="Give a description to your new group" size="sm"></Form.Control>
                         </Form.Group>
-                        <Form.Group className="float-end">
-                            <Button variant="danger" size="sm" className="">Cancel</Button>&nbsp;
-                            <Button variant="primary" size="sm" className="">Save Changes</Button>
-                        </Form.Group>
+                        
                    </Form>
             <Button className="m-1 ms-auto" variant="outline-danger" onClick={createGroup}>Create</Button>
             
