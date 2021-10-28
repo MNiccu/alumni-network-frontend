@@ -64,6 +64,8 @@ export const GroupListAPI = {
     },
 
     async postNewGroup(token, groupData) {
+     
+      console.log(groupData)
 
         return fetch(`${url}/group`, {
           method: "POST",
@@ -72,12 +74,14 @@ export const GroupListAPI = {
             "Access-Control-Allow-Credentials" : true,
             'Content-Type': 'application/json',
           },
-          body:
-          {
-            'name': groupData.groupName,
-            'description': groupData.groupDescription,
-            'isPrivate' : groupData.groupPrivacy,
-          } 
+          body: JSON.stringify(
+            {
+              'name': groupData.groupName,
+              'description': groupData.groupDescription,
+              'isPrivate' : Boolean(groupData.isPrivate)
+            } 
+          )
+
         })
           .then(async response => {
             if(!response.ok) {

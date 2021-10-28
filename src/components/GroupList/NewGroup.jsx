@@ -14,14 +14,14 @@ const NewGroup = () => {
     const [groupData, setGroupData] = useState( {
         groupName: " ",
         groupDescription: " ",
-        groupPrivacy: 0
+        isPrivate: "false"
     })
 
     const handleInputChange = event => {
 		setGroupData (
 			{
 			...groupData,
-            [event.target.name]: event.target.value
+            [event.target.name]: event.target.value,
 			
 			}
 		)
@@ -32,8 +32,11 @@ const NewGroup = () => {
     //const redirectFunction = useCallback(() => history.push('group/'+group.id), [history])
 
     const createGroup = () => {
+
         GroupListAPI.postNewGroup(token, groupData)
     }
+
+   
     
     useEffect(() => {
        
@@ -65,18 +68,19 @@ const NewGroup = () => {
                             <Form.Check onChange={handleInputChange} 
                                     inline
                                     label="public "
-                                    name="groupPrivacy"
+                                    name="isPrivate"
                                     type="radio"
-                                    value="0"
-                                    checked={groupData.groupPrivacy === "0"}
+                                    value="false"
+                                    checked={groupData.isPrivate === "false"}
+                                
                                 />
                                 <Form.Check onChange={handleInputChange}
                                     inline
                                     label="private"
-                                    name="groupPrivacy"
+                                    name="isPrivate"
                                     type="radio"
-                                    value="1"
-                                    checked={groupData.groupPrivacy === "1"}
+                                    value="true"
+                                    checked={groupData.isPrivate === "true"}
                                 />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formSettings" >
