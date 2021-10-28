@@ -16,10 +16,10 @@ const TopInfoModal = ({users}) => {
     }
 
     return (
-        users.map((user, index) => {
+        users.map((user) => {
             return (
-                // TODO: VÄLIAIKAINEN RATKAISU, KEY=INDEX PITÄÄ MUUTTAA BACKISTA SAATAVAAN INDEXIIN
-                <Attendees key={index} user={user} /> 
+                
+                <Attendees key={user.id} user={user} /> 
             )
         })
     )   

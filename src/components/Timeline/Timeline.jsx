@@ -36,6 +36,7 @@ const Timeline = () => {
 		if(posts.posts.length == 0){
 		TimelineAPI.getPost(token)
 			.then(allPost => {
+				if (allPost != null) {
 				if (allPost.length) {
 					navigator.clipboard.writeText(KeycloakService.getToken());
 					setPosts({
@@ -43,7 +44,7 @@ const Timeline = () => {
 						fetching: false
 					})
 					console.log(posts.posts[posts.posts.length-1])
-				}
+					}	}
 			})
 		
 	}}, [])

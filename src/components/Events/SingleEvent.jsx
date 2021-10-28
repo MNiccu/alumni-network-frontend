@@ -18,27 +18,50 @@ const SingleEvent = () => {
         loading: true
     })
 
+    const [topics, setTopics] = useState({
+        topics: [],
+        loading: true
+    })
+
+
+
+
     const { token } = useSelector(state => state.userReducer)
 
     useEffect(() => {
-        EventsAPI.getEventById(id, token)
+        
+        
+            EventsAPI.getAllTopics(token)
             .then(response => {
-                if(response.length) {
-                    setEvent({
-                        eventDetails: response[0],
+                console.log("GetAllTopics",response)
+                if (response != null && response) {
+                    setTopics({
+                        topics: response,
                         loading: false
                     })
                 }
             })
+        
+        EventsAPI.getEventById(id, token)
+            .then(response => {
+                console.log(id, response)
+                if (response !== null) {
+                    setEvent({
+                        eventDetails: response,
+                        loading: false
+                    })
+                   
+                }
 
-        return () => {}
+            })
     }, [])
 
+  
 
     return (
         <Container>
-            <SingleEventCardTopInfo event={event.eventDetails} />
-            <SingleEventPostForm event={event.eventDetails} />
+            <SingleEventCardTopInfo event={event.eventDetails} topics={topics.topics} />
+            <SingleEventPostForm event={event.eventDetails} topics={topics.topics} />
             <SingleEventTimeline event={event.eventDetails} />
         </Container>
     )
