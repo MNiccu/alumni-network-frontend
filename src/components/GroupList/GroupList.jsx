@@ -1,15 +1,17 @@
 import { GroupListAPI } from "./GroupListApi"
 import { useState, useEffect } from "react"
-import { Container } from "react-bootstrap"
+import { Container, Modal } from "react-bootstrap"
 import GroupItem from "../GroupDetail/GroupItem"
 import withKeycloak from "../../hoc/WithKeycloak"
 import { useSelector } from "react-redux";
+
+import NewGroup from "./NewGroup"
 
 const GroupList = () => {
 
     const { token } = useSelector(state => state.userReducer)
     let groupListArray = []
- 
+    const [modalShow, setModalShow] = useState(false)
     const [groups, setGroups] = useState([])
     
     useEffect(() => {
@@ -28,13 +30,27 @@ const GroupList = () => {
             })
     }
 
-    
+     const ShowGroup = () => {
+        
+         return (
+             <Container>
+                <Modal show={modalShow} onHide={() => setModalShow(false)} centered>
+                     <NewGroup />
+                </Modal>
+             </Container>
+         )
+        }
     //TODO dealing with private groups...
 	return (
         
             <Container>
-                <h3>Public Groups</h3>
+                <h2 className="mt-3">Public Groups</h2>
                  
+                <h3>Public Groups</h3>
+                <button onClick={ setModalShow }>Create New Group</button>
+            <ShowGroup />  
+            
+
         {groups && groups.map(group => {
           return (
             <GroupItem key={group.groupId} group={group}/> 

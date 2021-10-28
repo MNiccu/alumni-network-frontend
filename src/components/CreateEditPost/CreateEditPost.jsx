@@ -9,7 +9,8 @@ const CreateEditPost = ({postContext}) => {
 
 	const onFormSubmit = event => {
 		event.preventDefault()	
-        //post to right place...
+        
+
 		PostAPI.postPost("id-here", post.message, postContext)
 		}
 

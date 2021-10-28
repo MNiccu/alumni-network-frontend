@@ -49,22 +49,25 @@ const GroupDetail = () => {
 			})
 
 			//should get GroupEvents! FIX THIS
-			TimelineAPI.getGroupEvents(token)
+			TimelineAPI.getGroupEvents(token, id)
 			.then(allEvent => {
+				console.log(allEvent)
+				
 				if (allEvent.length) {
 					setEvents({
 						events: allEvent,
 						fetching: false
 					})
 				}
+			
 			})
 	}, [])
 
 	return (
 		<Container>
 			<Stack direction="horizontal" gap={3}> 
-				<h1 className="m-2">Group Timeline</h1>
-				<input className="border-danger rounded mt-2 ms-auto" type="text" placeholder="search..." onChange={changeSearchTerm} ></input>
+				<h2 className="mt-3">Group Timeline</h2>
+				<input className="border-danger rounded mt-3 ms-auto" type="text" placeholder="search..." onChange={changeSearchTerm} ></input>
 			</Stack>
 				<PostPopup postContext={postContext}/>
 				<button className="btn btn-outline-danger"onClick={() => setIsBasicView(!isBasicView)}>Change view</button>

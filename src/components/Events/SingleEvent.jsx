@@ -6,6 +6,7 @@ import "./events.css"
 import SingleEventCardTopInfo from "./SingleEventCardTopInfo"
 import SingleEventPostForm from "./SingleEventPostForm"
 import SingleEventTimeline from "./SingleEventTimeline"
+import { useSelector } from "react-redux";
 
 
 const SingleEvent = () => {
@@ -17,8 +18,10 @@ const SingleEvent = () => {
         loading: true
     })
 
+    const { token } = useSelector(state => state.userReducer)
+
     useEffect(() => {
-        EventsAPI.getEventById(id)
+        EventsAPI.getEventById(id, token)
             .then(response => {
                 if(response.length) {
                     setEvent({

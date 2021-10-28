@@ -25,23 +25,26 @@ export const TopicListApi = {
 
     },
 
-    getTopicToPatch(topicId, username) {
-          
-      console.log( topicId)
-      const apiURL = "https://alumni-dummy-data-api.herokuapp.com/topic";
-            
-
-      fetch(`${apiURL}?topicId=${topicId}`)
-          .then(response => response.json())
-          .then(result => {
-              console.log(result)
-              this.patchTopicMember(result, topicId, username)
-            
-              
-          })
-          .catch(error => {
-          })
-
+    async getTopicToPatch(topicId, token) {
+      return fetch(`${url}${topicId}/join`, {
+        method: "POST",
+        headers: {
+          'Authorization': 'Bearer ' + token,
+          "Access-Control-Allow-Origin" : "*", 
+          "Access-Control-Allow-Credentials" : true,
+          'Content-Type': 'application/json',
+        }
+      })
+        .then(async response => {
+          if(!response.ok) {
+            const { error = "Error occured while creating topic membership record"} = await response.json()
+            throw Error(error)
+          }
+          return await response.json()
+        })
+        .catch(async response => {
+          return null
+        })
     },
 
     //take token too

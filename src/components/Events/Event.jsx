@@ -8,26 +8,28 @@ const Event = ({events}) => {
 
         const start = new Date(event.startTime)
         const history = useHistory()
-        const handleEventClick = useCallback(() => history.push(`events/${event.eventId}`), [history])
+        const handleEventClick = useCallback(() => history.push(`events/${event.id}`), [history])
         
 
         return (
                 <Col className="mt-5">
                     <Card className="event mt-1 mb-0 h-100" type="button" onClick={ handleEventClick}>
-                            <img className="event-image" src={`https://avatars.dicebear.com/api/avataaars/userid.svg`} alt="user profile" />
+                            <img className="event-image" src={event.bannerImg} alt="user profile" />
                         <Card.Body className="">
                             <span className="material-icons align-middle text-center">schedule</span>
                             <span className="align-middle text-center">{start.toLocaleString('en-GB', { timeZone: 'UTC' })}</span>
-                            <Card.Text className="txt">
+                            <Card.Text className="txt mt-1">
                                 {event.name}
                             </Card.Text>
                             <Card.Text className="">
-                                {event.guestCount} is attending to this event
+                                {event.description}
                             </Card.Text>
-                            <Button size="sm" variant="outline-danger">
+                            </Card.Body>
+                            <Card.Footer>
+                            <Button className="mx-auto d-block" size="sm" variant="outline-danger">
                                 Join this event
                             </Button>
-                        </Card.Body>
+                            </Card.Footer>
                     </Card>
                 </Col>
         )
@@ -36,7 +38,7 @@ const Event = ({events}) => {
     return (
         events.map(event => {
             return (
-                <EventCard key={event.eventId} event={event} className="" />
+                <EventCard key={event.id} event={event} className="" />
             )
         })
     )
