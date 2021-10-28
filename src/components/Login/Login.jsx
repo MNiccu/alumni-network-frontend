@@ -1,33 +1,28 @@
-import { useDispatch } from "react-redux";
 import KeycloakService from "../../services/KeycloakService"
 import { useEffect} from "react"
 import { LoginAPI } from "./LoginAPI"
-import { userinfoSetAction } from "../../store/actions/userAction";
-import jwt_decode from "jwt-decode";
+import { useSelector } from "react-redux";
 
 
 const Login = (props) => {
 
-	const dispatch = useDispatch();
+	const { token } = useSelector(state => state.tokenReducer)
+	const { id, name, username} = useSelector(state => state.userReducer)
 
-	const getUserInfo = async () => {
-		try {
-			const token =  await KeycloakService.getToken()
-			console.log(token)
-			console.log(KeycloakService.getUserId())
-			console.log(jwt_decode(token))
-			LoginAPI.getUser(token, KeycloakService.getUserId())
+
+	const getUserInfo = () => {
+		console.log(KeycloakService.getToken())
+		LoginAPI.getUser(token, id)
 				.then(response => {
 					if(response === null){
 						const newUser = {
-							id: KeycloakService.getUserId(),
-							name: `${jwt_decode(token).given_name} ${jwt_decode(token).family_name}`,
-							username: jwt_decode(token).preferred_username
+							id,
+							name,
+							username
 						}
 						LoginAPI.postUser(token, newUser)
 							.then(response => {
 								if(response !== null){
-									dispatch(userinfoSetAction(response, token))
 									props.history.push("/moreinfo")
 								}
 								else
@@ -35,7 +30,6 @@ const Login = (props) => {
 							})
 					}
 					else {
-						dispatch(userinfoSetAction(response, token))
 						if(response.bio === null){
 							props.history.push("/moreinfo")
 						}
@@ -43,9 +37,6 @@ const Login = (props) => {
 							props.history.push("/timeline")
 					}
 				})
-		}catch(e) {
-			console.log(e);
-		}
 	}
 
 	useEffect(() => {

@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 
 const PostEditor = ({post}) => {
     
-    const { token } = useSelector(state => state.userReducer)
+    const { token } = useSelector(state => state.tokenReducer)
     const [postContent, setPostContent] = useState(post.message);
     const [isEditing, setIsEditing] = useState(false);
 

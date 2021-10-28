@@ -8,7 +8,7 @@ import withKeycloak from "../../hoc/WithKeycloak"
 
 const TopicList = () => {
 
-    const { token } = useSelector(state => state.userReducer)
+    const { token } = useSelector(state => state.tokenReducer)
     const [modalShow, setModalShow] = useState(false)
     
     let topicListArray = []
