@@ -4,14 +4,12 @@ import { Container, Card, Row, Col, Image, Button, Offcanvas, Form } from "react
 import { UserAPI } from "./UserAPI"
 import UserPosts from "./UserPosts"
 import { useDispatch, useSelector } from "react-redux";
-import { userinfoSetAction } from "../../store/actions/userAction";
 import "./user.css"
 import withKeycloak from "../../hoc/WithKeycloak"
 
 const User = () => {
 
     const history = useHistory();
-    const dispatch = useDispatch();
 
     const [posts, setPosts] = useState({
         posts: [],
@@ -69,10 +67,9 @@ const User = () => {
             bio: settings.newBio,
             funFact: settings.newFunFact
         }
-        UserAPI.updateUser(token, id, userSettings).
-            then(response => {
+        UserAPI.updateUser(token, id, userSettings)
+            .then(response => {
                 if(response !== null) {
-                    dispatch(userinfoSetAction(response, token))
                     handleClose()
                 }
             })
