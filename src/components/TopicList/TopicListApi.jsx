@@ -47,6 +47,32 @@ export const TopicListApi = {
         })
     },
 
+    async postNewTopic(topicData, token) {
+      return fetch(`${url}`, {
+        method: "POST",
+        headers: {
+          'Authorization': 'Bearer ' + token,
+          "Access-Control-Allow-Origin" : "*", 
+          "Access-Control-Allow-Credentials" : true,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify( {
+          "name" : topicData.name,
+          "description" : topicData.description
+        })
+      })
+        .then(async response => {
+          if(!response.ok) {
+            const { error = "Error occured while creating new topic"} = await response.json()
+            throw Error(error)
+          }
+          return await response.json()
+        })
+        .catch(async response => {
+          return null
+        })
+    },
+
     //take token too
     patchTopicMember(result, topicId, username) {
       console.log(username, topicId)

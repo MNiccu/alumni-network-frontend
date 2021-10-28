@@ -8,7 +8,6 @@ import withKeycloak from "../../hoc/WithKeycloak"
 import PostPopup from "../CreateEditPost/PostPopup"
 import CreateEditPost from "../CreateEditPost/CreateEditPost"
 import { set } from "date-fns"
-import { useSelector } from "react-redux";
 
 const Timeline = () => {
 
@@ -19,8 +18,6 @@ const Timeline = () => {
 		posts: [],
 		fetching: true
 	})
-
-	const { token } = useSelector(state => state.userReducer)
 
 	const username = KeycloakService.getUsername()
 	
@@ -47,7 +44,7 @@ const Timeline = () => {
 					console.log(posts.posts[posts.posts.length-1])
 				}
 			})
-		
+        }
 	}, [])
     
 	return (
@@ -70,7 +67,7 @@ const Timeline = () => {
 			
 		</Container>
 
-		 
+		
 
 	)
 }
