@@ -16,6 +16,7 @@ import MoreInfo from "./components/Login/MoreInfo";
 import DirectMessages from "./components/DirectMessages/DirectMessages";
 import Conversation from "./components/DirectMessages/Conversation";
 import Scroll from "./components/Scroll/Scroll";
+import Feed from "./components/Feed/Feed";
 
 
 
@@ -44,6 +45,7 @@ const App = () => {
 				<Route exact path="/directmessages" component={DirectMessages} />
 				<Route exact path="/directmessages/:id" component={Conversation} />
 				<Route exact path="/scroll" component={Scroll} />
+				<Route exact path="/feed" component={Feed} />
 			</Switch>
 		</BrowserRouter>
 		

@@ -22,6 +22,8 @@ const Navigation = () => {
    const redirectToCalendar = useCallback(() => history.push('/calendar'), [history])
    const redirectToUser = useCallback(() => history.push('/user'), [history])
    const redirectToDirectMessages = useCallback(() => history.push('/directmessages'), [history])
+   const redirectToScroll = useCallback(() => history.push('/scroll'), [history])
+   const redirectToFeed = useCallback(() => history.push('/feed'), [history])
 
     return (
 
@@ -30,11 +32,13 @@ const Navigation = () => {
     <Navbar.Brand onClick = { redirectToTimeline }> <img src="/alumninetworklogo.png" height="60"></img> </Navbar.Brand>
     
     <Nav className="me-auto">
+      <Nav.Link onClick = { redirectToTimeline }>Timeline</Nav.Link>
       <Nav.Link onClick =  { redirectToGroups }>Groups</Nav.Link>
       <Nav.Link onClick = { redirectToTopics }>Topics</Nav.Link>
-      <Nav.Link onClick = { redirectToTimeline }>Timeline</Nav.Link>
       <Nav.Link onClick = { redirectToCalendar }>Calendar</Nav.Link>
       <Nav.Link onClick = { redirectToEvents }>Events</Nav.Link>
+      <Nav.Link onClick = { redirectToScroll }>Scroll</Nav.Link>
+      <Nav.Link onClick = { redirectToFeed }>Feed</Nav.Link>
 
     </Nav>
     <Nav>

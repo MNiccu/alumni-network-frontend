@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'; 
-import useInfiniteScroll from './useInfiniteScroll';
-import { ScrollAPI } from './ScrollAPI';
+import useInfiniteScroll from '../Scroll/useInfiniteScroll';
+import { FeedAPI } from './FeedAPI'
 import { useSelector } from "react-redux";
 
 const Scroll = () => {
@@ -12,7 +12,7 @@ const Scroll = () => {
 
     useEffect(() => {
         const postZero = { timeStamp: null }
-        ScrollAPI.getTimelinePosts(token, postZero)
+        FeedAPI.getTimelinePosts(token, postZero)
             .then(response => {
                 if(response !== null){
                     setListItems(response)
@@ -23,7 +23,7 @@ const Scroll = () => {
     
     function fetchMoreListItems() {
         const lastPost = listItems[listItems.length - 1]
-        ScrollAPI.getTimelinePosts(token, lastPost)
+        FeedAPI.getTimelinePosts(token, lastPost)
             .then(response => {
                 if(response !== null){
                     setListItems(prevState => ([...prevState, ...response]));

@@ -32,7 +32,7 @@ const Timeline = () => {
 	}
 
 	useEffect(() => {
-		if(posts.posts.length == 0){
+		//if(posts.posts.length == 0){
 		TimelineAPI.getPost()
 			.then(allPost => {
 				if (allPost.length) {
@@ -41,9 +41,10 @@ const Timeline = () => {
 						posts: allPost,
 						fetching: false
 					})
+					console.log(posts.posts[posts.posts.length-1])
 				}
 			})
-		}
+		
 	}, [])
     
 	return (
