@@ -4,11 +4,10 @@ import "./events.css"
 import TopInfoModal from "./TopInfoModal"
 
 
-
-const SingleEventCardTopInfo = ({event}) => {
+const SingleEventCardTopInfo = ({event, topics}) => {
 
     const [visible, setVisible] = useState(false)
-    
+    console.log("SingleVentCardTopInfo",topics, event)
     const start = new Date(event.startTime)
     const end = new Date(event.endTime)
 
@@ -25,6 +24,12 @@ const SingleEventCardTopInfo = ({event}) => {
         )
     } 
     
+    if(!topics){
+        return
+    }
+    
+    const eventTargetTopic = topics.find(topic => topic.id == event.targetTopicId);
+
     return (
         <>
         <Card border="dark" className="mt-5">
@@ -39,12 +44,12 @@ const SingleEventCardTopInfo = ({event}) => {
                     </Col>
                 </Row>
                 <Row className="mt-3">
-                    <Col>
+                     <Col>
                         <span className="material-icons align-middle text-center me-3">schedule</span>
                         <span className="align-middle text-center me-3">Event starting: {start.toLocaleString('en-GB', { timeZone: 'UTC' })}</span>
                         <span className="me-3">-</span>
                         <span className="align-middle text-center">Event ending: {end.toLocaleString('en-GB', { timeZone: 'UTC' })}</span>
-                    </Col>
+                    </Col> 
                 </Row>
                 <Row className="mt-2">
                     <Col>
@@ -52,23 +57,18 @@ const SingleEventCardTopInfo = ({event}) => {
                         <span className="align-middle text-center"><button className="link-button attending" onClick={() => setVisible(true)} >{event.guestCount} attending this event</button></span>
                     </Col>
                 </Row>
-                <Row className="mt-2">
-                    <Col>
-                    <span className="material-icons align-middle text-center me-3">fmd_good</span>
-                    <span className="align-middle text-center">Location X</span>
-                    </Col>
-                </Row>
+               
                 <Row className="mt-2">
                     <Col>
                     <span className="material-icons align-middle text-center me-3">star_border</span>
-                    <span className="align-middle text-center">Topic of this event is id {event.topic}</span>
+                    <span className="align-middle text-center">Topic of this event is {eventTargetTopic && eventTargetTopic.name}</span>
                     </Col>
                 </Row>
                 <Row className="mt-2">
                     <Col>
                         <span className="material-icons align-middle text-center me-3">public</span>
-                        { event.allow_guests && <span className="align-middle text-center">This event is public - open for everybody</span>}
-                        { !event.allow_guests && <span className="align-middle text-center">This is closed event - only for invited members or group members</span>}
+                        { event.allowGuests && <span className="align-middle text-center">This event is public - open for everybody</span>}
+                        { !event.allowGuests && <span className="align-middle text-center">This is a closed event - only for invited members or group members</span>}
                     </Col>
                 </Row>
             </Card.Header>

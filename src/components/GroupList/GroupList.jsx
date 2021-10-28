@@ -46,7 +46,6 @@ const GroupList = () => {
             <Container>
                 <h2 className="mt-3">Public Groups</h2>
                  
-                <h3>Public Groups</h3>
                 <button onClick={ setModalShow }>Create New Group</button>
             <ShowGroup />  
             

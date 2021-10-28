@@ -9,6 +9,7 @@ import PostPopup from "../CreateEditPost/PostPopup"
 import CreateEditPost from "../CreateEditPost/CreateEditPost"
 import { set } from "date-fns"
 
+
 const Timeline = () => {
 
 	const { token } = useSelector(state => state.userReducer)
@@ -31,21 +32,22 @@ const Timeline = () => {
 
 	}
 
-	// useEffect(() => {
-	// 	if(posts.posts.length == 0){
-	// 	TimelineAPI.getPost(token)
-	// 		.then(allPost => {
-	// 			if (allPost.length) {
-	// 				navigator.clipboard.writeText(KeycloakService.getToken());
-	// 				setPosts({
-	// 					posts: allPost,
-	// 					fetching: false
-	// 				})
-	// 				console.log(posts.posts[posts.posts.length-1])
-	// 			}
-	// 		})
+	useEffect(() => {
+		if(posts.posts.length == 0){
+		TimelineAPI.getPost(token)
+			.then(allPost => {
+				if (allPost != null) {
+				if (allPost.length) {
+					navigator.clipboard.writeText(KeycloakService.getToken());
+					setPosts({
+						posts: allPost,
+						fetching: false
+					})
+					console.log(posts.posts[posts.posts.length-1])
+					}	}
+			})
 		
-	// }, [])
+	}}, [])
     
 	return (
 

@@ -5,25 +5,14 @@ import "./events.css"
 import { EventsAPI } from "./EventsAPI"
 
 
-const SingleEventPostForm = ({event}) => {
+const SingleEventPostForm = ({event, topics}) => {
 
-    const { name, username } = useSelector(state => state.userReducer)
+    const { name, username, token } = useSelector(state => state.userReducer)
 
-    const [topics, setTopics] = useState({
-        topics: [],
-        loading: true
-    })
+    
 
     useEffect(() => {
-        EventsAPI.getAllTopics()
-            .then(response => {
-                if(response.length) {
-                    setTopics({
-                        topics: response,
-                        loading: false
-                    })
-                }
-            })
+        
     })
 
     return (
@@ -51,7 +40,7 @@ const SingleEventPostForm = ({event}) => {
                                 <InputGroup className="mt-2">
                                     <InputGroup.Text>Select topic..</InputGroup.Text>
                                     <Form.Select size="sm">
-                                        {topics.topics.map(topic => <option key={topic.topicId} value={topic.name}>{topic.name}</option>)}
+                                        {topics.map(topic => <option key={topic.topicId} value={topic.name}>{topic.name}</option>)}
                                     </Form.Select>
                                 </InputGroup>
                                 <Button variant="primary" type="submit" className="float-end mt-2">Post to event</Button>
