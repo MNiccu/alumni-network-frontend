@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 
 const NewGroup = () => {
 
-    const { token } = useSelector(state => state.userReducer)
+    const { token } = useSelector(state => state.tokenReducer)
 
 
     const [groupData, setGroupData] = useState( {

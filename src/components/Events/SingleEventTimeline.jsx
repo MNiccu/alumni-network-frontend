@@ -8,7 +8,8 @@ import { useParams } from "react-router-dom"
 
 const SingleEventTimeline = ({event}) => {
 
-    const { name, username, token } = useSelector(state => state.userReducer)
+    const { name, username } = useSelector(state => state.userReducer)
+    const { token } = useSelector(state => state.tokenReducer)
     const { id } = useParams()
 
 

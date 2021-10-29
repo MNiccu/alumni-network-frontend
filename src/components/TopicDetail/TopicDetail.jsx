@@ -34,10 +34,11 @@ const TopicDetail = () => {
 		)
 
 	}
-
+	
+	const { token } = useSelector(state => state.tokenReducer)
 
 	const [isBasicView, setIsBasicView] = useState(true)
-	const { token } = useSelector(state => state.userReducer)
+	
 
 	useEffect(() => {
 		TimelineAPI.getTopicPosts(id, token)

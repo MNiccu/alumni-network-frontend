@@ -12,7 +12,7 @@ const Events = () => {
         loading: true
     })
 
-    const { token } = useSelector(state => state.userReducer)
+    const { token } = useSelector(state => state.tokenReducer)
 
     useEffect(() => {
         EventsAPI.getEvents(token)

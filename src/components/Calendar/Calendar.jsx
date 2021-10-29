@@ -9,7 +9,7 @@ import { EventsAPI } from "../Events/EventsAPI";
 
 const Calendar = () => {
 	
-	const { token } = useSelector(state => state.userReducer)
+	const { token } = useSelector(state => state.tokenReducer)
     const {id} = useParams()
 	
 	const [events, setEvents] = useState({

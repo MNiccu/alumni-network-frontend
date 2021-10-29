@@ -1,6 +1,6 @@
 import { GroupListAPI } from "./GroupListApi"
 import { useState, useEffect } from "react"
-import { Container, Modal } from "react-bootstrap"
+import { Container, Stack, Button, Form, Modal } from "react-bootstrap"
 import GroupItem from "../GroupDetail/GroupItem"
 import withKeycloak from "../../hoc/WithKeycloak"
 import { useSelector } from "react-redux";
@@ -9,7 +9,8 @@ import NewGroup from "./NewGroup"
 
 const GroupList = () => {
 
-    const { token } = useSelector(state => state.userReducer)
+    
+    const { token } = useSelector(state => state.tokenReducer)
     let groupListArray = []
     const [modalShow, setModalShow] = useState(false)
     const [groups, setGroups] = useState([])
@@ -44,9 +45,11 @@ const GroupList = () => {
 	return (
         
             <Container>
-                <h2 className="mt-3">Public Groups</h2>
-                 
-                <button onClick={ setModalShow }>Create New Group</button>
+        
+                <Stack direction="horizontal" gap={3}>
+                 <h2 className="mt-3">Groups</h2>
+                 <Button className="ms-auto mt-3" variant="outline-danger" onClick={ () => setModalShow(true) }>Create new group</Button>
+                </Stack>
             <ShowGroup />  
             
 
