@@ -23,7 +23,8 @@ const User = () => {
         newBio: null,
         newFunFact: null
     })
-    const { token, id, name, username, status, bio, funFact } = useSelector(state => state.userReducer)
+    const { id, name, username } = useSelector(state => state.userReducer)
+    const { token } = useSelector(state => state.tokenReducer)
 
     const [show, setShow] = useState(false)
 
@@ -94,7 +95,7 @@ const User = () => {
                     <Col>
                         <Card.Title className="mt-2">{name}</Card.Title>
                         <Card.Subtitle>@{username}</Card.Subtitle>
-                        <Card.Text className="mt-3">{status}</Card.Text>
+                        <Card.Text className="mt-3">{}</Card.Text>
                         <Button onClick={redirectToTopics} variant="outline-danger" size="sm">My follows</Button>&nbsp;
                         <Button onClick={redirectToGroups} variant="outline-danger" size="sm" >My groups</Button>&nbsp;
                         <Button onClick={redirectToEvents} variant="outline-danger" size="sm" >My events</Button>&nbsp;
@@ -110,7 +111,7 @@ const User = () => {
                     <Row>
                         <Col className="col-11">
                             <Card.Title>Fun fact</Card.Title>
-                            <Card.Subtitle>{funFact}</Card.Subtitle>
+                            <Card.Subtitle>{}</Card.Subtitle>
                         </Col>
                         <Col className="text-center col-1">
                         <span className="material-icons" onClick={ handleShow} type="button">mode_edit</span>
@@ -119,7 +120,7 @@ const User = () => {
                 </Card.Header>
                 <Card.Body>
                     <Card.Title>My bio</Card.Title>
-                    <Card.Subtitle>{bio}</Card.Subtitle>
+                    <Card.Subtitle>{}</Card.Subtitle>
                 </Card.Body>
             </Card>
 

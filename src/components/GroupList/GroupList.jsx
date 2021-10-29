@@ -9,7 +9,7 @@ import NewGroup from "./NewGroup"
 
 const GroupList = () => {
 
-    const { token } = useSelector(state => state.userReducer)
+    const { token } = useSelector(state => state.tokenReducer)
     let groupListArray = []
     const [modalShow, setModalShow] = useState(false)
     const [groups, setGroups] = useState([])

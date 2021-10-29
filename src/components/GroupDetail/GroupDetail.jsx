@@ -10,7 +10,8 @@ import { useSelector } from "react-redux";
 
 const GroupDetail = () => {
 
-	const { token, id } = useSelector(state => state.userReducer)
+	const { token } = useSelector(state => state.tokenReducer)
+	const { id } = useSelector(state => state.userReducer)
     const {groupid} = useParams()
 	const postContext = {context:"group", id: 1}
 	
