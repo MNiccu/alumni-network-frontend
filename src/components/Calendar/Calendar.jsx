@@ -22,7 +22,7 @@ const Calendar = () => {
 			//should get GroupEvents! FIX THIS
 			EventsAPI.getEvents(token)
 			.then(allEvent => {
-				if (allEvent.length) {
+				if (allEvent != null) {
 					setEvents({
 						events: allEvent,
 						fetching: false
