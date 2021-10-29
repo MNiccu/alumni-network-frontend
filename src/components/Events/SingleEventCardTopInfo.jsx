@@ -28,7 +28,7 @@ const SingleEventCardTopInfo = ({event, topics}) => {
         return
     }
     
-    const eventTargetTopic = topics.find(topic => topic.id == event.targetTopicId);
+    const eventTargetTopic = topics.find(topic => topic.id === event.targetTopicId);
 
     return (
         <>
