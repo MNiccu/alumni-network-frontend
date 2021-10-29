@@ -5,19 +5,15 @@ import 'bootstrap/dist/css/bootstrap.css'
 import KeycloakService from '../../services/KeycloakService'
 import {useCallback} from 'react'
 import {useHistory} from 'react-router-dom'
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { tokenRemoveAction } from '../../store/actions/tokenAction'
 
 const Navigation = () => {
 
   const dispatch = useDispatch()
-
-  const handleLogoutClick = () => {
-    dispatch(tokenRemoveAction())
-    KeycloakService.doLogout()
-  }
-
   const history = useHistory();
+
+  const { firstname, username} = useSelector(state => state.userReducer)
 
   // <button onClick={ handleLoginClick }>Logout with Keycloak</button>>
    const redirectToTopics = useCallback(() => history.push('/topics'), [history])
@@ -30,38 +26,44 @@ const Navigation = () => {
    const redirectToScroll = useCallback(() => history.push('/scroll'), [history])
    const redirectToFeed = useCallback(() => history.push('/feed'), [history])
 
+   const handleLogoutClick = () => {
+    dispatch(tokenRemoveAction())
+    KeycloakService.doLogout()
+    redirectToTimeline()
+  }
+
     return (
 
-  <Navbar bg="dark" variant="dark">
-    <Container>
-    <Navbar.Brand onClick = { redirectToTimeline }> <img src="/alumninetworklogo.png" height="60"></img> </Navbar.Brand>
-    
-    <Nav className="me-auto">
-      <Nav.Link onClick = { redirectToTimeline }>Timeline</Nav.Link>
-      <Nav.Link onClick =  { redirectToGroups }>Groups</Nav.Link>
-      <Nav.Link onClick = { redirectToTopics }>Topics</Nav.Link>
-      <Nav.Link onClick = { redirectToCalendar }>Calendar</Nav.Link>
-      <Nav.Link onClick = { redirectToEvents }>Events</Nav.Link>
-      <Nav.Link onClick = { redirectToScroll }>Scroll</Nav.Link>
-      <Nav.Link onClick = { redirectToFeed }>Feed</Nav.Link>
+        <Navbar bg="dark" variant="dark">
+          <Container>
+          <Navbar.Brand onClick = { redirectToTimeline }> <img src="/alumninetworklogo.png" height="60"></img> </Navbar.Brand>
+          
+          <Nav className="me-auto">
+            <Nav.Link onClick = { redirectToTimeline }>Timeline</Nav.Link>
+            <Nav.Link onClick =  { redirectToGroups }>Groups</Nav.Link>
+            <Nav.Link onClick = { redirectToTopics }>Topics</Nav.Link>
+            <Nav.Link onClick = { redirectToCalendar }>Calendar</Nav.Link>
+            <Nav.Link onClick = { redirectToEvents }>Events</Nav.Link>
+            <Nav.Link onClick = { redirectToScroll }>Scroll</Nav.Link>
+            <Nav.Link onClick = { redirectToFeed }>Feed</Nav.Link>
 
-    </Nav>
-    <Nav>
-    <NavDropdown title={
-        <div>
-          {KeycloakService.getUsername()}
-          <img src={`https://avatars.dicebear.com/api/avataaars/userid${KeycloakService.getUsername()}.svg`} alt="profilepic" height="40" className="align-middle ms-2 rounded-circle" />
-        </div>}>
+          </Nav>
+          <Nav>
+          <NavDropdown title={
+              <div>
+                {firstname}
+                <img src={`https://avatars.dicebear.com/api/avataaars/${username}.svg`} alt="profilepic" height="40" className="align-middle ms-2 rounded-circle" />
+              </div>}>
 
-        <NavDropdown.Item  onClick={ redirectToUser }>Profile</NavDropdown.Item>
-        <NavDropdown.Item onClick={ redirectToDirectMessages }>Direct messages</NavDropdown.Item>
-        <NavDropdown.Divider />
-        <NavDropdown.Item onClick={ handleLogoutClick }>Logout</NavDropdown.Item>
-    </NavDropdown>
-    
-    </Nav>
-    </Container>
-  </Navbar>
+              <NavDropdown.Item  onClick={ redirectToUser }>Profile</NavDropdown.Item>
+              <NavDropdown.Item onClick={ redirectToDirectMessages }>Direct messages</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item onClick={ handleLogoutClick }>Logout</NavDropdown.Item>
+          </NavDropdown>
+          
+          </Nav>
+          </Container>
+        </Navbar>
   
     )
 
