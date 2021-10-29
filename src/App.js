@@ -19,6 +19,7 @@ import Scroll from "./components/Scroll/Scroll";
 import Feed from "./components/Feed/Feed";
 import store from "./store";
 import { tokenInitAction} from "./store/actions/tokenAction"
+import SinglePostItem from "./components/Feed/SinglePostItem";
 
 
 
@@ -51,6 +52,7 @@ const App = () => {
 				<Route exact path="/directmessages/:id" component={Conversation} />
 				<Route exact path="/scroll" component={Scroll} />
 				<Route exact path="/feed" component={Feed} />
+				<Route exact path="/post/:postid" component={SinglePostItem} />
 			</Switch>
 		</BrowserRouter>
 		

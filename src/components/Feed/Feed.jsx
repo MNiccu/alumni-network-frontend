@@ -2,13 +2,16 @@ import { useState, useEffect } from 'react';
 import useInfiniteScroll from '../Scroll/useInfiniteScroll';
 import { FeedAPI } from './FeedAPI'
 import { useSelector } from "react-redux";
+import FeedItem from './FeedItem';
 
 const Scroll = () => {
 
     const [listItems, setListItems] = useState([]);
-    const [isFetching, setIsFetching] = useInfiniteScroll(fetchMoreListItems);
-    const { token } = useSelector(state => state.userReducer)
+    const [lastpost, setLastpost] = useState(false)
+    const [isFetching, setIsFetching] = useInfiniteScroll(fetchMoreListItems, lastpost);
+    const { token } = useSelector(state => state.tokenReducer)
 
+    
 
     useEffect(() => {
         const postZero = { timeStamp: null }
@@ -16,19 +19,25 @@ const Scroll = () => {
             .then(response => {
                 if(response !== null){
                     setListItems(response)
+                    console.log(response)
                 }
             })
-            console.log(listItems)
     }, [])
     
     function fetchMoreListItems() {
         const lastPost = listItems[listItems.length - 1]
+        console.log("last post", lastPost)
         FeedAPI.getTimelinePosts(token, lastPost)
             .then(response => {
+                
                 if(response !== null){
-                    setListItems(prevState => ([...prevState, ...response]));
-                    setIsFetching(false);
-                    console.log("response",response)
+                    if(response.length){
+                        setListItems(prevState => ([...prevState, ...response]));
+                        setIsFetching(false);
+                        console.log("response",response)
+                    }
+                    else
+                        setLastpost(true)
                 }
             })
     }
@@ -36,9 +45,11 @@ const Scroll = () => {
     return (
         <div className="container">
             <ul className="list-group mb-2">
-                {listItems.map(listItem => <li className="list-group-item">List Item {listItem.text} with stamp {listItem.timeStamp}</li>)}
+                {listItems.map(listItem => <FeedItem key={listItem.id} post={listItem} />)}
             </ul>
-            {isFetching && 'Fetching more list items...'}
+            {isFetching && !lastpost && 'Fetching more list items...'}
+            {lastpost && 'Nice you scrolled to bottom'}
+            
         </div>
     )
 }
