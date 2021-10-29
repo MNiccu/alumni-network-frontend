@@ -26,7 +26,7 @@ const Login = (props) => {
 									props.history.push("/moreinfo")
 								}
 								else
-									props.history.push("/timeline")
+									props.history.push("/feed")
 							})
 					}
 					else {
@@ -34,7 +34,7 @@ const Login = (props) => {
 							props.history.push("/moreinfo")
 						}
 						else
-							props.history.push("/timeline")
+							props.history.push("/feed")
 					}
 				})
 	}

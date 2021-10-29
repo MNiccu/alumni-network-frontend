@@ -29,7 +29,7 @@ const Navigation = () => {
    const handleLogoutClick = () => {
     dispatch(tokenRemoveAction())
     KeycloakService.doLogout()
-    redirectToTimeline()
+    redirectToFeed()
   }
 
     return (
