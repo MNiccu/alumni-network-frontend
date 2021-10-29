@@ -11,6 +11,11 @@ const User = () => {
 
     const history = useHistory();
 
+    const [user, setUser] = useState({
+        user: [],
+        loading: true
+    })
+
     const [posts, setPosts] = useState({
         posts: [],
         loading: true
@@ -33,6 +38,13 @@ const User = () => {
         UserAPI.getUser(token, id)
             .then(response => {
                 console.log(response)
+                if(response !== null) {
+                    setUser({
+                        user: response,
+                        loading: false
+                    })
+
+                }
             })
 
         UserAPI.getPosts(dummyUser.id)
@@ -95,7 +107,7 @@ const User = () => {
                     <Col>
                         <Card.Title className="mt-2">{name}</Card.Title>
                         <Card.Subtitle>@{username}</Card.Subtitle>
-                        <Card.Text className="mt-3">{}</Card.Text>
+                        <Card.Text className="mt-3">{user.user.status}</Card.Text>
                         <Button onClick={redirectToTopics} variant="outline-danger" size="sm">My follows</Button>&nbsp;
                         <Button onClick={redirectToGroups} variant="outline-danger" size="sm" >My groups</Button>&nbsp;
                         <Button onClick={redirectToEvents} variant="outline-danger" size="sm" >My events</Button>&nbsp;
@@ -111,7 +123,7 @@ const User = () => {
                     <Row>
                         <Col className="col-11">
                             <Card.Title>Fun fact</Card.Title>
-                            <Card.Subtitle>{}</Card.Subtitle>
+                            <Card.Subtitle>{user.user.funFact}</Card.Subtitle>
                         </Col>
                         <Col className="text-center col-1">
                         <span className="material-icons" onClick={ handleShow} type="button">mode_edit</span>
@@ -120,7 +132,7 @@ const User = () => {
                 </Card.Header>
                 <Card.Body>
                     <Card.Title>My bio</Card.Title>
-                    <Card.Subtitle>{}</Card.Subtitle>
+                    <Card.Subtitle>{user.user.bio}</Card.Subtitle>
                 </Card.Body>
             </Card>
 
