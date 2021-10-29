@@ -25,15 +25,15 @@ const MoreInfo = (props) => {
 		LoginAPI.updateUser(token, id, updateUser)
 			.then(response => {
 				if(response !== null){
-					props.history.push("/timeline")
+					props.history.push("/feed")
 				}
 				else
-					props.history.push("/timeline")
+					props.history.push("/feed")
 			})
 	}
 
 	const handleSkip = () => {
-		props.history.push("/timeline")
+		props.history.push("/feed")
 	}
 
 	const handleInputChange = event => {
