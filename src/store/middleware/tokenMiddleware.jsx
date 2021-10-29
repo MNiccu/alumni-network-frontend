@@ -38,7 +38,7 @@ export const tokenMiddleware = ({ dispatch }) => (next) => (action) => {
             username: jwt_decode(storedToken).preferred_username,
             firstname: jwt_decode(storedToken).given_name,
             lastname: jwt_decode(storedToken).family_name,
-            name: jwt_decode(storedToken).preferred_username
+            name: jwt_decode(storedToken).given_name + ' ' + jwt_decode(storedToken).family_name
         }
         dispatch(userSetAction(userInfo))
         dispatch(tokenSetAction({token: storedToken}))
