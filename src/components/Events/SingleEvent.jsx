@@ -24,9 +24,7 @@ const SingleEvent = () => {
     })
 
 
-
-
-    const { token } = useSelector(state => state.userReducer)
+    const { token } = useSelector(state => state.tokenReducer)
 
     useEffect(() => {
         

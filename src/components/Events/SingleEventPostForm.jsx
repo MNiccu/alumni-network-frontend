@@ -7,8 +7,8 @@ import { EventsAPI } from "./EventsAPI"
 
 const SingleEventPostForm = ({event, topics}) => {
 
-    const { name, username, token } = useSelector(state => state.userReducer)
-
+    const { name, username } = useSelector(state => state.userReducer)
+    const { token } = useSelector(state => state.tokenReducer)
     
 
     useEffect(() => {

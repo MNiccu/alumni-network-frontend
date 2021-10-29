@@ -5,6 +5,7 @@ import React from "react"
 import { Container, Stack, Button, Form, Modal } from "react-bootstrap"
 import TopicItem from "../TopicDetail/TopicItem"
 import withKeycloak from "../../hoc/WithKeycloak"
+import NewTopic from "./NewTopic";
 
 const TopicList = () => {
 
@@ -15,6 +16,11 @@ const TopicList = () => {
  
 
     const [topics, setTopics] = useState([])
+
+    const [topicData, setTopicData] = useState( {
+        name: " ",
+        description: " "
+    })
 
     
     useEffect(() => {
@@ -38,27 +44,8 @@ const TopicList = () => {
     //TODO
     const CreateNewTopic = () => {
         return (
-    <Modal show={modalShow} onHide={() => setModalShow(false)} centered>    
-        <Form>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Name</Form.Label>
-            <Form.Control type="email" placeholder="Name" />
-            <Form.Text className="text-muted">
-             Give a name for your topic
-            </Form.Text>
-          </Form.Group>
-
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Description</Form.Label>
-            <Form.Control type="email" placeholder="Description" />
-            <Form.Text className="text-muted">
-             Give a description of your topic
-            </Form.Text>
-          </Form.Group>
-          <Button variant="outline-danger" type="submit">
-            Create topic
-          </Button>
-        </Form>
+        <Modal show={modalShow} onHide={() => setModalShow(false)} centered>
+            <NewTopic/>
         </Modal>
         )
     }
@@ -72,12 +59,12 @@ const TopicList = () => {
                  <h2 className="mt-3">Topics</h2>
                  <Button className="ms-auto mt-3" variant="outline-danger" onClick={ () => setModalShow(true) }>Create new topic</Button>
                 </Stack>
+                <CreateNewTopic />
         {topics && topics.map(topic => {
           return (
             <TopicItem key={topic.topicId} topic={topic}/> 
           )
         })}
-         <CreateNewTopic />
             </Container>
             
 	)

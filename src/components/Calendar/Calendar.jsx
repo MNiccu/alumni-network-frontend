@@ -9,7 +9,7 @@ import { EventsAPI } from "../Events/EventsAPI";
 
 const Calendar = () => {
 	
-	const { token } = useSelector(state => state.userReducer)
+	const { token } = useSelector(state => state.tokenReducer)
     const {id} = useParams()
 	
 	const [events, setEvents] = useState({
@@ -22,7 +22,7 @@ const Calendar = () => {
 			//should get GroupEvents! FIX THIS
 			EventsAPI.getEvents(token)
 			.then(allEvent => {
-				if (allEvent.length) {
+				if (allEvent != null) {
 					setEvents({
 						events: allEvent,
 						fetching: false

@@ -9,7 +9,6 @@ import PostPopup from "../CreateEditPost/PostPopup"
 import CreateEditPost from "../CreateEditPost/CreateEditPost"
 import { set } from "date-fns"
 
-
 const Timeline = () => {
 
 	const { token } = useSelector(state => state.userReducer)
@@ -46,8 +45,8 @@ const Timeline = () => {
 					console.log(posts.posts[posts.posts.length-1])
 					}	}
 			})
-		
-	}}, [])
+        }
+	}, [])
     
 	return (
 
@@ -69,7 +68,7 @@ const Timeline = () => {
 			
 		</Container>
 
-		 
+		
 
 	)
 }
