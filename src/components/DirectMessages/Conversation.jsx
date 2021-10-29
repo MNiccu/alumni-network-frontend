@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router"
+import { useParams } from "react-router-dom"
 import TimeLinePosts from "../Timeline/TimelinePosts"
 import { DirectMessagesAPI } from "./DirectMessagesAPI"
 import withKeycloak from "../../hoc/WithKeycloak"
