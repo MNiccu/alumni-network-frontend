@@ -43,7 +43,7 @@ const TopicDetail = () => {
 	useEffect(() => {
 		TimelineAPI.getTopicPosts(id, token)
 			.then(allPost => {
-				if (allPost.length) {
+				if (allPost != null) {
 					setPosts({
 						posts: allPost,
 						fetching: false
@@ -53,7 +53,7 @@ const TopicDetail = () => {
 			
 			TimelineAPI.getTopicEvents(id, token)
 			.then(allEvent => {
-				if (allEvent.length) {
+				if (allEvent != null) {
 					setEvents({
 						events: allEvent,
 						fetching: false

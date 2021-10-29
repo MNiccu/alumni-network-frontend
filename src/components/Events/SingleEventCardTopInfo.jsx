@@ -10,6 +10,7 @@ const SingleEventCardTopInfo = ({event, topics}) => {
     console.log("SingleVentCardTopInfo",topics, event)
     const start = new Date(event.startTime)
     const end = new Date(event.endTime)
+    const banner = event.bannerImg
 
     const ListOfAttendees = () => {
         return (
@@ -28,15 +29,12 @@ const SingleEventCardTopInfo = ({event, topics}) => {
         return
     }
     
-    const eventTargetTopic = topics.find(topic => topic.id == event.targetTopicId);
+    const eventTargetTopic = topics.find(topic => topic.id === event.targetTopicId);
 
     return (
         <>
         <Card border="dark" className="mt-5">
-                <div className="fill">
-                    <img src="" alt="banner" className="mx-auto d-block" />
-
-                </div>
+        <Card.Img variant="top" src={banner} />
             <Card.Header>
                 <Row>
                     <Col>
@@ -54,7 +52,7 @@ const SingleEventCardTopInfo = ({event, topics}) => {
                 <Row className="mt-2">
                     <Col>
                         <span className="material-icons align-middle text-center me-3">groups</span>
-                        <span className="align-middle text-center"><button className="link-button attending" onClick={() => setVisible(true)} >{event.guestCount} attending this event</button></span>
+                        <span className="align-middle text-center"><button className="link-button attending" onClick={() => setVisible(true)} >{event.ListOfAttendees} attending this event</button></span>
                     </Col>
                 </Row>
                
