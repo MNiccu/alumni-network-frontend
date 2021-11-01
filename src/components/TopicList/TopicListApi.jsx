@@ -1,4 +1,4 @@
-const url = "https://localhost:44344/api/topic/"
+const url = "https://alumninetworkportalapi.azurewebsites.net/api/topic/"
 
 export const TopicListApi = {
     
@@ -89,7 +89,7 @@ export const TopicListApi = {
       memberArray.push(username)
 
       //patch 
-      fetch(`${apiURL}/${topicId}`, {
+      fetch(`${url}${topicId}`, {
           method: 'PATCH',
           headers: {
               'X-API-Key': apiKey,

@@ -62,7 +62,7 @@ const DirectMessages = () => {
 
     return (
         <Container>
-            <h1 className="text-center mb-3">Here you can see your messages and start new conversation</h1>
+            <h2 className="mt-3">Here you can see your messages and start new conversation</h2>
             <div className="list-group">
                 {posts.posts.map(item => {
                     return(

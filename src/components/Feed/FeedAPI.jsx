@@ -1,4 +1,4 @@
-const url = "https://localhost:44344/api/post"
+const url = "https://alumninetworkportalapi.azurewebsites.net/api/post"
 
 
 export const FeedAPI = {

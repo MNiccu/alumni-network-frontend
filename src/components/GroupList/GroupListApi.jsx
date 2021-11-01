@@ -1,6 +1,6 @@
 import { InvalidTokenError } from "jwt-decode"
 
-const url = "https://localhost:44344/api"
+const url = "https://alumninetworkportalapi.azurewebsites.net/api/"
 
 
 export const GroupListAPI = {

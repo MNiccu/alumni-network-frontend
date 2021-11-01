@@ -1,7 +1,7 @@
 export const DirectMessagesAPI = {
 
     async getPost(token) {
-        return fetch(`https://localhost:44344/api/post/user`, {
+        return fetch(`https://alumninetworkportalapi.azurewebsites.net/api/post/user`, {
             method: "GET",
             headers: {
               'Authorization': 'Bearer ' + token,
@@ -25,7 +25,7 @@ export const DirectMessagesAPI = {
         },
 
         async getConversation(token, id) {
-          return fetch(`https://localhost:44344/api/post/user/${id}`, {
+          return fetch(`https://alumninetworkportalapi.azurewebsites.net/api/post/user/${id}`, {
               method: "GET",
               headers: {
                 'Authorization': 'Bearer ' + token,

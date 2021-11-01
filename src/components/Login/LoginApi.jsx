@@ -1,4 +1,4 @@
-const url = "https://localhost:44344/api/user/"
+const url = "https://alumninetworkportalapi.azurewebsites.net/api/user/"
 //const url = "https://alumninetworkbackend20211025174426.azurewebsites.net/api/topic"
 
 export const LoginAPI = {
