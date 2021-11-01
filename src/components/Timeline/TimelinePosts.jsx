@@ -11,7 +11,7 @@ const TimeLinePosts = ({posts, searchTerm}) => {
                 if (searchTerm == "") {
                     return post 
                 }
-                else if (post.message.toString().toLowerCase().includes(searchTerm.toString().toLowerCase())) {
+                else if (post.text.toString().toLowerCase().includes(searchTerm.toString().toLowerCase())) {
                     return post
                 }
             }).map((post) => {
