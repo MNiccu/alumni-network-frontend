@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "./user.css"
 import withKeycloak from "../../hoc/WithKeycloak"
 
+//Returns user info
 const User = () => {
 
     const history = useHistory();
@@ -33,11 +34,11 @@ const User = () => {
 
     const [show, setShow] = useState(false)
 
+    //Gets users and posts from database
     useEffect(() => {
 
         UserAPI.getUser(token, id)
             .then(response => {
-                console.log(response)
                 if(response !== null) {
                     setUser({
                         user: response,
@@ -65,11 +66,13 @@ const User = () => {
         id: 3
         }
 
+    //Redirects user to groups topics and events
     const redirectToTopics = useCallback(() => history.push('/topics'), [history])
     const redirectToGroups = useCallback(() => history.push('/groups'), [history])
     const redirectToEvents = useCallback(() => history.push('/events'), [history])
 
 
+    //Updates user info and passes it to database
     const handleSettingsSubmit = event => {
         event.preventDefault()
         const userSettings = {

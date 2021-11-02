@@ -7,6 +7,7 @@ import TopicItem from "../TopicDetail/TopicItem"
 import withKeycloak from "../../hoc/WithKeycloak"
 import NewTopic from "./NewTopic";
 
+//Returns list of topics
 const TopicList = () => {
 
     const { token } = useSelector(state => state.tokenReducer)
@@ -30,6 +31,7 @@ const TopicList = () => {
         
     }, [])
 
+    //Gets all topics from database
     const listTopics = event => {
         TopicListApi.getTopics(token).then(
             result => {
@@ -41,7 +43,7 @@ const TopicList = () => {
             })
     }
 
-    //TODO
+    //Popup for topic creation form
     const CreateNewTopic = () => {
         return (
         <Modal show={modalShow} onHide={() => setModalShow(false)} centered>
@@ -51,7 +53,6 @@ const TopicList = () => {
     }
 
     
-    //TODO dealing with private topics...
 	return (
 		
             <Container>

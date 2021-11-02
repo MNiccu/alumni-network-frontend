@@ -11,6 +11,7 @@ import { TopicListApi } from "../TopicList/TopicListApi";
 import FeedItem from "../Feed/FeedItem"
 
 
+//Returns topic details page
 const TopicDetail = () => {
 
     const {topicid} = useParams()
@@ -21,6 +22,9 @@ const TopicDetail = () => {
 		fetching: true
 	})
     const [userReply, setUsersReply] = useState("")
+
+
+	//Search functionality for topics posts
 	const [searchTerm, setSearchTerm] = useState("")
 	const [isBasicView, setIsBasicView] = useState(true)
 	
@@ -34,6 +38,7 @@ const TopicDetail = () => {
 	const { token } = useSelector(state => state.tokenReducer)
 	const { id } = useSelector(state => state.userReducer)
 
+	//Gets topics posts and events from database
 	useEffect(() => {
 		TopicListApi.getTopicPosts(token, topicid)
 			.then(allPost => {

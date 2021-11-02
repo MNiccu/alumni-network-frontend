@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { FeedAPI} from './FeedAPI'
 import "./feed.css"
 
-
+//Returns single post item for feed
 const SinglePostItem = () => {
 
     const { postid } = useParams()
@@ -25,6 +25,7 @@ const SinglePostItem = () => {
         getInformation()
     }, [])
 
+    //Gets all related info from database
     const getInformation = () => {
         FeedAPI.getSinglePost(token, postid)
             .then(response => {
@@ -33,7 +34,6 @@ const SinglePostItem = () => {
                         post: response,
                         fetching: false
                     })
-                    console.log("post", response)
                 }
             })
 
@@ -44,11 +44,11 @@ const SinglePostItem = () => {
                         replies: response,
                         fetching: false
                     })
-                    console.log("replies", response)
                 }
             })
     }
 
+    //Handles replys and sends them to database
     const handleReply = event => {
         event.preventDefault()
         const newReply = {
@@ -62,10 +62,10 @@ const SinglePostItem = () => {
         }
         FeedAPI.sendPost(token, newReply)
             .then(response => {
-                console.log(response)
             })
     }
 
+    //Handles changes in text area
     const handleTextArea = event => {
         event.preventDefault()
         setUsersReply(event.target.value)

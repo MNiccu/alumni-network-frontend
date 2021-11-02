@@ -1,7 +1,7 @@
 const url = "https://alumninetworkportalapi.azurewebsites.net/api/post"
 const urlTopic = "https://alumninetworkportalapi.azurewebsites.net/api/topic"
 
-
+//Gets all info for feed from database
 export const FeedAPI = {
     async getTimelinePosts(token, post) {
         return fetch(`${url}/timeline`, {
@@ -21,7 +21,6 @@ export const FeedAPI = {
               return await response.json()
             })
             .catch(error => {
-              console.log(error)
               return null
             })
         },
@@ -85,7 +84,6 @@ export const FeedAPI = {
           return await response.json()
         })
         .catch(error => {
-          console.log(error)
           return null
         })
     },

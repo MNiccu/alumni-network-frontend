@@ -1,6 +1,6 @@
 import { Card, Row, Col } from "react-bootstrap"
 
-
+//Returns replies for post
 const Replies = ({replies}) => {
     
     const ReplyItem = ({reply}) => {

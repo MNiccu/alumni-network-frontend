@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import { TimelineAPI } from "./TimelineAPI";
 import { useSelector } from "react-redux";
 
+//Returns post editing object
 const PostEditor = ({post}) => {
     
     const { token } = useSelector(state => state.tokenReducer)
@@ -11,7 +12,6 @@ const PostEditor = ({post}) => {
     const onEditBtnClick = () => {
 
         if(isEditing) {
-            //Save
             TimelineAPI.patchEdit(post.id, postContent)
         }
 

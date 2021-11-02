@@ -2,6 +2,7 @@ const url = "https://alumninetworkportalapi.azurewebsites.net/api/topic/"
 const urlPost = "https://alumninetworkportalapi.azurewebsites.net/api/post"
 const urlEvent = "https://alumninetworkportalapi.azurewebsites.net/api/event"
 
+//Handles all topic related info with database
 export const TopicListApi = {
     
   async getTopics(token) {

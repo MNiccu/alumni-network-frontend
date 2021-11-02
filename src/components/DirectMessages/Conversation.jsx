@@ -18,6 +18,7 @@ const Conversation = () => {
         loading: true
     })
 
+    //Gets all direct messages from database
     useEffect(() => {
         DirectMessagesAPI.getConversation(token, id)
             .then(response => {

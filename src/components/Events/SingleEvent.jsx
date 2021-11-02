@@ -8,7 +8,7 @@ import SingleEventPostForm from "./SingleEventPostForm"
 import SingleEventTimeline from "./SingleEventTimeline"
 import { useSelector } from "react-redux";
 
-
+//Setup for event info
 const SingleEvent = () => {
 
     const { id } = useParams()
@@ -26,12 +26,12 @@ const SingleEvent = () => {
 
     const { token } = useSelector(state => state.tokenReducer)
 
+    // Gets all topics and events by id
     useEffect(() => {
         
         
             EventsAPI.getAllTopics(token)
             .then(response => {
-                console.log("GetAllTopics",response)
                 if (response != null && response) {
                     setTopics({
                         topics: response,
@@ -42,7 +42,6 @@ const SingleEvent = () => {
         
         EventsAPI.getEventById(id, token)
             .then(response => {
-                console.log(id, response)
                 if (response !== null) {
                     setEvent({
                         eventDetails: response,

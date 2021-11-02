@@ -1,5 +1,6 @@
 export const DirectMessagesAPI = {
 
+  //gets posts from api
     async getPost(token) {
         return fetch(`https://alumninetworkportalapi.azurewebsites.net/api/post/user`, {
             method: "GET",
@@ -24,6 +25,7 @@ export const DirectMessagesAPI = {
             })
         },
 
+        //Gets conversations from api
         async getConversation(token, id) {
           return fetch(`https://alumninetworkportalapi.azurewebsites.net/api/post/user/${id}`, {
               method: "GET",

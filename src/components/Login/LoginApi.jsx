@@ -1,6 +1,7 @@
 const url = "https://alumninetworkportalapi.azurewebsites.net/api/user/"
 //const url = "https://alumninetworkbackend20211025174426.azurewebsites.net/api/topic"
 
+//Gets all Login related info from database
 export const LoginAPI = {
 
   async getUser(token, id) {
@@ -43,7 +44,6 @@ export const LoginAPI = {
         return await response.json()
       })
       .catch(error => {
-        console.log(error)
         return null
       })
   },
@@ -66,7 +66,6 @@ export const LoginAPI = {
         return await response.json()
       })
       .catch(error => {
-        console.log(error)
         return null
       })
   }

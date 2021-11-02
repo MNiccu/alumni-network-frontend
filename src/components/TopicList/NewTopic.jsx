@@ -7,6 +7,7 @@ import TopicItem from "../TopicDetail/TopicItem"
 import withKeycloak from "../../hoc/WithKeycloak"
 import { useHistory } from "react-router-dom"
 
+//Returns a form to make new topic
 const NewTopic = () =>{
 
     const { token } = useSelector(state => state.userReducer)
@@ -33,6 +34,7 @@ const NewTopic = () =>{
 
     const history = useHistory()
 
+    //Posts new topic to database
     const createTopic = () => {
         TopicListApi.postNewTopic(topicData, token)
     }

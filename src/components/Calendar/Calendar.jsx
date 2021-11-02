@@ -19,7 +19,7 @@ const Calendar = () => {
 	
 	
 	useEffect(() => {
-			//should get GroupEvents! FIX THIS
+			//Gets all events from database
 			EventsAPI.getEvents(token)
 			.then(allEvent => {
 				if (allEvent != null) {

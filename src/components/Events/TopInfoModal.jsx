@@ -1,5 +1,6 @@
 import { Row, Col } from "react-bootstrap"
 
+//Returns event attendees 
 const TopInfoModal = ({users}) => {
 
     const Attendees = ({user}) => {

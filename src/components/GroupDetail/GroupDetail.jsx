@@ -8,6 +8,7 @@ import { GroupListAPI } from "../GroupList/GroupListApi"
 import FeedItem from "../Feed/FeedItem"
 
 
+//Returns group timeline view
 const GroupDetail = () => {
 
 	const { token } = useSelector(state => state.tokenReducer)
@@ -21,6 +22,8 @@ const GroupDetail = () => {
 		events: [],
 		fetching: true
 	})
+
+	//Handles search in group comments
 	const [searchTerm, setSearchTerm] = useState("")
 	const [isBasicView, setIsBasicView] = useState(true)
 	
@@ -50,6 +53,7 @@ const GroupDetail = () => {
 
 
 	
+	//Gets groups posts and events from database
 	useEffect(() => {
 		GroupListAPI.getGroupPosts(token, groupid)
 			.then(allPosts => {

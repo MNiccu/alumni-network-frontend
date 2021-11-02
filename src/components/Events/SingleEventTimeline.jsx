@@ -17,6 +17,7 @@ const SingleEventTimeline = ({event}) => {
 
     const [posts, setPosts] = useState([])
 
+    //Gets all posts for particular event
     useEffect(() => {
         EventsAPI.getEventPosts(token, id)
             .then(response => {

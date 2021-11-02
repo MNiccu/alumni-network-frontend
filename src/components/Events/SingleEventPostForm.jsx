@@ -4,7 +4,7 @@ import { Card, Row, Col, FloatingLabel, Form, Button, InputGroup } from "react-b
 import "./events.css"
 import { EventsAPI } from "./EventsAPI"
 
-
+// Returns single event post
 const SingleEventPostForm = ({event, topics}) => {
 
     const { name, username } = useSelector(state => state.userReducer)

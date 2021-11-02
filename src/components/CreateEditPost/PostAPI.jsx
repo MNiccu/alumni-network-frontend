@@ -26,7 +26,6 @@ postPost(userId, message, postContext) {
           },
           body: JSON.stringify({
 
-            //TODO date time is not right. need to fetch current. other possibly wrong too
             lastUpdated: "2021-10-01T14:48:00.000Z",
             postTarget: [],
             senderId: userId,

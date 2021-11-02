@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom"
 import "./message.css"
 import withKeycloak from "../../hoc/WithKeycloak"
 
-
+//Redirects user to direct messages
 const MessageItem = ({item}) => {
 
     const history = useHistory()

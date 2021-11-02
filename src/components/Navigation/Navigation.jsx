@@ -8,6 +8,7 @@ import {useHistory} from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
 import { tokenRemoveAction } from '../../store/actions/tokenAction'
 
+//Handles navigation for app
 const Navigation = () => {
 
   const dispatch = useDispatch()
