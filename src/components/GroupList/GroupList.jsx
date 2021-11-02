@@ -31,17 +31,17 @@ const GroupList = () => {
             })
     }
 
-     const ShowGroup = () => {
-        
-         return (
-             <Container>
-                <Modal show={modalShow} onHide={() => setModalShow(false)} centered>
-                     <NewGroup />
-                </Modal>
-             </Container>
-         )
-        }
-    //TODO dealing with private groups...
+    const ShowGroup = () => {
+    
+        return (
+            <Container>
+            <Modal show={modalShow} onHide={() => setModalShow(false)} centered>
+                    <NewGroup />
+            </Modal>
+            </Container>
+        )
+    }
+
 	return (
         
             <Container>
