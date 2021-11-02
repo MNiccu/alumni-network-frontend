@@ -36,12 +36,12 @@ const Navigation = () => {
 
         <Navbar bg="dark" variant="dark">
           <Container>
-          <Navbar.Brand onClick = { redirectToTimeline }> <img src="/alumninetworklogo.png" height="60"></img> </Navbar.Brand>
+          <Navbar.Brand onClick = { redirectToFeed }> <img src="/alumninetworklogo.png" height="60"></img> </Navbar.Brand>
           
           <Nav className="me-auto">
             <Nav.Link onClick = { redirectToFeed }>Feed</Nav.Link>
-            <Nav.Link onClick =  { redirectToGroups }>Groups</Nav.Link>
             <Nav.Link onClick = { redirectToTopics }>Topics</Nav.Link>
+            <Nav.Link onClick =  { redirectToGroups }>Groups</Nav.Link>
             <Nav.Link onClick = { redirectToCalendar }>Calendar</Nav.Link>
             <Nav.Link onClick = { redirectToEvents }>Events</Nav.Link>
 

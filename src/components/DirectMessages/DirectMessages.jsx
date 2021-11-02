@@ -14,40 +14,6 @@ const DirectMessages = () => {
         loading: true
      })
 
-    const dummy1 = [
-        {
-            id: 1,
-            message: "hello my dude",
-            timestamp: "",
-            from: {
-                username: "thefrogboy",
-                picture: `https://avatars.dicebear.com/api/avataaars/thefrogboy.svg`,
-                name: "The Frog"
-            }
-        },
-        {
-            id: 2,
-            message: "lets party all night long mate",
-            timestamp: "",
-            from: {
-                username: "houseislit",
-                picture: `https://avatars.dicebear.com/api/avataaars/houseislit.svg`,
-                name: "Swedish House Mafia"
-            }
-        },
-        {
-            id: 3,
-            message: "Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risusvarius blandit.",
-            timestamp: "",
-            from: {
-                username: "loremdude",
-                picture: `https://avatars.dicebear.com/api/avataaars/loremdude.svg`,
-                name: "Donatello Angello"
-            }
-        }
-    ]
-
-    //Gets all direct messages for user
     useEffect(() => {
         DirectMessagesAPI.getPost(token)
             .then(response => {

@@ -1,7 +1,7 @@
 import KeycloakService from "../../services/KeycloakService"
 import { useEffect} from "react"
-import { LoginAPI } from "./LoginAPI"
 import { useSelector } from "react-redux";
+import { LoginAPI } from "./LoginApi"
 
 //Logs user in using Keycloak authorization 
 const Login = (props) => {
