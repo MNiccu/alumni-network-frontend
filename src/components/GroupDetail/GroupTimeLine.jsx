@@ -16,6 +16,7 @@ const GroupTimeLine = ({posts, groupId}) => {
     const { id } = useSelector(state => state.userReducer)
     const [userReply, setUsersReply] = useState("")
 
+    console.log("posts", posts)
 
     const handleReply = event => {
         event.preventDefault()
@@ -102,7 +103,7 @@ const GroupTimeLine = ({posts, groupId}) => {
                     </form>
                 </div>
              </div>
-             
+            <h4>FUCK!</h4>
             <ul className="list-group mb-2">
                 {postList.map(listItem => <FeedItem key={listItem.id} post={listItem} />)}
             </ul>

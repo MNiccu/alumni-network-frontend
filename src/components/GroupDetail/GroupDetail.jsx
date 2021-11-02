@@ -1,33 +1,28 @@
-import { Stack, Container} from "react-bootstrap"
+import { Container} from "react-bootstrap"
 import { useEffect, useState} from "react"
-import { TimelineAPI } from "../Timeline/TimelineAPI"
-import TimelinePosts from "../Timeline/TimelinePosts"
 import { useParams } from "react-router-dom"
 import withKeycloak from "../../hoc/WithKeycloak"
 import CalendarComponent from "../Calendar/CalendarComponent"
-import PostPopup from "../CreateEditPost/PostPopup"
 import { useSelector } from "react-redux";
-import GroupTimeLine from "./GroupTimeLine"
 import { GroupListAPI } from "../GroupList/GroupListApi"
+import FeedItem from "../Feed/FeedItem"
+
 
 const GroupDetail = () => {
 
 	const { token } = useSelector(state => state.tokenReducer)
 	const { id } = useSelector(state => state.userReducer)
+
     const {groupid} = useParams()
-	const postContext = {context:"group", id: 1}
-	
-	const [posts, setPosts] = useState({
-		posts: [],
-		fetching: true
-	})
+
+    const [userReply, setUsersReply] = useState("")
+	const [posts, setPosts] = useState([])
 	const [events, setEvents] = useState({
 		events: [],
 		fetching: true
 	})
-
-
 	const [searchTerm, setSearchTerm] = useState("")
+	const [isBasicView, setIsBasicView] = useState(true)
 	
 	const changeSearchTerm = ( event ) => {
 		setSearchTerm(
@@ -36,17 +31,30 @@ const GroupDetail = () => {
 
 	}
 
+	const handleReply = event => {
+        event.preventDefault()
+        const newReply = {
+            text: userReply,
+            targetGroup: groupid,
+            members: [
+                {
+                    id: id
+                }
+            ]
+        }
+        GroupListAPI.sendPost(token, newReply)
+            .then(response => {
+                setPosts(prevState => ([response,...prevState]))
+            })
+    }
 
-	const [isBasicView, setIsBasicView] = useState(true)
+
 	
 	useEffect(() => {
 		GroupListAPI.getGroupPosts(token, groupid)
 			.then(allPosts => {
 				if(allPosts !== null){
-					setPosts({
-						posts: allPosts,
-						fetching: false
-					})
+					setPosts(allPosts)
 				}
 			})
 
@@ -62,9 +70,15 @@ const GroupDetail = () => {
 
 	}, [])
 
+	const handleTextArea = event => {
+        event.preventDefault()
+        setUsersReply(event.target.value)
+    }
+
+
 	return (
 		<Container>
-				<div className="row">
+				<div className="row w-75 mx-auto">
 					<div className="col-10">
 						<h2 className="mt-3">Group Timeline</h2>
 					</div>
@@ -72,10 +86,32 @@ const GroupDetail = () => {
 						<input className="border-danger rounded mt-3 ms-auto" type="text" placeholder="search..." onChange={changeSearchTerm} ></input>
 					</div>
 				</div>
-				<button className="btn btn-outline-danger"onClick={() => setIsBasicView(!isBasicView)}>Change view</button>
+				<div className="row w-75 mx-auto mt-5">
+					<div className="col">
+						<button className="btn btn-outline-danger"onClick={() => setIsBasicView(!isBasicView)}>Change view</button>
+					</div>
+				</div>
+				<div>
+
+				</div>
 				{isBasicView ? 
-				<GroupTimeLine posts={posts.posts} groupId={groupid} /> :
-				<CalendarComponent events={events.events} />}
+					<div className="container">
+					<div className="card my-4 w-75 mx-auto">
+						<div className="card-header">
+							<form onSubmit={handleReply}>
+								<div className="form-group">
+									<label htmlFor="replyToUser">Send message to feed</label>
+									<textarea onChange={handleTextArea} className="form-control" id="replyToUser" rows="3" placeholder="What's on your mind?" required></textarea>
+								</div>
+								<button type="submit" className="btn btn-primary float-end my-2">Send a message</button>
+							</form>
+						</div>
+					</div>
+					<ul className="list-group mb-2">
+						{posts.map(listItem => <FeedItem key={listItem.id} post={listItem} />)}
+					</ul>
+				</div> 
+				: <CalendarComponent events={events.events} />} 
 		</Container>
 
 	)
