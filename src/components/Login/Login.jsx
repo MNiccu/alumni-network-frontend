@@ -51,10 +51,10 @@ const Login = (props) => {
 
 	return (
 		<div className="container">
-			<div className="card my-5 w-50 mx-auto border-success">
+			<div className="card my-5 w-50 mx-auto border-danger">
 				<div className="card-body text-center align-middle">
 					<span className="align-middle me-2">Setting up your alumni network</span>
-					<span className="spinner-border text-success align-middle" role="status"></span>
+					<span className="spinner-border text-danger align-middle" role="status"></span>
 				</div>
 			</div>
 		</div>
