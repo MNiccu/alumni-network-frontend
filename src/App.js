@@ -23,7 +23,6 @@ import SinglePostItem from "./components/Feed/SinglePostItem";
 
 
 
-
 const App = () => {
 	
 	store.dispatch(tokenInitAction())
@@ -53,6 +52,9 @@ const App = () => {
 				<Route exact path="/scroll" component={Scroll} />
 				<Route exact path="/feed" component={Feed} />
 				<Route exact path="/post/:postid" component={SinglePostItem} />
+				<Route path="*"> 
+					<Redirect to="feed" />
+				</Route>
 			</Switch>
 		</BrowserRouter>
 		
