@@ -6,29 +6,12 @@ import getDay from "date-fns/getDay"
 import "react-big-calendar/lib/css/react-big-calendar.css"
 import withKeycloak from "../../hoc/WithKeycloak"
 
-//change to fi?
 const locales = {
     "en-US": require("date-fns/locale/en-US")
 }
 const localizer = dateFnsLocalizer({
     format, parse, startOfWeek, getDay, locales
 })
-
-
-//dummy data
-
-/* const events = [
-{
-    title: "Test event",
-    start: new Date('October 10, 2021'),
-    end: new Date('October 10, 2021')
-},
-{
-    title: "Test2",
-    start: new Date('October 24, 2021'),
-    end: new Date('October 25, 2021')
-}
-] */
 
 
 const CalendarComponent = ({events}) => {

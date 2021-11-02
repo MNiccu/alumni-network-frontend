@@ -19,7 +19,6 @@ const PostPopup = ( {postContext} ) => {
             <Container>
 
                 <Modal show={modalShow} onHide={() => setModalShow(false)} centered>
-                        {console.log("hello")}
 
                         <Modal.Body> 
                           <CreateEditPost postContext={postContext} />
@@ -29,6 +28,7 @@ const PostPopup = ( {postContext} ) => {
         )
     }
 
+    //New post button which opens a popup to create new post
     return (
         <div className="card my-5">
             

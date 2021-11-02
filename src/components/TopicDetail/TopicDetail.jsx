@@ -9,6 +9,7 @@ import CalendarComponent from "../Calendar/CalendarComponent"
 import PostPopup from "../CreateEditPost/PostPopup"
 import { TopicListApi } from "../TopicList/TopicListApi";
 
+//Returns topic details page
 const TopicDetail = () => {
 
     const {id} = useParams()
@@ -26,6 +27,7 @@ const TopicDetail = () => {
 	})
 
 
+	//Search functionality for topics posts
 	const [searchTerm, setSearchTerm] = useState("")
 	
 	const changeSearchTerm = ( event ) => {
@@ -40,6 +42,7 @@ const TopicDetail = () => {
 	const [isBasicView, setIsBasicView] = useState(true)
 	
 
+	//Gets topics posts and events from database
 	useEffect(() => {
 		TimelineAPI.getTopicPosts(id, token)
 			.then(allPost => {
@@ -63,14 +66,6 @@ const TopicDetail = () => {
 				}
 			})
 	}, [])
-
-	// const joinGroup = () => {
-    //     //Token needs to be passed too
-    //     //KeycloakService.getUsername()
-    //     console.log(token);
-    //     TopicListApi.getTopicToPatch(topic.topicId,token)
-
-    //}
     
 	return (
 		<Container>

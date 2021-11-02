@@ -47,6 +47,7 @@ const DirectMessages = () => {
         }
     ]
 
+    //Gets all direct messages for user
     useEffect(() => {
         DirectMessagesAPI.getPost(token)
             .then(response => {

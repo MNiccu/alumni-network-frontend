@@ -8,6 +8,7 @@ import {useHistory} from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
 import { tokenRemoveAction } from '../../store/actions/tokenAction'
 
+//Handles navigation for app
 const Navigation = () => {
 
   const dispatch = useDispatch()
@@ -15,7 +16,6 @@ const Navigation = () => {
 
   const { firstname, username} = useSelector(state => state.userReducer)
 
-  // <button onClick={ handleLoginClick }>Logout with Keycloak</button>>
    const redirectToTopics = useCallback(() => history.push('/topics'), [history])
    const redirectToGroups = useCallback(() => history.push('/groups'), [history])
    const redirectToEvents = useCallback(() => history.push('/events'), [history])

@@ -2,12 +2,12 @@ import { InvalidTokenError } from "jwt-decode"
 
 const url = "https://alumninetworkportalapi.azurewebsites.net/api/"
 
-
+//API calls to database for all group related info
 export const GroupListAPI = {
     
     async getPublicGroups(token) {
         
-        return fetch(`${url}/group`, {
+        return fetch(`${url}group`, {
             method: "GET",
             headers: {
                 'Authorization': 'Bearer ' + token,
@@ -57,7 +57,6 @@ export const GroupListAPI = {
           return await response.json()
         })
         .catch(error => {
-          console.log(error)
           return null
         })
 
@@ -91,7 +90,6 @@ export const GroupListAPI = {
             return await response.json()
           })
           .catch(error => {
-            console.log(error)
             return null
           })
 

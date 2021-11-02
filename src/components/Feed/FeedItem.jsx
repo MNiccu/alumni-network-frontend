@@ -4,7 +4,7 @@ import {useHistory} from 'react-router-dom'
 import { Modal, Row, Col, Stack, Container } from "react-bootstrap"
 
 
-
+//Returns posts for feed
 const FeedItem = ({post}) => {
 
     const history = useHistory();
@@ -17,19 +17,16 @@ const FeedItem = ({post}) => {
 
     const redirectToPost = useCallback(() => history.push(`/post/${post.id}`), [history])
 
-
-
-      
-
+    //Calculates posts timestamps
     const timeDifference = () => {
         const postDate = new Date(post.timeStamp)
         const differenceTime = Date.now() - postDate
         const differenceDay = Math.floor(differenceTime / (1000 * 3600 * 24))
         const differenceHour = Math.floor(differenceTime / (1000 * 3600))
         if(differenceDay !== 0)
-            return <span className="text-muted ms-2 blockquote-footer small-font-size">Posted {differenceDay} days ago</span>
+            return <span className="text-muted ms-2 blockquote-footer small-font-size"> Posted {differenceDay} days ago</span>
         else 
-            return <span>Posted {differenceHour} hours ago</span>
+            return <span> Posted {differenceHour} hours ago</span>
     }
 
     return (

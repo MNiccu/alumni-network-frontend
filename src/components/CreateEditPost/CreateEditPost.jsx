@@ -4,7 +4,7 @@ import { useState } from "react"
 import { PostAPI } from "./PostAPI"
 
 
-
+//Edit created post
 const CreateEditPost = ({postContext}) => {
 
 	const onFormSubmit = event => {
@@ -28,7 +28,6 @@ const CreateEditPost = ({postContext}) => {
 			message: event.target.value
 			}
 		)
-		//currently just closes preview every time more text is added
 		setShowingPreview(false)
 	}
     
@@ -36,7 +35,6 @@ const CreateEditPost = ({postContext}) => {
 	
 	const showPreview = () => {
 		setShowingPreview(!showingPreview);
-		console.log(postContext)
 	}  
 
 

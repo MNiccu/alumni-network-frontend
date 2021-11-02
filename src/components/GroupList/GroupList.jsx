@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 
 import NewGroup from "./NewGroup"
 
+//Returns list of public groups
 const GroupList = () => {
 
     
@@ -21,16 +22,16 @@ const GroupList = () => {
         
     }, [])
 
+    //Gets public groups from database
     const listGroups = event => {
-        console.log(token)
         GroupListAPI.getPublicGroups(token).then(
             result => {
                 groupListArray = result
                 setGroups(groupListArray)
-                console.log(groupListArray)
             })
     }
 
+    //Popup for creating new group
     const ShowGroup = () => {
     
         return (

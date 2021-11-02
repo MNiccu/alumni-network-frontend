@@ -1,5 +1,6 @@
 const url = "https://alumninetworkportalapi.azurewebsites.net/api/event/"
 
+//API calls for event component
 export const EventsAPI = {
     async getEvents(token) {
         return fetch(`${url}`, {
@@ -46,7 +47,7 @@ export const EventsAPI = {
     },
    async getAllTopics(token) {
 
-      return fetch(`https://localhost:44344/api/topic`, {
+      return fetch(`https://alumninetworkportalapi.azurewebsites.net/api/topic`, {
         method: "GET",
         headers: {
           'Authorization': 'Bearer ' + token,

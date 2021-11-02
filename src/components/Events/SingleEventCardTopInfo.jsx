@@ -3,7 +3,7 @@ import { useState } from "react"
 import "./events.css"
 import TopInfoModal from "./TopInfoModal"
 
-
+// Returns single topic info
 const SingleEventCardTopInfo = ({event, topics}) => {
 
     const [visible, setVisible] = useState(false)

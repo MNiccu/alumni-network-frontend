@@ -8,6 +8,7 @@ import CalendarComponent from "../Calendar/CalendarComponent"
 import PostPopup from "../CreateEditPost/PostPopup"
 import { useSelector } from "react-redux";
 
+//Returns group timeline view
 const GroupDetail = () => {
 
 	const { token } = useSelector(state => state.tokenReducer)
@@ -24,7 +25,7 @@ const GroupDetail = () => {
 		fetching: true
 	})
 
-
+	//Handles search in group comments
 	const [searchTerm, setSearchTerm] = useState("")
 	
 	const changeSearchTerm = ( event ) => {
@@ -37,10 +38,10 @@ const GroupDetail = () => {
 
 	const [isBasicView, setIsBasicView] = useState(true)
 	
+	//Gets groups posts and events from database
 	useEffect(() => {
 		TimelineAPI.getGroupPosts(groupid, token)
 			.then(allPost => {
-				console.log("ALL POSTS?", allPost)
 				if (allPost != null) {
 					setPosts({
 						posts: allPost,
@@ -49,12 +50,10 @@ const GroupDetail = () => {
 				}
 			})
 
-			//should get GroupEvents! FIX THIS
 			TimelineAPI.getGroupEvents(token, id)
 			.then(allEvent => {
-				console.log(allEvent)
 				
-				if (allEvent.length) {
+				if (allEvent !== null) {
 					setEvents({
 						events: allEvent,
 						fetching: false

@@ -14,6 +14,7 @@ const Events = () => {
 
     const { token } = useSelector(state => state.tokenReducer)
 
+    //Gets all events from database
     useEffect(() => {
         EventsAPI.getEvents(token)
             .then(response => {

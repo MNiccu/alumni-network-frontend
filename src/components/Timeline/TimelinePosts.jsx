@@ -1,5 +1,6 @@
 import TimelinePostsItem from "./TimelinePostsItem"
 
+//Returns timelineposts
 const TimeLinePosts = ({posts, searchTerm}) => {
 
 

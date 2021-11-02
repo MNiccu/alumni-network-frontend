@@ -5,7 +5,7 @@ import { GroupListAPI } from "../GroupList/GroupListApi"
 import KeycloakService from "../../services/KeycloakService"
 import { useSelector } from "react-redux";
 
-
+//Returns form for new group
 const NewGroup = () => {
 
     const { token } = useSelector(state => state.tokenReducer)
@@ -25,12 +25,11 @@ const NewGroup = () => {
 			
 			}
 		)
-        console.log(groupData)
 	}
 
     const history = useHistory()
-    //const redirectFunction = useCallback(() => history.push('group/'+group.id), [history])
 
+    //Posts new group in database
     const createGroup = () => {
 
         GroupListAPI.postNewGroup(token, groupData)

@@ -1,5 +1,6 @@
 const url = "https://alumninetworkportalapi.azurewebsites.net/api/topic/"
 
+//Handles all topic related info with database
 export const TopicListApi = {
     
   async getTopics(token) {

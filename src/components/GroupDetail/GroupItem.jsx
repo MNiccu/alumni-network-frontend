@@ -5,7 +5,7 @@ import { GroupListAPI } from "../GroupList/GroupListApi"
 import KeycloakService from "../../services/KeycloakService"
 import { useSelector } from "react-redux";
 
-
+//Returns single group item 
 const GroupItem = ({group}) => {
 
     const { token } = useSelector(state => state.tokenReducer)
@@ -14,12 +14,12 @@ const GroupItem = ({group}) => {
     const [modalShow, setModalShow] = useState(false)
     const history = useHistory()
 
+    //Redirect to right group by id
     const redirectFunction = useCallback(() => history.push('group/'+group.id), [history])
 
+    //Join group functions which patches group members in database
     const joinGroup = () => {
-        //Token needs to be passed too
         GroupListAPI.patchGroupMember(group.id, token)
-
     }
     
     useEffect(() => {

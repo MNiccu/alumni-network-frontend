@@ -18,6 +18,7 @@ const SingleEventTimeline = ({event}) => {
         loading: true
     })
 
+    //Gets all posts for particular event
     useEffect(() => {
         EventsAPI.getEventPosts(token, id)
             .then(response => {
