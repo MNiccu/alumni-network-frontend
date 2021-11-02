@@ -1,4 +1,6 @@
 const url = "https://localhost:44344/api/post"
+const urlTopic = "https://localhost:44344/api/topic"
+
 
 
 export const FeedAPI = {
@@ -87,5 +89,26 @@ export const FeedAPI = {
           console.log(error)
           return null
         })
-    }
+    },
+    async getTopics(token) {
+      return fetch(`${urlTopic}`, {
+        method: "GET",
+        headers: {
+          'Authorization': 'Bearer ' + token,
+          "Access-Control-Allow-Origin" : "*", 
+          "Access-Control-Allow-Credentials" : true,
+          'Content-Type': 'application/json',
+        }
+      })
+        .then(async response => {
+          if(!response.ok) {
+            const { error = "Error occured while fetching topics in feed"} = await response.json()
+            throw Error(error)
+          }
+          return await response.json()
+        })
+        .catch(async response => {
+          return null
+        })
+      }
 }
