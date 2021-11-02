@@ -1,8 +1,8 @@
-const apiURL = "https://localhost:44344/api/post/"
+const url = "https://alumninetworkportalapi.azurewebsites.net/api/post/"
 
 export const TimelineAPI = {
     async getPost(token) {
-        return fetch(`https://localhost:44344/api/post/`, {
+        return fetch(`${url}`, {
             method: "GET",
             headers: {
               'Authorization': 'Bearer ' + token,
@@ -23,7 +23,7 @@ export const TimelineAPI = {
             })
     },
     async getTopicPosts(id, token) {
-        return fetch(`https://localhost:44344/api/post/topic/${id}`, {
+        return fetch(`${url}topic/${id}`, {
             method: "GET",
             headers: {
               'Authorization': 'Bearer ' + token,
@@ -46,7 +46,7 @@ export const TimelineAPI = {
 
     //THIS IS THE ONLY ONE UP TO DATE
     async getGroupPosts(id, token) {
-        return fetch(`${apiURL}group/${id}`, {
+        return fetch(`${url}group/${id}`, {
             method: "GET",
             headers: {
                 'Authorization': 'Bearer ' + token,
@@ -67,7 +67,7 @@ export const TimelineAPI = {
     },
 
     getComments(id, token) {
-        return fetch(`$https://localhost:44344/api/post/reply/${id}`, {
+        return fetch(`${url}reply/${id}`, {
             method: "GET",
             headers: {
                 'Authorization': 'Bearer ' + token,

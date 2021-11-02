@@ -4,11 +4,14 @@ import TimeLinePosts from "../Timeline/TimelinePosts"
 import { DirectMessagesAPI } from "./DirectMessagesAPI"
 import withKeycloak from "../../hoc/WithKeycloak"
 import "./message.css"
+import { useSelector } from "react-redux";
 
 
 const Conversation = () => {
 
+    const { token } = useSelector(state => state.tokenReducer)
     const { id } = useParams()
+    
 
     const [posts, setPosts] = useState({
         posts: [],
@@ -16,9 +19,9 @@ const Conversation = () => {
     })
 
     useEffect(() => {
-        DirectMessagesAPI.getPost()
+        DirectMessagesAPI.getConversation(token, id)
             .then(response => {
-                if(response.length){
+                if(response !== null){
                     setPosts({
                         posts: response,
                         loading: false

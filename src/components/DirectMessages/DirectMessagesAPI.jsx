@@ -1,12 +1,50 @@
 export const DirectMessagesAPI = {
-    async getPost() {
-        return fetch("https://alumni-dummy-data-api.herokuapp.com/post")
+
+    async getPost(token) {
+        return fetch(`https://alumninetworkportalapi.azurewebsites.net/api/post/user`, {
+            method: "GET",
+            headers: {
+              'Authorization': 'Bearer ' + token,
+              "Access-Control-Allow-Origin" : "*", 
+              "Access-Control-Allow-Credentials" : true,
+              'Content-Type': 'application/json',
+            }
+          })
             .then(async response => {
-                if(!response.ok){
-                    const { error = "Error occured while fetching post in direct messages"} = await response.json()
-                    throw Error(error)
-                }
-                return await response.json()
+              if(!response.ok) {
+                const { error = "Error occured while fetching topics"} = await response.json()
+                throw Error(error)
+              }
+              
+              return await response.json()
+              
             })
+            .catch(async response => {
+              return null
+            })
+        },
+
+        async getConversation(token, id) {
+          return fetch(`https://alumninetworkportalapi.azurewebsites.net/api/post/user/${id}`, {
+              method: "GET",
+              headers: {
+                'Authorization': 'Bearer ' + token,
+                "Access-Control-Allow-Origin" : "*", 
+                "Access-Control-Allow-Credentials" : true,
+                'Content-Type': 'application/json',
+              }
+            })
+              .then(async response => {
+                if(!response.ok) {
+                  const { error = "Error occured while fetching topics"} = await response.json()
+                  throw Error(error)
+                }
+                
+                return await response.json()
+                
+              })
+              .catch(async response => {
+                return null
+              })
+          }
     }
-}

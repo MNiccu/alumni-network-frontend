@@ -1,6 +1,5 @@
-const url = "https://localhost:44344/api/post"
-const urlTopic = "https://localhost:44344/api/topic"
-
+const url = "https://alumninetworkportalapi.azurewebsites.net/api/post"
+const urlTopic = "https://alumninetworkportalapi.azurewebsites.net/api/topic"
 
 
 export const FeedAPI = {

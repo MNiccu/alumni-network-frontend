@@ -1,4 +1,4 @@
-const url = "https://localhost:44344/api/post/timeline"
+const url = "https://alumninetworkportalapi.azurewebsites.net/post/timeline"
 
 
 export const ScrollAPI = {
