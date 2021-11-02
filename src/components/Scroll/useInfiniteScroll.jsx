@@ -24,6 +24,7 @@ const useInfiniteScroll = (callback, lastpost) => {
           setIsFetching(true)
         } 
     }
+    console.log("in inf")
 }
 
   return [isFetching, setIsFetching]

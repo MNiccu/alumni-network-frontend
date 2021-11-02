@@ -1,4 +1,4 @@
-import { useState, useEffect, optionState } from 'react'; 
+import { useState, useEffect } from 'react'; 
 import useInfiniteScroll from '../Scroll/useInfiniteScroll';
 import { FeedAPI } from './FeedAPI'
 import { useSelector } from "react-redux";
@@ -10,7 +10,7 @@ const Feed = () => {
     const [lastpost, setLastpost] = useState(false)
     const [isFetching, setIsFetching] = useInfiniteScroll(fetchMoreListItems, lastpost);
     const { token } = useSelector(state => state.tokenReducer)
-    const { id, name, username } = useSelector(state => state.userReducer)
+    const { id } = useSelector(state => state.userReducer)
     const [userReply, setUsersReply] = useState("")
     const [allTopics, setAllTopics] = useState({
         topicList: [],
@@ -118,6 +118,9 @@ const Feed = () => {
                     </form>
                 </div>
              </div>
+             {!listItems.length &&
+                <h3 className="text-center mt-5 pt-5 secondary text-muted">You need to join some <a href="/topics">topics</a> or <a href="/groups">groups</a> first to see some posts here</h3>
+             }
             <ul className="list-group mb-2">
                 {listItems.map(listItem => <FeedItem key={listItem.id} post={listItem} />)}
             </ul>

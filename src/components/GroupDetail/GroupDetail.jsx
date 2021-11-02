@@ -1,4 +1,4 @@
-import { Modal, Row, Col, Stack, Container , Button} from "react-bootstrap"
+import { Stack, Container} from "react-bootstrap"
 import { useEffect, useState} from "react"
 import { TimelineAPI } from "../Timeline/TimelineAPI"
 import TimelinePosts from "../Timeline/TimelinePosts"
@@ -7,6 +7,8 @@ import withKeycloak from "../../hoc/WithKeycloak"
 import CalendarComponent from "../Calendar/CalendarComponent"
 import PostPopup from "../CreateEditPost/PostPopup"
 import { useSelector } from "react-redux";
+import GroupTimeLine from "./GroupTimeLine"
+import { GroupListAPI } from "../GroupList/GroupListApi"
 
 const GroupDetail = () => {
 
@@ -38,42 +40,41 @@ const GroupDetail = () => {
 	const [isBasicView, setIsBasicView] = useState(true)
 	
 	useEffect(() => {
-		TimelineAPI.getGroupPosts(groupid, token)
-			.then(allPost => {
-				console.log("ALL POSTS?", allPost)
-				if (allPost != null) {
+		GroupListAPI.getGroupPosts(token, groupid)
+			.then(allPosts => {
+				if(allPosts !== null){
 					setPosts({
-						posts: allPost,
+						posts: allPosts,
 						fetching: false
 					})
 				}
 			})
 
-			//should get GroupEvents! FIX THIS
-			TimelineAPI.getGroupEvents(token, id)
-			.then(allEvent => {
-				console.log(allEvent)
-				
-				if (allEvent.length) {
-					setEvents({
-						events: allEvent,
-						fetching: false
-					})
-				}
-			
-			})
+			GroupListAPI.getGroupEvents(token, groupid)
+				.then(allEvents => {
+					if(allEvents !== null){
+						setEvents({
+							events: allEvents,
+							fetching: false
+						})
+					}
+				})
+
 	}, [])
 
 	return (
 		<Container>
-			<Stack direction="horizontal" gap={3}> 
-				<h2 className="mt-3">Group Timeline</h2>
-				<input className="border-danger rounded mt-3 ms-auto" type="text" placeholder="search..." onChange={changeSearchTerm} ></input>
-			</Stack>
-				<PostPopup postContext={postContext}/>
+				<div className="row">
+					<div className="col-10">
+						<h2 className="mt-3">Group Timeline</h2>
+					</div>
+					<div className="col-2">
+						<input className="border-danger rounded mt-3 ms-auto" type="text" placeholder="search..." onChange={changeSearchTerm} ></input>
+					</div>
+				</div>
 				<button className="btn btn-outline-danger"onClick={() => setIsBasicView(!isBasicView)}>Change view</button>
 				{isBasicView ? 
-				(<TimelinePosts posts={posts.posts} searchTerm={searchTerm}/>) :
+				<GroupTimeLine posts={posts.posts} groupId={groupid} /> :
 				<CalendarComponent events={events.events} />}
 		</Container>
 
