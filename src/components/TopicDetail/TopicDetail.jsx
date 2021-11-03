@@ -120,7 +120,7 @@ const TopicDetail = () => {
 							</form>
 						</div>
 					</div>
-					<ul className="list-group mb-2">
+					<ul className="list-group mb-2 w-75 mx-auto">
 						{posts.map(listItem => <FeedItem key={listItem.id} post={listItem} />)}
 					</ul>
 				</div> 
