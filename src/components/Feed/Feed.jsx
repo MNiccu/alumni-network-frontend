@@ -3,6 +3,7 @@ import useInfiniteScroll from '../Scroll/useInfiniteScroll';
 import { FeedAPI } from './FeedAPI'
 import { useSelector } from "react-redux";
 import FeedItem from './FeedItem';
+import { Stack } from 'react-bootstrap';
 
 const Feed = () => {
 

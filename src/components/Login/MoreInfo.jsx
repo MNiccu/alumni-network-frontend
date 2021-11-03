@@ -1,7 +1,7 @@
 import { useState} from "react"
+import { LoginAPI} from "./LoginAPI"
 import { useSelector } from "react-redux";
 import withKeycloak from "../../hoc/WithKeycloak"
-import { LoginAPI } from "./LoginApi";
 
 //Updates users additional info which is not provided in authorization process
 const MoreInfo = (props) => {
