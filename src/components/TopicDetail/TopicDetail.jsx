@@ -121,7 +121,15 @@ const TopicDetail = () => {
 						</div>
 					</div>
 					<ul className="list-group mb-2 w-75 mx-auto">
-						{posts.map(listItem => <FeedItem key={listItem.id} post={listItem} />)}
+						{posts.filter((post) => {
+                   
+                   if (searchTerm == "") {
+                       return post 
+                   }
+                   else if (post.text.toString().toLowerCase().includes(searchTerm.toString().toLowerCase())) {
+                       return post
+                   }
+               }).map(post => <FeedItem key={post.id} post={post} />)}
 					</ul>
 				</div> 
 				: <CalendarComponent events={events.events} />} 
