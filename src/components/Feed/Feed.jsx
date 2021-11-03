@@ -118,7 +118,7 @@ const Feed = () => {
              {!listItems.length &&
                 <h3 className="text-center mt-5 pt-5 secondary text-muted">You need to join some <a href="/topics">topics</a> or <a href="/groups">groups</a> first to see some posts here</h3>
              }
-            <ul className="list-group mb-2">
+            <ul className="list-group mb-2 w-75 mx-auto">
                 {listItems.map(listItem => <FeedItem key={listItem.id} post={listItem} />)}
             </ul>
             {isFetching && !lastpost && <h4 className="text-center my-3">Fetching more list items...</h4>}
