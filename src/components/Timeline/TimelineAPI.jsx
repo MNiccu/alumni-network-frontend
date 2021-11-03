@@ -1,5 +1,6 @@
 const url = "https://alumninetworkportalapi.azurewebsites.net/api/post/"
 
+//Gets all timeline related info from database
 export const TimelineAPI = {
     async getPost(token) {
         return fetch(`${url}`, {
@@ -44,7 +45,6 @@ export const TimelineAPI = {
             })
     },
 
-    //THIS IS THE ONLY ONE UP TO DATE
     async getGroupPosts(id, token) {
         return fetch(`${url}group/${id}`, {
             method: "GET",
@@ -103,15 +103,16 @@ export const TimelineAPI = {
                 const { error = "Error fetching group posts"} = await response.json()
                 throw Error(error)
               }
-               const json = await response.json();
+              const json = await response.json();
               const filtered = json.filter((events) => {
-                if (events.targetGroupId == id) {
+                if (events.targetGroupId === id) {
                     return events
                 }
                 
             })
             return filtered
         }).catch(async response => {
+          console.log(response)
             return null
           })
     },
@@ -189,7 +190,6 @@ export const TimelineAPI = {
               return await response.json()
             })
             .catch(error => {
-              console.log(error)
               return null
             })
         

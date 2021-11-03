@@ -4,7 +4,7 @@ const url = "https://alumninetworkportalapi.azurewebsites.net/api/group"
 const urlPost = "https://alumninetworkportalapi.azurewebsites.net/api/post"
 const urlEvent = "https://alumninetworkportalapi.azurewebsites.net/api/event"
 
-
+//API calls to database for all group related info
 export const GroupListAPI = {
 
     
@@ -80,7 +80,6 @@ export const GroupListAPI = {
           return await response.json()
         })
         .catch(error => {
-          console.log(error)
           return null
         })
   },
@@ -110,7 +109,6 @@ export const GroupListAPI = {
         })
         return filtered
     }).catch(async response => {
-      console.log(response)
         return null
       })
   },
@@ -133,7 +131,6 @@ export const GroupListAPI = {
               return await response.json()
             })
         .catch(error => {
-          console.log(error)
           return null
         })
     },
@@ -156,7 +153,6 @@ export const GroupListAPI = {
         return await response.json()
       })
       .catch(error => {
-        console.log(error)
         return null
       })
   }

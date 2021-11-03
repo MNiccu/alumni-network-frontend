@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import withKeycloak from "../../hoc/WithKeycloak"
 import { LoginAPI } from "./LoginApi";
 
+//Updates users additional info which is not provided in authorization process
 const MoreInfo = (props) => {
 
 	const { token } = useSelector(state => state.tokenReducer)
@@ -14,6 +15,7 @@ const MoreInfo = (props) => {
 		funfact: ""
 	})
 
+	//Updates additional info and posts them to database
 	const onFormSubmit = event => {
 		event.preventDefault()
 		const updateUser = {
@@ -54,7 +56,6 @@ const MoreInfo = (props) => {
 					<h3>Complete your profile</h3>
 					<form className="my-4" onSubmit={ onFormSubmit }>
 						<div className="mb-4">
-							{/*EI TOIMI VIELÄ*/}
 							<label htmlFor="inputProfilePic" className="form-label">Choose a profile picture for yourself</label>
 							<input type="file" id="inputProfilePic" className="form-control"></input>
 						</div>

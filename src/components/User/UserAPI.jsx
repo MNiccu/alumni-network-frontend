@@ -1,6 +1,7 @@
 const apiURL = "https://alumni-dummy-data-api.herokuapp.com/post"
-const url = "https://localhost:44344/api/user/"
+const url = "https://alumninetworkportalapi.azurewebsites.net/api/user/"
 
+//Handles API calls for user to interact with database
 export const UserAPI = {
     async getUser(token, id) {
         return fetch(`${url}${id}`, {
@@ -41,7 +42,6 @@ export const UserAPI = {
             return await response.json()
           })
           .catch(error => {
-            console.log(error)
             return null
           })
       },

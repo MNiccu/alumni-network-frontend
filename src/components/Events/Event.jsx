@@ -10,7 +10,7 @@ const Event = ({events}) => {
         const history = useHistory()
         const handleEventClick = useCallback(() => history.push(`events/${event.id}`), [history])
         
-
+    
         return (
                 <Col className="mt-5">
                     <Card className="event mt-1 mb-0 h-100" type="button" onClick={ handleEventClick}>
@@ -35,6 +35,7 @@ const Event = ({events}) => {
         )
     }
 
+    //Displays as many event card as there are events for user
     return (
         events.map(event => {
             return (

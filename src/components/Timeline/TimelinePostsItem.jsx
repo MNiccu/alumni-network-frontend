@@ -5,6 +5,7 @@ import Replies from "./Replies"
 import "./timeline.css"
 import PostEditor from "./PostEditor"
 
+//Returns posts in timeline
 const TimelinePostsItem = ({post}) => {
     
     const [modalShow, setModalShow] = useState(false)
@@ -13,20 +14,6 @@ const TimelinePostsItem = ({post}) => {
         comments: [],
         loading: true
     })
-
-    // useEffect(() => {
-    //     if(post.postTarget.length > 0) {
-    //         TimelineAPI.getComments(post.postTarget[0])
-    //             .then(response => {
-    //                 if(response.length){
-    //                     setReplies({
-    //                         comments: response,
-    //                         loading: false
-    //                     })
-    //                 }
-    //             })
-    //         }
-    // },[])
     
     const ShowPost = () => {
         
@@ -69,26 +56,6 @@ const TimelinePostsItem = ({post}) => {
             </Container>
         )
     }
-
-    // const CommentsCount = ({postTarget}) => {
-    //     if(postTarget.length === 1){
-    //         return (
-    //             <>
-    //                 <span className="material-icons align-middle">comment</span>
-    //                 <button className="btn btn-outline-secondary comments">Thread have 1 reply</button>
-    //             </>
-    //         )
-    //     }
-    //     else if(postTarget.length > 1){
-    //         return (
-    //             <>
-    //                 {/* <span className="material-icons align-middle">comment</span> */}
-    //                 <button className="comments my-0" onClick={ () => setModalShow(true)} >Thread has {postTarget.length} replies</button>
-    //             </>
-    //         )
-    //     }
-    //     return ''
-    // }
     
    
     return (
@@ -104,7 +71,6 @@ const TimelinePostsItem = ({post}) => {
                     <PostEditor post={post.text}/>
                 </div>
                 <div className="ms-5 mt-1">
-                   {/* <CommentsCount postTarget={post.postTarget} className="mx-5"/> */}
 
                     <ShowPost />
                 </div>

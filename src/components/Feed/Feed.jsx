@@ -27,6 +27,7 @@ const Feed = () => {
 	}
 
 
+    //Setup for reply to post
     const handleReply = event => {
         event.preventDefault()
         const newReply = {
@@ -41,24 +42,22 @@ const Feed = () => {
         console.log("reply", event.target.value)
         FeedAPI.sendPost(token, newReply)
             .then(response => {
-                console.log(response)
                 setListItems(prevState => ([response,...prevState]))
             })
     }
 
+    //Gets posts for feed and joined topics
     useEffect(() => {
         const postZero = { timeStamp: null }
         FeedAPI.getTimelinePosts(token, postZero)
             .then(response => {
                 if(response !== null){
                     setListItems(response)
-                    console.log(response)
                 }
             })
 
             FeedAPI.getTopics(token)
             .then(response => {
-                console.log("topic", response)
                 if(response !== null){
                     setAllTopics({
                         ...allTopics,
@@ -69,10 +68,9 @@ const Feed = () => {
             })
     }, [])
 
-    
+    //Fetches more posts when user scrolls down the feed
     function fetchMoreListItems() {
         const lastPost = listItems[listItems.length - 1]
-        console.log("last post", lastPost)
         FeedAPI.getTimelinePosts(token, lastPost)
             .then(response => {
                 
@@ -80,7 +78,6 @@ const Feed = () => {
                     if(response.length){
                         setListItems(prevState => ([...prevState, ...response]));
                         setIsFetching(false);
-                        console.log("response",response)
                     }
                     else
                         setLastpost(true)
@@ -88,18 +85,18 @@ const Feed = () => {
             })
     }
 
+    //Handles changes in input
     const handleTextArea = event => {
         event.preventDefault()
         setUsersReply(event.target.value)
     }
 
-
+    //Handles changes in input
     const handleChange = (event) => {
         setAllTopics({
             ...allTopics,
             selectedTopic: +event.target.value
         })
-        console.log("change", allTopics)
       }
 
     return (

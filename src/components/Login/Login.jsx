@@ -3,13 +3,14 @@ import { useEffect} from "react"
 import { useSelector } from "react-redux";
 import { LoginAPI } from "./LoginApi"
 
-
+//Logs user in using Keycloak authorization 
 const Login = (props) => {
 
 	const { token } = useSelector(state => state.tokenReducer)
 	const { id, name, username} = useSelector(state => state.userReducer)
 
 
+	//Prompts for additional user info
 	const getUserInfo = () => {
 		console.log(KeycloakService.getToken())
 		LoginAPI.getUser(token, id)
@@ -39,6 +40,7 @@ const Login = (props) => {
 				})
 	}
 
+	//Uses Keycloak for authorization
 	useEffect(() => {
 		if(!KeycloakService.isLoggedIn()){
 			KeycloakService.doLogin()

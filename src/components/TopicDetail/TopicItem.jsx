@@ -6,7 +6,7 @@ import KeycloakService from "../../services/KeycloakService"
 import { TopicListApi } from "../TopicList/TopicListApi"
 
 
-
+//Returns singular topic item
 const TopicItem = ({topic}) => {
     
     const [modalShow, setModalShow] = useState(false)
@@ -19,18 +19,11 @@ const TopicItem = ({topic}) => {
     },[])
 
 
+    //Patches topic members in database
     const joinGroup = () => {
-        //Token needs to be passed too
-        //KeycloakService.getUsername()
-        console.log(token);
         TopicListApi.getTopicToPatch(topic.id,token)
-
     }
     
-    // const ShowTopic = () => {
-        
-       
-    // }
 
     return (
         <div className="card my-5">

@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
 
+
+//Handles infinite scroll on feed where the feed fetches more posts everytime user scrolls to the bottom of the page
 const useInfiniteScroll = (callback, lastpost) => {
   
   const [isFetching, setIsFetching] = useState(false)
@@ -12,7 +14,6 @@ const useInfiniteScroll = (callback, lastpost) => {
   useEffect(() => {
     if (!isFetching) return
     callback(() => {
-      console.log('called back')
     });
   }, [isFetching])
 
@@ -20,7 +21,6 @@ const useInfiniteScroll = (callback, lastpost) => {
     if (!lastpost){
       let isAtBottom = document.documentElement.scrollHeight - document.documentElement.scrollTop <= document.documentElement.clientHeight
       if (isAtBottom) { 
-          console.log("Bottom")
           setIsFetching(true)
         } 
     }

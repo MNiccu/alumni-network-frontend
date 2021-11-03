@@ -8,25 +8,25 @@ import withKeycloak from "../../hoc/WithKeycloak"
 import CalendarComponent from "../Calendar/CalendarComponent"
 import PostPopup from "../CreateEditPost/PostPopup"
 import { TopicListApi } from "../TopicList/TopicListApi";
+import FeedItem from "../Feed/FeedItem"
 
+
+//Returns topic details page
 const TopicDetail = () => {
 
-    const {id} = useParams()
+    const {topicid} = useParams()
 	
-
-	const postContext = {context:"topic", id: 1}
-
-	const [posts, setPosts] = useState({
-		posts: [],
-		fetching: true
-	})
+	const [posts, setPosts] = useState([])
 	const [events, setEvents] = useState({
 		events: [],
 		fetching: true
 	})
+    const [userReply, setUsersReply] = useState("")
 
 
+	//Search functionality for topics posts
 	const [searchTerm, setSearchTerm] = useState("")
+	const [isBasicView, setIsBasicView] = useState(true)
 	
 	const changeSearchTerm = ( event ) => {
 		setSearchTerm(
@@ -36,33 +36,49 @@ const TopicDetail = () => {
 	}
 	
 	const { token } = useSelector(state => state.tokenReducer)
+	const { id } = useSelector(state => state.userReducer)
 
-	const [isBasicView, setIsBasicView] = useState(true)
-	
-
+	//Gets topics posts and events from database
 	useEffect(() => {
-		TimelineAPI.getTopicPosts(id, token)
+		TopicListApi.getTopicPosts(token, topicid)
 			.then(allPost => {
-				if (allPost != null) {
-					setPosts({
-						posts: allPost,
-						fetching: false
-					})
+				if (allPost !== null) {
+					setPosts(allPost)
 				}
 			})
 			
-			TimelineAPI.getTopicEvents(id, token)
+			TopicListApi.getTopicEvents(token, topicid)
 			.then(allEvent => {
 				if (allEvent != null) {
 					setEvents({
 						events: allEvent,
 						fetching: false
 					})
-
-			
 				}
 			})
 	}, [])
+
+	const handleReply = event => {
+        event.preventDefault()
+        const newReply = {
+            text: userReply,
+            targetTopic: topicid,
+            members: [
+                {
+                    id: id
+                }
+            ]
+        }
+        TopicListApi.sendPost(token, newReply)
+            .then(response => {
+                setPosts(prevState => ([response,...prevState]))
+            })
+    }
+
+	const handleTextArea = event => {
+        event.preventDefault()
+        setUsersReply(event.target.value)
+    }
 
 	// const joinGroup = () => {
     //     //Token needs to be passed too
@@ -74,15 +90,41 @@ const TopicDetail = () => {
     
 	return (
 		<Container>
-			<Stack direction="horizontal" gap={3}> 
-				<h2 className="mt-3">Topic Timeline</h2>
-				<input className="border-danger rounded mt-3 ms-auto" type="text" placeholder="search..." onChange={changeSearchTerm} ></input>
-			</Stack>
-			<PostPopup postContext={postContext}/>
-			<button className="btn btn-outline-danger" onClick={() => setIsBasicView(!isBasicView)}>Change view</button>
-			{isBasicView ? 
-			(<TimelinePosts posts={posts.posts} searchTerm={searchTerm}/>) :
-			<CalendarComponent events={events.events} />}
+				<div className="row w-75 mx-auto">
+					<div className="col-10">
+						<h2 className="mt-3">Topic Timeline</h2>
+					</div>
+					<div className="col-2">
+						<input className="border-danger rounded mt-3 ms-auto" type="text" placeholder="search..." onChange={changeSearchTerm} ></input>
+					</div>
+				</div>
+				<div className="row w-75 mx-auto mt-5">
+					<div className="col">
+				<		button className="btn btn-outline-danger"onClick={() => setIsBasicView(!isBasicView)}>Change view</button>
+
+					</div>
+				</div>
+				<div>
+
+				</div>
+				{isBasicView ? 
+					<div className="container">
+					<div className="card my-4 w-75 mx-auto">
+						<div className="card-header">
+							<form onSubmit={handleReply}>
+								<div className="form-group">
+									<label htmlFor="replyToUser">Send message to feed</label>
+									<textarea onChange={handleTextArea} className="form-control" id="replyToUser" rows="3" placeholder="What's on your mind?" required></textarea>
+								</div>
+								<button type="submit" className="btn btn-primary float-end my-2">Send a message</button>
+							</form>
+						</div>
+					</div>
+					<ul className="list-group mb-2">
+						{posts.map(listItem => <FeedItem key={listItem.id} post={listItem} />)}
+					</ul>
+				</div> 
+				: <CalendarComponent events={events.events} />} 
 		</Container>
 	)
 }

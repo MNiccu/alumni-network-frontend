@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { GroupListAPI } from '../GroupList/GroupListApi';
 import FeedItem from "../Feed/FeedItem"
 
+//Returns groups timeline
 const GroupTimeLine = ({posts, groupId}) => {
 
     const [postList, setPostList] = useState([])
@@ -16,6 +17,7 @@ const GroupTimeLine = ({posts, groupId}) => {
     const { id } = useSelector(state => state.userReducer)
     const [userReply, setUsersReply] = useState("")
 
+    console.log("posts", posts)
 
     const handleReply = event => {
         event.preventDefault()
@@ -28,6 +30,7 @@ const GroupTimeLine = ({posts, groupId}) => {
                 }
             ]
         }
+        //Send post and posts to database
         GroupListAPI.sendPost(token, newReply)
             .then(response => {
                 console.log(response)
@@ -52,7 +55,7 @@ const GroupTimeLine = ({posts, groupId}) => {
         }
     }, [])
 
-    
+    //Fetches more posts as user scrolls down the page
     function fetchMoreListItems() {
         const restOfPost = posts.slice(isLastpost.scroll, posts.length)
         console.log(restOfPost.length)
@@ -102,7 +105,7 @@ const GroupTimeLine = ({posts, groupId}) => {
                     </form>
                 </div>
              </div>
-             
+            <h4>FUCK!</h4>
             <ul className="list-group mb-2">
                 {postList.map(listItem => <FeedItem key={listItem.id} post={listItem} />)}
             </ul>

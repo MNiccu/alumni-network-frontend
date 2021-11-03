@@ -9,6 +9,7 @@ import PostPopup from "../CreateEditPost/PostPopup"
 import CreateEditPost from "../CreateEditPost/CreateEditPost"
 import { set } from "date-fns"
 
+//Returns timeline content
 const Timeline = () => {
 
 	const { token } = useSelector(state => state.userReducer)
@@ -22,6 +23,7 @@ const Timeline = () => {
 	const username = KeycloakService.getUsername()
 	
 
+	//Search funtionality to posts
 	const [searchTerm, setSearchTerm] = useState("")
 	
 	const changeSearchTerm = ( event ) => {
@@ -31,6 +33,7 @@ const Timeline = () => {
 
 	}
 
+	//Fetches timeline posts from database
 	useEffect(() => {
 		if(posts.posts.length == 0){
 		TimelineAPI.getPost(token)
@@ -42,7 +45,6 @@ const Timeline = () => {
 						posts: allPost,
 						fetching: false
 					})
-					console.log(posts.posts[posts.posts.length-1])
 					}	}
 			})
         }
@@ -56,11 +58,7 @@ const Timeline = () => {
 				<h2 className="mt-3">{ username }'s Timeline</h2>
 				<input className="border-danger rounded mt-3 ms-auto" type="text" placeholder="search..." onChange={changeSearchTerm} ></input>
 			</Stack>
-			
-			{/* <main>
-		 	<h1> { username }'s Timeline</h1>	
-			</main>
-			<input type="text" placeholder="search..." onChange={changeSearchTerm} ></input> */}
+
 			<PostPopup postContext={postContext}/>
 						
 			<TimelinePosts posts={posts.posts} searchTerm={searchTerm}/>

@@ -1,5 +1,6 @@
 import { Card} from "react-bootstrap"
 
+//Returns user posts
 const UserPosts = ({posts}) => {
 
     const SinglePost = ({post}) => {
@@ -26,7 +27,7 @@ const UserPosts = ({posts}) => {
     }
 
 
-
+    //maps users posts
     return (
         posts.map(post => {
             return (
