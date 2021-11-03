@@ -1,10 +1,14 @@
+# Alumni Network Frontend
+
+This is a React web application using redux, keycloak and bootstrap. The project that works in tandem with https://github.com/Vilhard/AlumniNetworkBackend
+This application is a social media platform meant for former alumni to stay in contact.
+
+For this application to work, you must have keycloak set up.
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
 
 ### `npm start`
 
