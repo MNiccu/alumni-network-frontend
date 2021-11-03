@@ -1,4 +1,5 @@
 const url = "https://alumninetworkportalapi.azurewebsites.net/api/event/"
+const urlPost = "https://alumninetworkportalapi.azurewebsites.net/api/post"
 
 //API calls for event component
 export const EventsAPI = {
@@ -69,25 +70,25 @@ export const EventsAPI = {
     },
 
     async getEventPosts(token, id) {
-        return fetch(`${url}${id}`, {
+      return fetch(`${urlPost}/event/${id}`, {
         method: "GET",
-            headers: {
-              'Authorization': 'Bearer ' + token,
-              "Access-Control-Allow-Origin" : "*", 
-              "Access-Control-Allow-Credentials" : true,
-              'Content-Type': 'application/json',
-            }
-          })
-            .then(async response => {
-              if(!response.ok) {
-                const { error = "Error occured while fetching event by id"} = await response.json()
+        headers: {
+            'Authorization': 'Bearer ' + token,
+            "Access-Control-Allow-Origin" : "*",
+            "Access-Control-Allow-Credentials" : true,
+            'Content-Type': 'application/json',
+        }
+    })
+        .then(async response => {
+            if(!response.ok) {
+                const { error = "Error fetching groups"} = await response.json()
                 throw Error(error)
               }
               return await response.json()
             })
-            .catch(async response => {
-              return null
-            })
+        .catch(error => {
+          return null
+        })
     },
 
     async getEventAttendees(token, id) {
@@ -110,5 +111,27 @@ export const EventsAPI = {
           .catch(async response => {
             return null
           })
+  },
+
+  async sendPost(token, post) {
+    return fetch(`${urlPost}`, {
+      method: "POST",
+      headers: {
+        'Authorization': 'Bearer ' + token,
+        "Access-Control-Allow-Credentials" : true,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(post)
+    })
+      .then(async response => {
+        if(!response.ok) {
+          const { error = "Error occured while posting new post"} = await response.json()
+          throw Error(error)
+        }
+        return await response.json()
+      })
+      .catch(error => {
+        return null
+      })
   }
 }

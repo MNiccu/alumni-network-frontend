@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom"
 import { EventsAPI } from "./EventsAPI"
 import "./events.css"
 import SingleEventCardTopInfo from "./SingleEventCardTopInfo"
-import SingleEventPostForm from "./SingleEventPostForm"
 import SingleEventTimeline from "./SingleEventTimeline"
 import { useSelector } from "react-redux";
 
@@ -58,8 +57,7 @@ const SingleEvent = () => {
     return (
         <Container>
             <SingleEventCardTopInfo event={event.eventDetails} topics={topics.topics} />
-            <SingleEventPostForm event={event.eventDetails} topics={topics.topics} />
-            <SingleEventTimeline event={event.eventDetails} />
+            <SingleEventTimeline event={event.eventDetails} eventId={id} />
         </Container>
     )
 }
