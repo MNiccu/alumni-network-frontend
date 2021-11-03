@@ -24,7 +24,6 @@ export const EventsAPI = {
             })
     },
     async getEventById(id, token) {
-      console.log("TÄÄÄ ", id)
         return fetch(`${url}${id}`, {
             method: "GET",
             headers: {

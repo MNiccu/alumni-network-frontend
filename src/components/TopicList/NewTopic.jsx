@@ -29,7 +29,6 @@ const NewTopic = () =>{
 			
 			}
 		)
-        console.log(topicData)
 	}
 
     const history = useHistory()

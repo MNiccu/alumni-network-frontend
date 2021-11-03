@@ -35,10 +35,8 @@ const TopicList = () => {
     const listTopics = event => {
         TopicListApi.getTopics(token).then(
             result => {
-                console.log("AAAA", result)
                 topicListArray = result
                 setTopics(topicListArray)
-                console.log(topicListArray)
                 
             })
     }
