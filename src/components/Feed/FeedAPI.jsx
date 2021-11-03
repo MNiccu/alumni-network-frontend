@@ -57,7 +57,7 @@ export const FeedAPI = {
       })
         .then(async response => {
           if(!response.ok) {
-            const { error = "Error occured while fetching single post of timeline"} = await response.json()
+            const { error = "Error occured while fetching replies of post"} = await response.json()
             throw Error(error)
           }
           return await response.json()

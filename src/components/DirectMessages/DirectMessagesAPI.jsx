@@ -13,7 +13,7 @@ export const DirectMessagesAPI = {
           })
             .then(async response => {
               if(!response.ok) {
-                const { error = "Error occured while fetching topics"} = await response.json()
+                const { error = "Error occured while fetching direct messages"} = await response.json()
                 throw Error(error)
               }
               
@@ -38,7 +38,7 @@ export const DirectMessagesAPI = {
             })
               .then(async response => {
                 if(!response.ok) {
-                  const { error = "Error occured while fetching topics"} = await response.json()
+                  const { error = "Error occured while single conversation"} = await response.json()
                   throw Error(error)
                 }
                 

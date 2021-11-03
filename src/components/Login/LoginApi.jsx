@@ -60,7 +60,7 @@ export const LoginAPI = {
     })
       .then(async response => {
         if(!response.ok) {
-          const { error = "Error occured while posting user to database"} = await response.json()
+          const { error = "Error occured while updating user"} = await response.json()
           throw Error(error)
         }
         return await response.json()

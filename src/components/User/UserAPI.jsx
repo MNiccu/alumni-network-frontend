@@ -1,4 +1,3 @@
-const apiURL = "https://alumni-dummy-data-api.herokuapp.com/post"
 const url = "https://alumninetworkportalapi.azurewebsites.net/api/user/"
 
 //Handles API calls for user to interact with database
@@ -44,15 +43,5 @@ export const UserAPI = {
           .catch(error => {
             return null
           })
-      },
-    getPosts(id) {
-        return fetch(`${apiURL}?senderId=${id}`)
-            .then(async response => {
-                if(!response.ok) {
-                    const { error = `Error occured while fetching users ${id} posts for user`} = await response.json()
-                    throw Error(error)
-                }
-                return await response.json()
-            })
-    }
+      }
 }

@@ -1,5 +1,3 @@
-import { InvalidTokenError } from "jwt-decode"
-
 const url = "https://alumninetworkportalapi.azurewebsites.net/api/group"
 const urlPost = "https://alumninetworkportalapi.azurewebsites.net/api/post"
 const urlEvent = "https://alumninetworkportalapi.azurewebsites.net/api/event"
@@ -74,7 +72,7 @@ export const GroupListAPI = {
       })
         .then(async response => {
           if(!response.ok) {
-            const { error = "Error occured while posting user to database"} = await response.json()
+            const { error = "Error occured while crating new group"} = await response.json()
             throw Error(error)
           }
           return await response.json()
@@ -84,8 +82,7 @@ export const GroupListAPI = {
         })
   },
 
-  async getGroupEvents(token, id){
-        
+  async getGroupEvents(token, id){    
     return fetch(`${urlEvent}`, {
         method: "GET",
         headers: {
@@ -97,7 +94,7 @@ export const GroupListAPI = {
     })
     .then(async response => {
         if(!response.ok) {
-            const { error = "Error fetching group posts"} = await response.json()
+            const { error = "Error fetching groups events"} = await response.json()
             throw Error(error)
           }
           const json = await response.json();
@@ -125,7 +122,7 @@ export const GroupListAPI = {
     })
         .then(async response => {
             if(!response.ok) {
-                const { error = "Error fetching groups"} = await response.json()
+                const { error = "Error fetching groups posts"} = await response.json()
                 throw Error(error)
               }
               return await response.json()

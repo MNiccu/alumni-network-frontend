@@ -25,7 +25,6 @@ export const EventsAPI = {
             })
     },
     async getEventById(id, token) {
-      console.log("TÄÄÄ ", id)
         return fetch(`${url}${id}`, {
             method: "GET",
             headers: {
@@ -81,7 +80,7 @@ export const EventsAPI = {
     })
         .then(async response => {
             if(!response.ok) {
-                const { error = "Error fetching groups"} = await response.json()
+                const { error = "Error fetching posts of the event"} = await response.json()
                 throw Error(error)
               }
               return await response.json()

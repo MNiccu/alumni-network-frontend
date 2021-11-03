@@ -88,7 +88,7 @@ export const TopicListApi = {
     })
     .then(async response => {
         if(!response.ok) {
-            const { error = "Error fetching group posts"} = await response.json()
+            const { error = "Error fetching events of topic"} = await response.json()
             throw Error(error)
           }
           const json = await response.json();
@@ -117,7 +117,7 @@ export const TopicListApi = {
     })
         .then(async response => {
             if(!response.ok) {
-                const { error = "Error fetching groups"} = await response.json()
+                const { error = "Error occured while fetching topics posts"} = await response.json()
                 throw Error(error)
               }
               return await response.json()
