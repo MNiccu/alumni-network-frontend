@@ -60,9 +60,34 @@ const SinglePostItem = () => {
                 }
             ]
         }
+        const copyOfReplies = replies.replies
+        const repliesBeforeAPIresponse = [newReply, ...replies.replies]
+        setReplies({
+            replies: repliesBeforeAPIresponse,
+            fetching: false
+        })
         FeedAPI.sendPost(token, newReply)
             .then(response => {
-            })
+                const newRepliesArray = [response, ...copyOfReplies]
+                setReplies({
+                    replies: newRepliesArray,
+                    fetching: false
+                })
+                setUsersReply("")
+            })  
+    }
+
+    const timeDifference = (timeStamp) => {
+        const postDate = new Date(timeStamp)
+        const differenceTime = Date.now() - postDate
+        const differenceDay = Math.floor(differenceTime / (1000 * 3600 * 24))
+        const differenceHour = Math.floor(differenceTime / (1000 * 3600))
+        if(differenceDay > 0)
+            return <span className="text-muted ms-2 blockquote-footer small-font-size"> Posted {differenceDay} days ago</span>
+        else if(differenceDay < 0)
+            return <span className="text-muted ms-2 blockquote-footer small-font-size"> Posted {Math.abs(differenceDay)} days to today from the future</span>
+        else 
+            return <span className="text-muted ms-2 blockquote-footer small-font-size">Posted {differenceHour} hours ago</span>
     }
 
     //Handles changes in text area
@@ -79,7 +104,7 @@ const SinglePostItem = () => {
                             <img src={`https://avatars.dicebear.com/api/avataaars/userid${id}.svg`} alt="Users profile" className="card-img align-middle rounded-circle" />
                         </div>
                         <div className="col-10">
-                            <p className="card-title">{reply.senderName}</p>
+                            <p className="card-title">{reply.senderName}{timeDifference(reply.timeStamp)}</p>
                             <p className="card-text">{reply.text}</p>
                         </div>
                     </div>
@@ -96,7 +121,7 @@ const SinglePostItem = () => {
                             <img src={`https://avatars.dicebear.com/api/avataaars/userid${id}.svg`} alt="Users profile" className="card-img align-middle rounded-circle" />
                         </div>
                         <div className="col-10">
-                            <p className="card-title">{postinfo.post.senderName}</p>
+                            <p className="card-title">{postinfo.post.senderName}{timeDifference(postinfo.post.timeStamp)}</p>
                             <p className="card-text">{postinfo.post.text}</p>
                         </div>
                     </div>
@@ -107,7 +132,7 @@ const SinglePostItem = () => {
                     {!replies.replies.length && <p className="align-middle text-center fs-3">No replies in this conversation</p>}
                     {replies.replies.map(reply => {
                         return (
-                            <Reply reply={reply} />
+                            <Reply key={reply.id} reply={reply} />
                         )
                     })}
                 </div>
@@ -117,7 +142,7 @@ const SinglePostItem = () => {
                     <form onSubmit={handleReply}>
                         <div className="form-group">
                             <label htmlFor="replyToUser">Send message to this user</label>
-                            <textarea onChange={handleTextArea} className="form-control" id="replyToUser" rows="3" placeholder="What's on your mind?" required></textarea>
+                            <textarea onChange={handleTextArea} value={userReply} className="form-control" id="replyToUser" rows="3" placeholder="What's on your mind?" required></textarea>
                         </div>
                         <button type="submit" className="btn btn-primary float-end my-2">Send a message</button>
                     </form>

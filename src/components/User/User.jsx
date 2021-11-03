@@ -87,6 +87,10 @@ const User = () => {
             .then(response => {
                 if(response !== null) {
                     handleClose()
+                    setUser({
+                        user: response,
+                        loading: false
+                    })
                 }
             })
     }

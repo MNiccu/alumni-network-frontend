@@ -56,10 +56,6 @@ const MoreInfo = (props) => {
 					<h3>Complete your profile</h3>
 					<form className="my-4" onSubmit={ onFormSubmit }>
 						<div className="mb-4">
-							<label htmlFor="inputProfilePic" className="form-label">Choose a profile picture for yourself</label>
-							<input type="file" id="inputProfilePic" className="form-control"></input>
-						</div>
-						<div className="mb-4">
 							<label htmlFor="status" className="form-label">Where you are working/studying currently? *</label>
 							<input type="text" onChange={handleInputChange} className="form-control" id="status" required placeholder="Your current status"></input>
 						</div>

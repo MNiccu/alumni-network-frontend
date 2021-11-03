@@ -18,6 +18,15 @@ const Feed = () => {
         fetching: true
     })
 
+
+	const [searchTerm, setSearchTerm] = useState("")
+	const changeSearchTerm = ( event ) => {
+		setSearchTerm(
+			event.target.value
+		)
+	}
+
+
     //Setup for reply to post
     const handleReply = event => {
         event.preventDefault()
@@ -91,7 +100,13 @@ const Feed = () => {
       }
 
     return (
+
+        
         <div className="container">
+                    <div className="col-2">
+						<input className="border-danger rounded mt-3 ms-auto" type="text" placeholder="search..." onChange={changeSearchTerm} ></input>
+					</div>
+
             <div className="card my-4 w-75 mx-auto">
                 <div className="card-header">
                     <form onSubmit={handleReply}>
@@ -118,8 +133,16 @@ const Feed = () => {
              {!listItems.length &&
                 <h3 className="text-center mt-5 pt-5 secondary text-muted">You need to join some <a href="/topics">topics</a> or <a href="/groups">groups</a> first to see some posts here</h3>
              }
-            <ul className="list-group mb-2">
-                {listItems.map(listItem => <FeedItem key={listItem.id} post={listItem} />)}
+            <ul className="list-group mb-2 w-75 mx-auto">
+                {listItems.filter((listItem) => {
+                   
+                   if (searchTerm === "") {
+                       return listItem 
+                   }
+                   else if (listItem.text.toString().toLowerCase().includes(searchTerm.toString().toLowerCase())) {
+                       return listItem
+                   }
+               }).map(listItem => <FeedItem key={listItem.id} post={listItem} />)}
             </ul>
             {isFetching && !lastpost && <h4 className="text-center my-3">Fetching more list items...</h4>}
             {lastpost && <h4 className="text-center my-3" >Nice you scrolled to bottom</h4>}

@@ -103,15 +103,16 @@ export const TimelineAPI = {
                 const { error = "Error fetching group posts"} = await response.json()
                 throw Error(error)
               }
-               const json = await response.json();
+              const json = await response.json();
               const filtered = json.filter((events) => {
-                if (events.targetGroupId == id) {
+                if (events.targetGroupId === id) {
                     return events
                 }
                 
             })
             return filtered
         }).catch(async response => {
+          console.log(response)
             return null
           })
     },

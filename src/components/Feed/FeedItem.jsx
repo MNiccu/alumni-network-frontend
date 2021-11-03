@@ -23,14 +23,16 @@ const FeedItem = ({post}) => {
         const differenceTime = Date.now() - postDate
         const differenceDay = Math.floor(differenceTime / (1000 * 3600 * 24))
         const differenceHour = Math.floor(differenceTime / (1000 * 3600))
-        if(differenceDay !== 0)
+        if(differenceDay > 0)
             return <span className="text-muted ms-2 blockquote-footer small-font-size"> Posted {differenceDay} days ago</span>
+        else if(differenceDay < 0)
+            return <span className="text-muted ms-2 blockquote-footer small-font-size"> Posted {Math.abs(differenceDay)} days to today from the future</span>
         else 
             return <span className="text-muted ms-2 blockquote-footer small-font-size">Posted {differenceHour} hours ago</span>
     }
 
     return (
-        <div className="card my-3 w-75 mx-auto" type="button" onClick={redirectToPost }>
+        <div className="card my-3" type="button" onClick={redirectToPost }>
             <div className="card-header pe-0">
                 <div className="row pe-0">
                     <div className="col-1 pe-0" id="post-img">
