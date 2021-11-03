@@ -3,6 +3,7 @@ import useInfiniteScroll from '../Scroll/useInfiniteScroll';
 import { FeedAPI } from './FeedAPI'
 import { useSelector } from "react-redux";
 import FeedItem from './FeedItem';
+import { Stack } from 'react-bootstrap';
 
 const Feed = () => {
 
@@ -103,9 +104,10 @@ const Feed = () => {
 
         
         <div className="container">
-                    <div className="col-2">
-						<input className="border-danger rounded mt-3 ms-auto" type="text" placeholder="search..." onChange={changeSearchTerm} ></input>
-					</div>
+                <Stack direction="horizontal" gap={3}>
+                 <h2 className="mt-3">Feed</h2>
+                 <input className="border-danger rounded mt-3 ms-auto" type="text" placeholder="search..." onChange={changeSearchTerm} ></input>
+                </Stack>
 
             <div className="card my-4 w-75 mx-auto">
                 <div className="card-header">
