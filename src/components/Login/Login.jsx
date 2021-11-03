@@ -1,7 +1,7 @@
 import KeycloakService from "../../services/KeycloakService"
 import { useEffect} from "react"
+import { LoginAndMoreInfoAPI } from "./LoginAndMoreInfoAPI";
 import { useSelector } from "react-redux";
-import { LoginAPI } from "./LoginAPI"
 
 //Logs user in using Keycloak authorization 
 const Login = (props) => {
@@ -12,7 +12,7 @@ const Login = (props) => {
 
 	//Prompts for additional user info
 	const getUserInfo = () => {
-		LoginAPI.getUser(token, id)
+		LoginAndMoreInfoAPI.getUser(token, id)
 				.then(response => {
 					if(response === null){
 						const newUser = {
@@ -20,7 +20,7 @@ const Login = (props) => {
 							name,
 							username
 						}
-						LoginAPI.postUser(token, newUser)
+						LoginAndMoreInfoAPI.postUser(token, newUser)
 							.then(response => {
 								if(response !== null){
 									props.history.push("/moreinfo")

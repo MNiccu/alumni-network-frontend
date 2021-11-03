@@ -1,5 +1,5 @@
 import { useState} from "react"
-import { LoginAPI} from "./LoginAPI"
+import { LoginAndMoreInfoAPI } from "./LoginAndMoreInfoAPI";
 import { useSelector } from "react-redux";
 import withKeycloak from "../../hoc/WithKeycloak"
 
@@ -24,7 +24,7 @@ const MoreInfo = (props) => {
 			status: fields.status,
 			funFact: fields.funfact
 		}
-		LoginAPI.updateUser(token, id, updateUser)
+		LoginAndMoreInfoAPI.updateUser(token, id, updateUser)
 			.then(response => {
 				if(response !== null){
 					props.history.push("/feed")

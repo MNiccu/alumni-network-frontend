@@ -2,7 +2,7 @@ const url = "https://alumninetworkportalapi.azurewebsites.net/api/user/"
 //const url = "https://alumninetworkbackend20211025174426.azurewebsites.net/api/topic"
 
 //Gets all Login related info from database
-export const LoginAPI = {
+export const LoginAndMoreInfoAPI = {
 
   async getUser(token, id) {
     return fetch(`${url}${id}`, {
