@@ -18,18 +18,14 @@ export const tokenMiddleware = ({ dispatch }) => (next) => (action) => {
             return token
         }
         catch(e) {
-            console.log("here")
             console.log(e)
         }
     }
 
     if(action.type === ACTION_TOKEN_INIT){
         let storedToken = Cookies.get('token')
-        console.log("stored boy", storedToken)
         if(storedToken === undefined){
-            console.log("token und")
             storedToken = getToken()
-            console.log("stored", storedToken)
             if(!storedToken)
                 return
         }
