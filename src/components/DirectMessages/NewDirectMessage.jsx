@@ -1,9 +1,7 @@
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react"
 import React from "react"
-import { Container, Stack, Button, Form, Modal } from "react-bootstrap"
-import TopicItem from "../TopicDetail/TopicItem"
-import withKeycloak from "../../hoc/WithKeycloak"
+import { Button, Form } from "react-bootstrap"
 import { useHistory } from "react-router-dom"
 import { DirectMessagesAPI } from "./DirectMessagesAPI";
 
@@ -26,7 +24,6 @@ const NewDirectMessage = () =>{
     })
 
     const handleInputChange = event => {
-        console.log(event.target.value)
         event.preventDefault()
 		setDirectMessageData (
 			{

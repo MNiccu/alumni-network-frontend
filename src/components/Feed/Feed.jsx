@@ -40,7 +40,6 @@ const Feed = () => {
                 }
             ]
         }
-        console.log("reply", event.target.value)
         FeedAPI.sendPost(token, newReply)
             .then(response => {
                 setListItems(prevState => ([response,...prevState]))

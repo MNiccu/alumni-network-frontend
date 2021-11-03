@@ -7,7 +7,6 @@ import TopInfoModal from "./TopInfoModal"
 const SingleEventCardTopInfo = ({event, topics}) => {
 
     const [visible, setVisible] = useState(false)
-    console.log("SingleVentCardTopInfo",topics, event)
     const start = new Date(event.startTime)
     const end = new Date(event.endTime)
     const banner = event.bannerImg

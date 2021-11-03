@@ -16,7 +16,6 @@ const NewTopic = () =>{
     })
 
     const handleInputChange = event => {
-        console.log(event.target.value)
         event.preventDefault()
 		setTopicData (
 			{
