@@ -1,22 +1,17 @@
 import { useSelector } from "react-redux";
-import { Modal, Row, Col, Stack, Container, Button } from "react-bootstrap"
-import { useState, useEffect, useCallback } from "react"
+import { Stack, Button } from "react-bootstrap"
+import { useCallback } from "react"
 import { useHistory } from "react-router-dom"
-import KeycloakService from "../../services/KeycloakService"
 import { TopicListApi } from "../TopicList/TopicListApi"
 
 
 //Returns singular topic item
 const TopicItem = ({topic}) => {
     
-    const [modalShow, setModalShow] = useState(false)
     const history = useHistory()
     const redirectFunction = useCallback(() => history.push('topic/'+topic.id), [history])
     const { token } = useSelector(state => state.tokenReducer)
-    
-    useEffect(() => {
-       
-    },[])
+
 
 
     //Patches topic members in database

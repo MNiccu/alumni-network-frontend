@@ -1,8 +1,7 @@
-import { Modal, Row, Col, Stack, Container , Button} from "react-bootstrap"
-import { useState, useEffect, useCallback } from "react"
+import { Stack, Button} from "react-bootstrap"
+import { useEffect, useCallback } from "react"
 import { useHistory } from "react-router-dom"
 import { GroupListAPI } from "../GroupList/GroupListApi"
-import KeycloakService from "../../services/KeycloakService"
 import { useSelector } from "react-redux";
 
 //Returns single group item 
@@ -10,8 +9,6 @@ const GroupItem = ({group}) => {
 
     const { token } = useSelector(state => state.tokenReducer)
 
-
-    const [modalShow, setModalShow] = useState(false)
     const history = useHistory()
 
     //Redirect to right group by id
@@ -22,10 +19,6 @@ const GroupItem = ({group}) => {
         GroupListAPI.patchGroupMember(group.id, token)
     }
     
-    useEffect(() => {
-       
-    },[])
-
     return (
         <div className="card my-5">
             <div className="card-header">

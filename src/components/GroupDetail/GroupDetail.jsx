@@ -49,6 +49,7 @@ const GroupDetail = () => {
             .then(response => {
                 setPosts(prevState => ([response,...prevState]))
             })
+			setUsersReply("")
     }
 
 
@@ -105,7 +106,7 @@ const GroupDetail = () => {
 							<form onSubmit={handleReply}>
 								<div className="form-group">
 									<label htmlFor="replyToUser">Send message to feed</label>
-									<textarea onChange={handleTextArea} className="form-control" id="replyToUser" rows="3" placeholder="What's on your mind?" required></textarea>
+									<textarea onChange={handleTextArea} value={userReply} className="form-control" id="replyToUser" rows="3" placeholder="What's on your mind?" required></textarea>
 								</div>
 								<button type="submit" className="btn btn-primary float-end my-2">Send a message</button>
 							</form>

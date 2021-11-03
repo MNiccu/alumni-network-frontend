@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 const DirectMessages = () => {
 
     const { token } = useSelector(state => state.tokenReducer)
-    const { id } = useSelector(state => state.userReducer)
 
      const [posts, setPosts] = useState( {
         posts: [],
@@ -17,7 +16,6 @@ const DirectMessages = () => {
     useEffect(() => {
         DirectMessagesAPI.getPost(token)
             .then(response => {
-                console.log("AFLAFKAFLKFL", response)
                 if(response !== null){
                     setPosts({
                         posts: response,

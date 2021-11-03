@@ -1,10 +1,7 @@
 import { useEffect, useState } from "react"
-import { Card } from "react-bootstrap"
 import { EventsAPI } from "./EventsAPI"
 import "./events.css"
-import TimeLinePosts from "../Timeline/TimelinePosts"
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom"
 import FeedItem from "../Feed/FeedItem"
 
 
@@ -33,6 +30,7 @@ const SingleEventTimeline = ({event, eventId}) => {
             .then(response => {
                 setPosts(prevState => ([response,...prevState]))
             })
+            setUsersReply("")
     }
 
     //Gets all posts for particular event
@@ -57,7 +55,7 @@ const SingleEventTimeline = ({event, eventId}) => {
                     <form onSubmit={handleReply}>
                         <div className="form-group">
                             <label htmlFor="replyToUser">Send message to feed</label>
-                            <textarea onChange={handleTextArea} className="form-control" id="replyToUser" rows="3" placeholder="What's on your mind?" required></textarea>
+                            <textarea onChange={handleTextArea} value={userReply} className="form-control" id="replyToUser" rows="3" placeholder="What's on your mind?" required></textarea>
                         </div>
                         <button type="submit" className="btn btn-primary float-end my-2">Send a message</button>
                     </form>

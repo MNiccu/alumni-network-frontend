@@ -12,7 +12,6 @@ const Login = (props) => {
 
 	//Prompts for additional user info
 	const getUserInfo = () => {
-		console.log(KeycloakService.getToken())
 		LoginAPI.getUser(token, id)
 				.then(response => {
 					if(response === null){

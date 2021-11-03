@@ -2,8 +2,7 @@ import { useEffect, useState, useCallback } from "react"
 import {useHistory} from 'react-router-dom'
 import { Container, Card, Row, Col, Image, Button, Offcanvas, Form } from "react-bootstrap"
 import { UserAPI } from "./UserAPI"
-import UserPosts from "./UserPosts"
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import "./user.css"
 import withKeycloak from "../../hoc/WithKeycloak"
 
@@ -14,11 +13,6 @@ const User = () => {
 
     const [user, setUser] = useState({
         user: [],
-        loading: true
-    })
-
-    const [posts, setPosts] = useState({
-        posts: [],
         loading: true
     })
 
@@ -47,24 +41,10 @@ const User = () => {
 
                 }
             })
-
-        UserAPI.getPosts(dummyUser.id)
-            .then(response => {
-                if(response.length) {
-                    setPosts({
-                        posts: response,
-                        loading: false
-                    })
-                }
-            })
     }, [])
 
     const handleShow = () => setShow(true)
     const handleClose = () => setShow(false)
-
-    const dummyUser = {
-        id: 3
-        }
 
     //Redirects user to groups topics and events
     const redirectToTopics = useCallback(() => history.push('/topics'), [history])
@@ -141,13 +121,6 @@ const User = () => {
                     <Card.Title>My bio</Card.Title>
                     <Card.Subtitle>{user.user.bio}</Card.Subtitle>
                 </Card.Body>
-            </Card>
-
-            <Card className="mb-5 card-scroll">
-                <Card.Title className="mx-3">Users activity</Card.Title>
-                <div className="scrollable">
-                    <UserPosts posts={posts.posts} />
-                </div>
             </Card>
 
             <Offcanvas show={show} onHide={handleClose} backdrop={false} scroll={false}>

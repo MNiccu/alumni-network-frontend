@@ -1,9 +1,7 @@
 import "./App.css";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import Login from "./components/Login/Login";
-import CreateEditPost from "./components/CreateEditPost/CreateEditPost"
 import Events from "./components/Events/Events"
-import Timeline from "./components/Timeline/Timeline"
 import GroupDetail from "./components/GroupDetail/GroupDetail";
 import GroupList from "./components/GroupList/GroupList"
 import TopicList from "./components/TopicList/TopicList"
@@ -15,7 +13,6 @@ import TopicDetail from "./components/TopicDetail/TopicDetail";
 import MoreInfo from "./components/Login/MoreInfo";
 import DirectMessages from "./components/DirectMessages/DirectMessages";
 import Conversation from "./components/DirectMessages/Conversation";
-import Scroll from "./components/Scroll/Scroll";
 import Feed from "./components/Feed/Feed";
 import store from "./store";
 import { tokenInitAction} from "./store/actions/tokenAction"
@@ -38,7 +35,6 @@ const App = () => {
 
 				<Route path="/login" component={Login} />
 				<Route exact path="/moreinfo" component={MoreInfo} />
-				<Route exact path="/timeline" component={Timeline} />
 				<Route exact path="/calendar" component={Calendar} />
 				<Route exact path="/user" component={User} />
 				<Route exact path="/events" component={Events} />
@@ -49,7 +45,6 @@ const App = () => {
 				<Route exact path="/topic/:topicid" component={TopicDetail} />
 				<Route exact path="/directmessages" component={DirectMessages} />
 				<Route exact path="/directmessages/:id" component={Conversation} />
-				<Route exact path="/scroll" component={Scroll} />
 				<Route exact path="/feed" component={Feed} />
 				<Route exact path="/post/:postid" component={SinglePostItem} />
 				<Route path="*"> 

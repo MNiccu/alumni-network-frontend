@@ -8,7 +8,7 @@ import "./feed.css"
 const SinglePostItem = () => {
 
     const { postid } = useParams()
-    const { id, name, username } = useSelector(state => state.userReducer)
+    const { id} = useSelector(state => state.userReducer)
     const { token } = useSelector(state => state.tokenReducer)
 
     const [postinfo, setPostinfo] = useState({
@@ -98,10 +98,10 @@ const SinglePostItem = () => {
 
     const Reply = ({reply}) => {
         return (
-            <div className="card-header">
+            <div className="card-header my-1">
                     <div className="row">
                         <div className="col-1 pe-0" id="post-img">
-                            <img src={`https://avatars.dicebear.com/api/avataaars/userid${id}.svg`} alt="Users profile" className="card-img align-middle rounded-circle" />
+                            <img src={`https://avatars.dicebear.com/api/avataaars/${reply.id}.svg`} alt="Users profile" className="card-img align-middle rounded-circle prof-img" />
                         </div>
                         <div className="col-10">
                             <p className="card-title">{reply.senderName}{timeDifference(reply.timeStamp)}</p>
@@ -118,7 +118,7 @@ const SinglePostItem = () => {
                 <div className="card-header">
                     <div className="row">
                         <div className="col-1 pe-0" id="post-img">
-                            <img src={`https://avatars.dicebear.com/api/avataaars/userid${id}.svg`} alt="Users profile" className="card-img align-middle rounded-circle" />
+                            <img src={`https://avatars.dicebear.com/api/avataaars/${id}.svg`} alt="Users profile" className="card-img align-middle rounded-circle prof-img" />
                         </div>
                         <div className="col-10">
                             <p className="card-title">{postinfo.post.senderName}{timeDifference(postinfo.post.timeStamp)}</p>

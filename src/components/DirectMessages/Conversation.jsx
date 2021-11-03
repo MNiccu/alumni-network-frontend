@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import TimeLinePosts from "../Timeline/TimelinePosts"
 import { DirectMessagesAPI } from "./DirectMessagesAPI"
 import withKeycloak from "../../hoc/WithKeycloak"
 import "./message.css"
@@ -36,7 +35,7 @@ const Conversation = () => {
         <div className="container" >
             <div className="card scroll convo-container">
                 <div className="card-body scrollable convo-container">
-                    <TimeLinePosts posts={posts.posts} searchTerm={""}/>
+                    
                 </div>
             </div>
             <div className="card my-4">

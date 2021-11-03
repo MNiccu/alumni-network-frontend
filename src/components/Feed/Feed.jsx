@@ -44,7 +44,8 @@ const Feed = () => {
             .then(response => {
                 setListItems(prevState => ([response,...prevState]))
             })
-    }
+            setUsersReply("")
+        }
 
     //Gets posts for feed and joined topics
     useEffect(() => {
@@ -103,8 +104,13 @@ const Feed = () => {
 
         
         <div className="container">
-                    <div className="col-2">
-						<input className="border-danger rounded mt-3 ms-auto" type="text" placeholder="search..." onChange={changeSearchTerm} ></input>
+            <div className="row w-75 mx-auto">
+                <div className="col">
+						<input className="border-danger rounded mt-3 float-end" type="text" placeholder="search..." onChange={changeSearchTerm} ></input>
+
+                </div>
+            </div>
+                    <div className="col-2 align-end">
 					</div>
 
             <div className="card my-4 w-75 mx-auto">
@@ -112,7 +118,7 @@ const Feed = () => {
                     <form onSubmit={handleReply}>
                         <div className="form-group">
                             <label htmlFor="replyToUser">Send message to feed</label>
-                            <textarea onChange={handleTextArea} className="form-control" id="replyToUser" rows="3" placeholder="What's on your mind?" required></textarea>
+                            <textarea onChange={handleTextArea} value={userReply} className="form-control" id="replyToUser" rows="3" placeholder="What's on your mind?" required></textarea>
                             {allTopics.fetching && 
                             <select className="form-select form-select-sm my-2" disabled>
                                 <option>Fetching topics</option>

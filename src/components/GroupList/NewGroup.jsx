@@ -1,8 +1,6 @@
-import { Modal, Row, Col, Stack, Container , Button, Form} from "react-bootstrap"
-import { useState, useEffect, useCallback } from "react"
-import { useHistory } from "react-router-dom"
+import {Container , Button, Form} from "react-bootstrap"
+import { useState } from "react"
 import { GroupListAPI } from "../GroupList/GroupListApi"
-import KeycloakService from "../../services/KeycloakService"
 import { useSelector } from "react-redux";
 
 //Returns form for new group
@@ -27,19 +25,11 @@ const NewGroup = () => {
 		)
 	}
 
-    const history = useHistory()
-
     //Posts new group in database
     const createGroup = () => {
-
         GroupListAPI.postNewGroup(token, groupData)
     }
 
-   
-    
-    useEffect(() => {
-       
-    },[])
 
     return (
         <Container>

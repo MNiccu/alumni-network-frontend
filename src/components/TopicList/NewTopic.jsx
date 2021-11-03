@@ -1,18 +1,14 @@
 import { useSelector } from "react-redux";
 import { TopicListApi } from "./TopicListApi"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import React from "react"
-import { Container, Stack, Button, Form, Modal } from "react-bootstrap"
-import TopicItem from "../TopicDetail/TopicItem"
+import { Button, Form } from "react-bootstrap"
 import withKeycloak from "../../hoc/WithKeycloak"
-import { useHistory } from "react-router-dom"
 
 //Returns a form to make new topic
 const NewTopic = () =>{
 
     const { token } = useSelector(state => state.userReducer)
-
-    const [topics, setTopics] = useState([])
 
     const [topicData, setTopicData] = useState( {
         name: " ",
@@ -29,19 +25,13 @@ const NewTopic = () =>{
 			
 			}
 		)
-        console.log(topicData)
 	}
-
-    const history = useHistory()
 
     //Posts new topic to database
     const createTopic = () => {
         TopicListApi.postNewTopic(topicData, token)
     }
 
-    useEffect(() => {
-       
-    },[])
 
     return (
             <div className="card rounded">
@@ -70,4 +60,4 @@ const NewTopic = () =>{
             </div>
             )
 }
-export default NewTopic
+export default withKeycloak(NewTopic)

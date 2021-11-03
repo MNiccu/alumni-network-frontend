@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { TopicListApi } from "./TopicListApi"
 import { useState, useEffect } from "react"
 import React from "react"
-import { Container, Stack, Button, Form, Modal } from "react-bootstrap"
+import { Container, Stack, Button, Modal } from "react-bootstrap"
 import TopicItem from "../TopicDetail/TopicItem"
 import withKeycloak from "../../hoc/WithKeycloak"
 import NewTopic from "./NewTopic";
@@ -17,12 +17,6 @@ const TopicList = () => {
  
 
     const [topics, setTopics] = useState([])
-
-    const [topicData, setTopicData] = useState( {
-        name: " ",
-        description: " "
-    })
-
     
     useEffect(() => {
         
@@ -35,11 +29,8 @@ const TopicList = () => {
     const listTopics = event => {
         TopicListApi.getTopics(token).then(
             result => {
-                console.log("AAAA", result)
                 topicListArray = result
-                setTopics(topicListArray)
-                console.log(topicListArray)
-                
+                setTopics(topicListArray)                
             })
     }
 

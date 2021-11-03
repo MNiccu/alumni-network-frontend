@@ -1,12 +1,9 @@
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react"
-import { TimelineAPI } from "../Timeline/TimelineAPI"
-import { Container, Stack } from "react-bootstrap"
-import TimelinePosts from "../Timeline/TimelinePosts"
+import { Container } from "react-bootstrap"
 import { useParams } from "react-router-dom"
 import withKeycloak from "../../hoc/WithKeycloak"
 import CalendarComponent from "../Calendar/CalendarComponent"
-import PostPopup from "../CreateEditPost/PostPopup"
 import { TopicListApi } from "../TopicList/TopicListApi";
 import FeedItem from "../Feed/FeedItem"
 
@@ -73,20 +70,13 @@ const TopicDetail = () => {
             .then(response => {
                 setPosts(prevState => ([response,...prevState]))
             })
+			setUsersReply("")
     }
 
 	const handleTextArea = event => {
         event.preventDefault()
         setUsersReply(event.target.value)
     }
-
-	// const joinGroup = () => {
-    //     //Token needs to be passed too
-    //     //KeycloakService.getUsername()
-    //     console.log(token);
-    //     TopicListApi.getTopicToPatch(topic.topicId,token)
-
-    //}
     
 	return (
 		<Container>
@@ -114,7 +104,7 @@ const TopicDetail = () => {
 							<form onSubmit={handleReply}>
 								<div className="form-group">
 									<label htmlFor="replyToUser">Send message to feed</label>
-									<textarea onChange={handleTextArea} className="form-control" id="replyToUser" rows="3" placeholder="What's on your mind?" required></textarea>
+									<textarea onChange={handleTextArea} value={userReply} className="form-control" id="replyToUser" rows="3" placeholder="What's on your mind?" required></textarea>
 								</div>
 								<button type="submit" className="btn btn-primary float-end my-2">Send a message</button>
 							</form>
@@ -123,7 +113,7 @@ const TopicDetail = () => {
 					<ul className="list-group mb-2 w-75 mx-auto">
 						{posts.filter((post) => {
                    
-                   if (searchTerm == "") {
+                   if (searchTerm === "") {
                        return post 
                    }
                    else if (post.text.toString().toLowerCase().includes(searchTerm.toString().toLowerCase())) {
