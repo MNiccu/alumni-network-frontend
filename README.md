@@ -5,6 +5,15 @@ This application is a social media platform meant for former alumni to stay in c
 
 For this application to work, you must have keycloak set up.
 
+### Deployment
+This app is currently deployed for testing at https://noroff-alumni-network.herokuapp.com/
+
+### Contributors
+- ###### [Ville Hotakainen](https://github.com/Vilhard)
+- ###### [Omar El Tokhy](https://github.com/omareltokhy)
+- ###### [Sergei Kaukiainen](https://github.com/billmaister)
+- ###### [Mikko Nikku](https://github.com/MNiccu)
+
 
 # Getting Started with Create React App
 
